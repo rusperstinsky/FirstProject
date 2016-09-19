@@ -39,19 +39,16 @@ public class SellPanel extends JPanel{
    }*/
    
    private void setAmountPanel(){
-	 amountPanel = new JPanel(new FlowLayout());
+	 amountPanel = new JPanel(new BorderLayout());
 	 lblTotal = new JLabel();
 	 lblPago = new JLabel();
 	 lblSaldo = new JLabel();
+	 new JLabel("Total ");
 	 lblTotal.setText("$0.00");
+	 new JLabel("Pago ");
 	 lblPago.setText("$0.00");
+	 new JLabel("Saldo: ");
 	 lblSaldo.setText("$0.00");
-	 amountPanel.add(new JLabel("Total "));
-	 amountPanel.add(lblTotal);
-	 amountPanel.add(new JLabel("Pago "));
-	 amountPanel.add(lblPago);
-	 amountPanel.add(new JLabel("Saldo: "));
-	 amountPanel.add(lblSaldo);	 	 	 
 	 sellPanel.add(amountPanel);
    }
    
