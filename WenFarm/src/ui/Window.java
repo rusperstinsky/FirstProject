@@ -19,10 +19,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import com.jgoodies.forms.layout.FormLayout;
@@ -33,12 +38,20 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JList;
+import javax.swing.JTable;
 
 public class Window {
 
 	private JFrame frame;
 	private final JPanel panel_1 = new JPanel();
 	private BufferedImage image;
+	private JTextField textField;
+	private JTable table;
+	String[] columns = new String[]{"Sku","Articulo","Cantidad","Precio"};
+	Object[][] data = {{"12345", "Aspirina Bayer",new Integer(2), new Double(10.00)}};
+	private JTable table_1;
+
 
 	/**
 	 * Launch the application.
@@ -200,7 +213,6 @@ public class Window {
 		try {
 		  File here = new File(".");
 	      File file = new File(here.getCanonicalPath()+"/src/ui/utils/aspirina.jpg");
-	      System.out.println(file.getCanonicalPath());
 	      image = ImageIO.read(file);	      
 	      Image imagen = ImageIO.read(file);	      
 	      GridBagLayout gbl_panel_3 = new GridBagLayout();
@@ -224,15 +236,29 @@ public class Window {
 	      gbc_picLabel.gridx = 2;
 	      gbc_picLabel.gridy = 0;
 	      panel_3.add(picLabel, gbc_picLabel);
+	      
+	      textField = new JTextField();
+	      textField.setBounds(12, 175, 812, 38);
+	      panel_1.add(textField);
+	      textField.setColumns(10);	      
+	      
+	      DefaultTableModel model = new DefaultTableModel();
+
+	      model.addColumn("Sku");
+	      model.addColumn("Articulo");
+	      model.addColumn("Cantidad");
+	      model.addColumn("Precio");
+
+	      model.addRow(new Object[] { "1234", "Aspirinas", "2", "$10.00" });
+	      JTable table_2 = new JTable(model);
+	      
+  	      JScrollPane scrollPane = new JScrollPane(table_2);
+  	      scrollPane.setBounds(12, 260, 824, 324);
+  	      panel_1.add(scrollPane);
+	      frame.setVisible(true);
+	      	      	      	     
 	    } catch (IOException ex) {
 	      System.out.println(ex.getMessage());
-	    }
-	    /*File here = new File(".");
-		try {
-		    System.out.println(here.getCanonicalPath());
-		} catch (IOException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}*/
+	    }	    
 	}
 }
