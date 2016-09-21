@@ -500,3 +500,13 @@ org.eclipse.core.internal.resources.ResourceException: Resource '/WenFarm/src/ui
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
 !SUBENTRY 1 org.eclipse.core.resources 4 368 2016-09-21 11:00:29.349
 !MESSAGE Resource '/WenFarm/src/ui/build.xml' does not exist.
+!SESSION 2016-09-21 11:50:57.702 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_51
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=es_MX
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os linux -ws gtk -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-09-21 11:51:00.870
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.

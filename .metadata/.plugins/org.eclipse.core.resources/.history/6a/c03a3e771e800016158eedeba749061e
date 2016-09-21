@@ -16,7 +16,6 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -269,14 +268,8 @@ public class Window implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	  if(textField.getText().trim().length() > 0){
-		String strPrice = nf.format(price+Math.random());
-		Random rn = new Random();
-		Integer sku = rn.nextInt();				
-		if( sku < 0 ){
-	      sku = sku*-1;
-		}
-		model.addRow(new Object[] { sku, textField.getText().trim(), "1", strPrice });
-		textField.setText("");		
+		String strPrice = nf.format(price);
+		model.addRow(new Object[] { Math.random(), textField.getText().trim(), "1", strPrice });
 	  }
 	}
 }

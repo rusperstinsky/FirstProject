@@ -272,10 +272,8 @@ public class Window implements ActionListener{
 		String strPrice = nf.format(price+Math.random());
 		Random rn = new Random();
 		Integer sku = rn.nextInt();				
-		if( sku < 0 ){
-	      sku = sku*-1;
-		}
-		model.addRow(new Object[] { sku, textField.getText().trim(), "1", strPrice });
+		if( sku < 0 )
+		model.addRow(new Object[] { rn.nextInt(), textField.getText().trim(), "1", strPrice });
 		textField.setText("");		
 	  }
 	}
