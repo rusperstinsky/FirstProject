@@ -31,9 +31,11 @@ public class Window {
 	private final JPanel panel_1 = new JPanel();
 	private BufferedImage image;
 	private JTextField textField;
+	private JTable table;
 	String[] columns = new String[]{"Sku","Articulo","Cantidad","Precio"};
 	Object[][] data = {{"12345", "Aspirina Bayer",new Integer(2), new Double(10.00)}};
-	
+	private JTable table_1;
+
 
 	/**
 	 * Launch the application.
@@ -194,8 +196,7 @@ public class Window {
 		
 		try {
 		  File here = new File(".");
-	      File file = new File("/home/sucursal/Imágenes/aspirina.jpg");
-	      System.out.println(file.getCanonicalPath());
+	      File file = new File(here.getCanonicalPath()+"/src/ui/utils/aspirina.jpg");
 	      image = ImageIO.read(file);	      
 	      Image imagen = ImageIO.read(file);	      
 	      GridBagLayout gbl_panel_3 = new GridBagLayout();

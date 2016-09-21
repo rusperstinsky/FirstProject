@@ -194,8 +194,7 @@ public class Window {
 		
 		try {
 		  File here = new File(".");
-	      File file = new File("/home/sucursal/Imágenes/aspirina.jpg");
-	      System.out.println(file.getCanonicalPath());
+	      File file = new File(here.getCanonicalPath()+"/home/sucursal/Imágenes/aspirina.jpg");
 	      image = ImageIO.read(file);	      
 	      Image imagen = ImageIO.read(file);	      
 	      GridBagLayout gbl_panel_3 = new GridBagLayout();

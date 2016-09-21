@@ -167,7 +167,7 @@ public class Window {
 		gbc_lblVendedor_1.gridy = 1;
 		panel_2.add(lblVendedor_1, gbc_lblVendedor_1);
 		
-		JLabel lblWendyMendozaBenitez = new JLabel("Wendy Mendoza Benitez");
+		JLabel lblWendyMendozaBenitez = new JLabel("Wendy Mendoza");
 		GridBagConstraints gbc_lblWendyMendozaBenitez = new GridBagConstraints();
 		gbc_lblWendyMendozaBenitez.insets = new Insets(0, 0, 5, 0);
 		gbc_lblWendyMendozaBenitez.gridx = 2;
@@ -194,8 +194,7 @@ public class Window {
 		
 		try {
 		  File here = new File(".");
-	      File file = new File("/home/sucursal/Imágenes/aspirina.jpg");
-	      System.out.println(file.getCanonicalPath());
+	      File file = new File(here.getCanonicalPath()+"/src/ui/utils/aspirina.jpg");
 	      image = ImageIO.read(file);	      
 	      Image imagen = ImageIO.read(file);	      
 	      GridBagLayout gbl_panel_3 = new GridBagLayout();
