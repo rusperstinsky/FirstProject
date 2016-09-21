@@ -259,20 +259,13 @@ public class Window implements ActionListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			  model.setRowCount(0);			  
+			  model.setRowCount(0)			  
 			}
 		});
   	      
   	      JButton btnCancelarVenta = new JButton("Cancelar Venta");
   	      btnCancelarVenta.setBounds(537, 596, 162, 41);  	      
   	      panel_1.add(btnCancelarVenta);
-  	      btnCancelarVenta.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			  model.setRowCount(0);			  
-			}
-		});
 	      frame.setVisible(true);
 	      	      	      	     
 	    } catch (IOException ex) {

@@ -255,24 +255,10 @@ public class Window implements ActionListener{
   	      JButton btnTerminar = new JButton("Terminar");
   	      btnTerminar.setBounds(711, 596, 125, 41);
   	      panel_1.add(btnTerminar);
-  	      btnTerminar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			  model.setRowCount(0);			  
-			}
-		});
   	      
   	      JButton btnCancelarVenta = new JButton("Cancelar Venta");
-  	      btnCancelarVenta.setBounds(537, 596, 162, 41);  	      
+  	      btnCancelarVenta.setBounds(537, 596, 162, 41);
   	      panel_1.add(btnCancelarVenta);
-  	      btnCancelarVenta.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			  model.setRowCount(0);			  
-			}
-		});
 	      frame.setVisible(true);
 	      	      	      	     
 	    } catch (IOException ex) {
