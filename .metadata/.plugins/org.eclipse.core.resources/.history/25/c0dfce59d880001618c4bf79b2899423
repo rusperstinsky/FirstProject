@@ -1,0 +1,36 @@
+package ui;
+
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.GridBagLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class PagoDialogo extends JDialog{
+  
+  private final JPanel panel_1 = new JPanel();
+	
+	PagoDialogo( Frame frame ){		        
+        JPanel pan=new JPanel();
+        pan.setLayout(new FlowLayout());
+
+        
+        pan.add(new JLabel("label"));
+        pan.add(new JButton("button"));
+        
+        JDialog dialog = new JDialog();
+		dialog.setTitle("Pago");
+        dialog.setModal(true);
+        dialog.setBounds(12, 12, 350, 250);
+        dialog.setLocationRelativeTo(frame);
+        dialog.setVisible(true);
+
+
+        dialog.add(pan);
+	}
+	
+	
+}

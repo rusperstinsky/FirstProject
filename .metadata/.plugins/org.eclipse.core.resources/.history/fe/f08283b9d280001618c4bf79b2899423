@@ -1,0 +1,18 @@
+package ui;
+
+import javax.swing.JDialog;
+
+public class PagoDialogo extends JDialog{
+
+	PagoDialogo(){
+		JDialog dialog = new JDialog(frame, "Custom made dialog");
+        dialog.setModal(true);
+        dialog.setContentPane(panel_1);
+        dialog.setSize(new Dimension(100,50));
+        dialog.pack();
+        dialog.setLocationRelativeTo(frame);
+        dialog.setVisible(true);      
+	}
+	
+	
+}

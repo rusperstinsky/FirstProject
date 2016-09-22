@@ -1,0 +1,51 @@
+package ui;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.GridBagLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class PagoDialogo extends JDialog{
+  private JDialog dialog = new JDialog();
+  private final JPanel panel_1 = new JPanel();
+  private JTextField txtMonto;
+  private JTextField txtTipo;
+	
+	PagoDialogo( Frame frame ){		        
+        JPanel pan=new JPanel();
+        
+        pan.setBounds(198, 12, 282, 139);
+		GridBagLayout gbl_panel_2 = new GridBagLayout();
+		gbl_panel_2.columnWidths = new int[]{40, 12, 36, 0};
+		gbl_panel_2.rowHeights = new int[]{0, 0, 15, 0, 0, 0};
+		gbl_panel_2.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		pan.setLayout(gbl_panel_2);
+		
+		txtMonto = new JTextField();
+		txtMonto.setSize(new Dimension(30, 20));
+		txtTipo = new JTextField();
+		txtTipo.setSize(new Dimension(30, 20));
+        pan.add(new JLabel("Monto Pago: "));
+        pan.add(txtTipo);
+        pan.add(new JLabel("Forma de Pago: "));
+        pan.add( txtMonto );
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setModal(true);
+        dialog.add(pan, BorderLayout.LINE_START);
+        dialog.pack();
+        dialog.setLocation(200, 200);
+        dialog.setSize(new Dimension(300,200));
+        dialog.setTitle("Pago");
+        dialog.setVisible(true);        
+	}
+	
+	
+}

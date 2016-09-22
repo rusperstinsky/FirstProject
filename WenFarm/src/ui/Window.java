@@ -21,6 +21,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -31,7 +32,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JButton;
 
 public class Window implements ActionListener{
 
@@ -39,8 +39,16 @@ public class Window implements ActionListener{
 	private final JPanel panel_1 = new JPanel();
 	private BufferedImage image;
 	private JTextField textField;
+	private JLabel lblNewLabel;
+	private JPanel panel_3;
+	JLabel label_1;
 	NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.getDefault());
 	private Double price = 10.00;
+	JLabel lblTotalAmount;
+	Integer valor = 0;
+	Double total = 0.00;
+	Double pagos = 0.00;
+	Double saldo = 0.00;
 	DefaultTableModel model = new DefaultTableModel();
 	String[] columns = new String[]{"Sku","Articulo","Cantidad","Precio"};
 	Object[][] data = {{"12345", "Aspirina Bayer",new Integer(2), new Double(10.00)}};
@@ -98,6 +106,18 @@ public class Window implements ActionListener{
 		
 		JMenuItem mntmVentasPorVendedor = new JMenuItem("Ventas por vendedor");
 		mnReportes.add(mntmVentasPorVendedor);
+		
+		JMenu mnHerramientas = new JMenu("Herramientas");
+		menuBar.add(mnHerramientas);
+		
+		JMenuItem mntmSalir = new JMenuItem("Salir");
+		mntmSalir.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {				
+			  frame.dispose();
+			}
+		});
+		mnHerramientas.add(mntmSalir);
 		frame.getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -115,7 +135,7 @@ public class Window implements ActionListener{
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblTotal = new JLabel("Total ");
+		JLabel lblTotal = new JLabel("  Total ");
 		GridBagConstraints gbc_lblTotal = new GridBagConstraints();
 		gbc_lblTotal.anchor = GridBagConstraints.WEST;
 		gbc_lblTotal.insets = new Insets(0, 0, 5, 5);
@@ -123,15 +143,15 @@ public class Window implements ActionListener{
 		gbc_lblTotal.gridy = 1;
 		panel.add(lblTotal, gbc_lblTotal);
 		
-		JLabel label = new JLabel("$0.00");
+		lblTotalAmount = new JLabel("$0.00");
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.anchor = GridBagConstraints.WEST;
 		gbc_label.insets = new Insets(0, 0, 5, 0);
 		gbc_label.gridx = 2;
 		gbc_label.gridy = 1;
-		panel.add(label, gbc_label);
+		panel.add(lblTotalAmount, gbc_label);
 		
-		JLabel lblPago = new JLabel("Pago");
+		JLabel lblPago = new JLabel("  Pago");
 		GridBagConstraints gbc_lblPago = new GridBagConstraints();
 		gbc_lblPago.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPago.anchor = GridBagConstraints.WEST;
@@ -139,14 +159,14 @@ public class Window implements ActionListener{
 		gbc_lblPago.gridy = 3;
 		panel.add(lblPago, gbc_lblPago);
 		
-		JLabel lblNewLabel = new JLabel("$0.00");
+		lblNewLabel = new JLabel("$0.00");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 2;
 		gbc_lblNewLabel.gridy = 3;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
-		JLabel lblSaldo = new JLabel("Saldo");
+		JLabel lblSaldo = new JLabel("  Saldo");
 		GridBagConstraints gbc_lblSaldo = new GridBagConstraints();
 		gbc_lblSaldo.insets = new Insets(0, 0, 0, 5);
 		gbc_lblSaldo.anchor = GridBagConstraints.WEST;
@@ -154,7 +174,7 @@ public class Window implements ActionListener{
 		gbc_lblSaldo.gridy = 5;
 		panel.add(lblSaldo, gbc_lblSaldo);
 		
-		JLabel label_1 = new JLabel("$0.00");
+		label_1 = new JLabel("$0.00");
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
 		gbc_label_1.gridx = 2;
 		gbc_label_1.gridy = 5;
@@ -165,13 +185,13 @@ public class Window implements ActionListener{
 		panel_1.add(panel_2);
 		panel_2.setBorder(BorderFactory.createTitledBorder(""));
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{40, 12, 36, 0};
+		gbl_panel_2.columnWidths = new int[]{40, 184, 36, 0};
 		gbl_panel_2.rowHeights = new int[]{0, 0, 15, 0, 0, 0};
 		gbl_panel_2.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_2.setLayout(gbl_panel_2);
 		
-		JLabel lblVendedor_1 = new JLabel("Vendedor: ");
+		JLabel lblVendedor_1 = new JLabel("  Vendedor: ");
 		GridBagConstraints gbc_lblVendedor_1 = new GridBagConstraints();
 		gbc_lblVendedor_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblVendedor_1.gridx = 0;
@@ -180,12 +200,13 @@ public class Window implements ActionListener{
 		
 		JLabel lblWendyMendozaBenitez = new JLabel("Wendy Mendoza Benitez");
 		GridBagConstraints gbc_lblWendyMendozaBenitez = new GridBagConstraints();
-		gbc_lblWendyMendozaBenitez.insets = new Insets(0, 0, 5, 0);
-		gbc_lblWendyMendozaBenitez.gridx = 2;
+		gbc_lblWendyMendozaBenitez.gridwidth = 2;
+		gbc_lblWendyMendozaBenitez.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWendyMendozaBenitez.gridx = 1;
 		gbc_lblWendyMendozaBenitez.gridy = 1;
 		panel_2.add(lblWendyMendozaBenitez, gbc_lblWendyMendozaBenitez);
 		
-		JLabel lblVendedor = new JLabel("Fecha:");
+		JLabel lblVendedor = new JLabel("  Fecha:");
 		GridBagConstraints gbc_lblVendedor = new GridBagConstraints();
 		gbc_lblVendedor.insets = new Insets(0, 0, 0, 5);
 		gbc_lblVendedor.anchor = GridBagConstraints.NORTHWEST;
@@ -196,50 +217,22 @@ public class Window implements ActionListener{
 		SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
 		JLabel lblNewLabel_1 = new JLabel( f.format(new Date()) );
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.gridx = 2;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_1.gridx = 1;
 		gbc_lblNewLabel_1.gridy = 4;
 		panel_2.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JPanel panel_3 = new JPanel();
+		panel_3 = new JPanel();
 		panel_3.setBounds(492, 12, 332, 139);
 		panel_1.add(panel_3);
 		
-		try {
-		  File here = new File(".");
-	      File file = new File("./aspirina.jpg");
-	      image = ImageIO.read(file);	      
-	      Image imagen = ImageIO.read(file);	      
-	      GridBagLayout gbl_panel_3 = new GridBagLayout();
-	      gbl_panel_3.columnWidths = new int[]{91, 1, 1, 0};
-	      gbl_panel_3.rowHeights = new int[]{1, 0};
-	      gbl_panel_3.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-	      gbl_panel_3.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-	      panel_3.setLayout(gbl_panel_3);
-	      
-	      GridBagConstraints gbc_lblTest = new GridBagConstraints();
-	      gbc_lblTest.anchor = GridBagConstraints.NORTHWEST;
-	      gbc_lblTest.insets = new Insets(0, 0, 0, 5);
-	      gbc_lblTest.gridx = 1;
-	      gbc_lblTest.gridy = 0;
-	      JLabel picLabel = new JLabel();
-	      picLabel.setMaximumSize(new Dimension(100,70));
-	      Image resizedImage = imagen.getScaledInstance(100, 70, 0);
-	      picLabel.setIcon(new ImageIcon(resizedImage));
-	      GridBagConstraints gbc_picLabel = new GridBagConstraints();
-	      gbc_picLabel.anchor = GridBagConstraints.NORTHWEST;
-	      gbc_picLabel.gridx = 2;
-	      gbc_picLabel.gridy = 0;
-	      panel_3.add(picLabel, gbc_picLabel);
-	      
-	      textField = new JTextField();
+		textField = new JTextField();
 	      textField.setBounds(12, 175, 812, 38);
 	      panel_1.add(textField);
 	      textField.setColumns(10);
 	      textField.addActionListener(this);
 	      
-	      
-	      
-
+	      	     
 	      model.addColumn("Sku");
 	      model.addColumn("Articulo");
 	      model.addColumn("Cantidad");
@@ -252,14 +245,18 @@ public class Window implements ActionListener{
   	      scrollPane.setBounds(12, 260, 824, 324);
   	      panel_1.add(scrollPane);
   	      
-  	      JButton btnTerminar = new JButton("Terminar");
+  	      JButton btnTerminar = new JButton("Pagar");
   	      btnTerminar.setBounds(711, 596, 125, 41);
   	      panel_1.add(btnTerminar);
   	      btnTerminar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			  model.setRowCount(0);			  
+				PagoDialogo dialog = new PagoDialogo(frame);
+				pagos = dialog.getMonto();
+				saldo = total-pagos;
+				lblNewLabel.setText(nf.format(pagos));
+				label_1.setText(nf.format(saldo));
 			}
 		});
   	      
@@ -270,27 +267,64 @@ public class Window implements ActionListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			  model.setRowCount(0);			  
+			  model.setRowCount(0);
+			  lblTotalAmount.setText(nf.format(0.00));
+			  lblNewLabel.setText(nf.format(0.00));
+		      label_1.setText(nf.format(0.00));
+		      panel_3.removeAll();
 			}
 		});
-	      frame.setVisible(true);
-	      	      	      	     
-	    } catch (IOException ex) {
-	      System.out.println(ex.getMessage());
-	    }	    
+	      frame.setVisible(true);	    
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	  if(textField.getText().trim().length() > 0){
-		String strPrice = nf.format(price+Math.random());
+		Double tPrice = price+Math.random();
+		total = total+tPrice;
+		String strPrice = nf.format( tPrice );
 		Random rn = new Random();
 		Integer sku = rn.nextInt();				
 		if( sku < 0 ){
 	      sku = sku*-1;
 		}
 		model.addRow(new Object[] { sku, textField.getText().trim(), "1", strPrice });
-		textField.setText("");		
+		textField.setText("");
+		lblTotalAmount.setText(nf.format(total));
+		label_1.setText(nf.format(total-pagos));
+		try {
+			setImage(panel_3);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	  }
 	}
+	
+	
+	public void setImage( JPanel panel_3 ) throws IOException{
+		panel_3.removeAll();		
+		if( valor == 5 ){
+	      valor = 1;
+		} else if( valor >= 0 && valor < 5 ){
+	      valor = valor+1;
+		}
+		String strImagen = valor.toString().trim();
+		File file = new File("./"+strImagen+".jpg");
+		System.out.println(file.getCanonicalPath());
+	    image = ImageIO.read(file);	      
+	    Image imagen = ImageIO.read(file);	      
+	      
+	    JLabel picLabel = new JLabel();
+	    picLabel.setMaximumSize(new Dimension(100,70));
+	    Image resizedImage = imagen.getScaledInstance(100, 70, 0);
+	    picLabel.setIcon(new ImageIcon(resizedImage));
+	    GridBagConstraints gbc_picLabel = new GridBagConstraints();
+	    gbc_picLabel.anchor = GridBagConstraints.NORTHWEST;
+	    gbc_picLabel.gridx = 2;
+	    gbc_picLabel.gridy = 0;	    
+	    panel_3.add(picLabel, gbc_picLabel);	    
+	}
+	
+	
 }
