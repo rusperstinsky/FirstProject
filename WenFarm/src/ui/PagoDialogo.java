@@ -52,12 +52,12 @@ private JDialog dialog = new JDialog();
 		gbc_lblMonto.anchor = GridBagConstraints.WEST;
 		gbc_lblMonto.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMonto.gridx = 0;
-		gbc_lblMonto.gridy = 4;
+		gbc_lblMonto.gridy = 3;
 		GridBagConstraints gbc_txtMonto = new GridBagConstraints();
 		gbc_txtMonto.anchor = GridBagConstraints.WEST;
 		gbc_txtMonto.insets = new Insets(0, 0, 5, 5);
 		gbc_txtMonto.gridx = 2;
-		gbc_txtMonto.gridy = 4;		
+		gbc_txtMonto.gridy = 3;		
 		//txtMonto.setBounds(1, 1, 30, 20);
 		txtMonto.setColumns(10);
 		lblMonto = new JLabel();
@@ -67,16 +67,16 @@ private JDialog dialog = new JDialog();
 		gbc_txtTipo.anchor = GridBagConstraints.WEST;
 		gbc_txtTipo.insets = new Insets(0, 0, 5, 5);
 		gbc_txtTipo.gridx = 2;
-		gbc_txtTipo.gridy = 5;
+		gbc_txtTipo.gridy = 4;
 		GridBagConstraints gbc_lblTipo = new GridBagConstraints();
 		gbc_lblTipo.anchor = GridBagConstraints.WEST;
 		gbc_lblTipo.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTipo.gridx = 0;
-		gbc_lblTipo.gridy = 5;
+		gbc_lblTipo.gridy = 4;
 		txtTipo.setMinimumSize(new Dimension(30, 20));		
 		lblTipo = new JLabel();
         
-		pan.add(new JLabel("Monto Pago: "), gbc_lblMonto);
+		pan.add(new JLabel("   Monto Pago: "), gbc_lblMonto);
         pan.add(txtMonto, gbc_txtMonto);
         txtTipo.addKeyListener(new KeyListener() {
 			
@@ -98,7 +98,7 @@ private JDialog dialog = new JDialog();
 			  				
 			}
 		});
-        pan.add(new JLabel("Forma de Pago: "), gbc_lblTipo);
+        pan.add(new JLabel("   Forma de Pago: "), gbc_lblTipo);
         pan.add( txtTipo, gbc_txtTipo );
         
         btnAceptar = new JButton("Aceptar");
@@ -112,8 +112,8 @@ private JDialog dialog = new JDialog();
         GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
         gbc_btnAceptar.anchor = GridBagConstraints.WEST;
         gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);
-        gbc_btnAceptar.gridx = 3;
-        gbc_btnAceptar.gridy = 6;
+        gbc_btnAceptar.gridx = 1;
+        gbc_btnAceptar.gridy = 5;
         btnCancelar = new JButton("Cancelar");
         btnCancelar.addActionListener(new ActionListener() {			
 			@Override
@@ -124,16 +124,16 @@ private JDialog dialog = new JDialog();
         GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
         gbc_btnCancelar.anchor = GridBagConstraints.WEST;
         gbc_btnCancelar.insets = new Insets(0, 0, 5, 5);
-        gbc_btnCancelar.gridx = 4;
-        gbc_btnCancelar.gridy = 6;
+        gbc_btnCancelar.gridx = 2;
+        gbc_btnCancelar.gridy = 5;
         pan.add(btnAceptar, gbc_btnAceptar);
         pan.add(btnCancelar, gbc_btnCancelar);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setModal(true);
         dialog.add(pan, BorderLayout.LINE_START);
         dialog.pack();
-        dialog.setLocation(200, 200);
-        dialog.setSize(new Dimension(450,300));
+        dialog.setLocation(300, 300);
+        dialog.setSize(new Dimension(350,150));
         dialog.setTitle("Pago");
         dialog.setVisible(true);        
 	}

@@ -32,6 +32,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JLayeredPane;
 
 public class Window implements ActionListener{
 
@@ -52,6 +53,7 @@ public class Window implements ActionListener{
 	DefaultTableModel model = new DefaultTableModel();
 	String[] columns = new String[]{"Sku","Articulo","Cantidad","Precio"};
 	Object[][] data = {{"12345", "Aspirina Bayer",new Integer(2), new Double(10.00)}};
+	private final JLayeredPane layeredPane = new JLayeredPane();
 	
 
 	/**
@@ -62,7 +64,7 @@ public class Window implements ActionListener{
 			public void run() {
 				try {
 					Window window = new Window();
-					window.frame.setVisible(true);
+					//window.frame.setVisible(true);					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -74,7 +76,12 @@ public class Window implements ActionListener{
 	 * Create the application.
 	 */
 	public Window() {
-		initialize();
+		Boolean logged = testFrame();
+		if( logged ){
+		  initialize();			
+		} else {
+	      System.exit(0);
+		}
 	}
 
 	/**
@@ -82,9 +89,11 @@ public class Window implements ActionListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 850, 700);
+		//frame.setBounds(100, 100, 850, 700);
+		frame.setSize(850,700);
+		frame.setLocation(200, 200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Punto de Venta");
+		frame.setTitle("Punto de Venta");		
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -263,6 +272,9 @@ public class Window implements ActionListener{
   	      JButton btnCancelarVenta = new JButton("Cancelar Venta");
   	      btnCancelarVenta.setBounds(537, 596, 162, 41);  	      
   	      panel_1.add(btnCancelarVenta);
+  	      layeredPane.setBounds(0, 0, 537, 225);
+  	      panel_1.add(layeredPane);
+  	      
   	      btnCancelarVenta.addActionListener(new ActionListener() {
 			
 			@Override
@@ -274,7 +286,9 @@ public class Window implements ActionListener{
 		      panel_3.removeAll();
 			}
 		});
-	      frame.setVisible(true);	    
+	    frame.setVisible(true);
+	    //frame.setPreferredSize(frame.getParent().getPreferredSize());
+	    //frame.pack();
 	}
 
 	@Override
@@ -311,8 +325,7 @@ public class Window implements ActionListener{
 		}
 		String strImagen = valor.toString().trim();
 		File file = new File("./"+strImagen+".jpg");
-		System.out.println(file.getCanonicalPath());
-	    image = ImageIO.read(file);	      
+		image = ImageIO.read(file);	      
 	    Image imagen = ImageIO.read(file);	      
 	      
 	    JLabel picLabel = new JLabel();
@@ -327,4 +340,9 @@ public class Window implements ActionListener{
 	}
 	
 	
+	public Boolean testFrame() {
+        Login passDialog = new Login(frame, true);
+        passDialog.setVisible(true);
+        return passDialog.getLogged();
+    }
 }
