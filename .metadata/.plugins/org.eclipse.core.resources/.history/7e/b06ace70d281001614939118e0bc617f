@@ -82,7 +82,7 @@ public class Login extends JDialog {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
 	                if ("123qwe".equals(String.valueOf(jpfPassword.getPassword()))
-	                        && "vendedor1".equals(jtfUsername.getText())) {
+	                        && "yo".equals(jtfUsername.getText())) {
 	                	logged = true;
 	                	setVisible(false);
 	                    //parent.dispose();
