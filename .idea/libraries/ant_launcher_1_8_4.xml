@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="ant-launcher-1.8.4">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/ant-launcher/1.8.4/jar/ant-launcher-1.8.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/ant-launcher/1.8.4/source/ant-launcher-1.8.4.jar!/" />
+    </SOURCES>
+  </library>
+</component>

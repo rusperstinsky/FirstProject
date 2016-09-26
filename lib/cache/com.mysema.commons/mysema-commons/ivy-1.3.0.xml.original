@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mysema.commons</groupId>
+  <artifactId>mysema-commons</artifactId>
+  <version>1.3.0</version>
+  <parent>
+    <groupId>com.mysema.home</groupId>
+    <artifactId>mysema-source</artifactId>
+    <version>0.2.0</version>
+  </parent>
+  <packaging>pom</packaging>
+  <name>Mysema Commons</name>
+
+  <inceptionYear>2006</inceptionYear>
+
+  <description>
+    MysemaCommons contains general, search and test related components
+    and utilities
+  </description>
+  
+  <properties>
+  	<svn.module>root</svn.module>
+  </properties>
+
+  <scm>
+    <connection>scm:svn:https://source.mysema.com/svn/mysema/projects/commons</connection>
+    <developerConnection>scm:svn:https://source.mysema.com/svn/mysema/projects/commons</developerConnection>
+    <url>https://source.mysema.com/viewvc/mysema/</url>
+  </scm>
+  
+  <modules>
+    <module>../../fluxml/trunk</module>
+    <module>../../freemarker/trunk</module>
+    <module>../../jetty/trunk</module>
+    <module>../../l10n/trunk</module>
+    <module>../../lang/trunk</module>
+    <module>../../mail/trunk</module>
+    <module>../../tags/trunk</module>
+    <module>../../tapestry/trunk</module>
+    <module>../../thumbs/trunk</module>
+    <module>../../web/trunk</module>
+  </modules>
+
+  <dependencies>
+<!--
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.5.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.5.2</version>
+      <scope>test</scope>
+    </dependency>  
+-->  
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.4</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.servlet</groupId>
+          <artifactId>servlet-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>  
+  </dependencies>
+  
+  <build>
+  	<plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId> 
+        <artifactId>maven-eclipse-plugin</artifactId> 
+        <version>2.6</version> 
+        <configuration>
+          <ajdtVersion>none</ajdtVersion> 
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-plugin</artifactId>
+        <configuration>
+          <tag>${project.name}-${project.version}</tag>
+		  <connectionUrl>scm:svn:https://source.mysema.com/svn/mysema/projects/commons/${project.name}/trunk</connectionUrl>
+        </configuration>
+      </plugin>
+	    		
+	</plugins>
+	<pluginManagement>
+	  <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.0-beta-7</version>
+          <configuration>
+            <tagBase>https://source.mysema.com/svn/mysema/projects/commons/${project.name}/tags</tagBase>
+            <tag>${project.name}-${project.version}</tag>
+		  </configuration>
+        </plugin>
+	  </plugins>
+	</pluginManagement>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jdepend-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+
+</project>

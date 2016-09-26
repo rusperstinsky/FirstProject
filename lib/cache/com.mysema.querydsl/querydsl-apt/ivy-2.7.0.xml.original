@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.mysema.querydsl</groupId>
+    <artifactId>querydsl-root</artifactId>
+    <version>2.7.0</version>
+    <relativePath>../querydsl-root/pom.xml</relativePath> 
+  </parent>
+
+  <groupId>com.mysema.querydsl</groupId>
+  <artifactId>querydsl-apt</artifactId>
+  <name>Querydsl - APT support</name>
+  <description>APT based Source code generation for Querydsl</description>
+  <packaging>jar</packaging>
+
+  <properties>
+    <jdo.version>2.3-eb</jdo.version>
+    <morphia.version>0.99</morphia.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.mysema.querydsl</groupId>
+      <artifactId>querydsl-codegen</artifactId>
+      <version>${project.parent.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>cglib</groupId>
+          <artifactId>cglib</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    
+    <!-- provided -->    
+    <dependency>
+      <groupId>javax.jdo</groupId>
+      <artifactId>jdo2-api</artifactId>
+      <version>${jdo.version}</version>
+      <scope>provided</scope>
+    </dependency>    
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+	  <artifactId>hibernate-jpa-2.0-api</artifactId>
+	  <version>1.0.0.Final</version>
+	  <scope>provided</scope>
+    </dependency>
+    
+    <!-- test -->
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>1.6</version>
+      <scope>test</scope>
+    </dependency>        
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>3.6.1.Final</version>
+      <scope>test</scope>
+    </dependency>  
+    <dependency>
+      <groupId>com.mysema.querydsl</groupId>
+      <artifactId>querydsl-core</artifactId>
+      <version>${project.parent.version}</version>
+      <scope>test</scope>
+      <type>test-jar</type>
+    </dependency>
+	
+    <dependency>
+      <groupId>org.eclipse.jdt.core.compiler</groupId>
+      <artifactId>ecj</artifactId>
+      <version>3.7.1</version>
+	  <scope>test</scope>
+    </dependency>
+	    	
+  </dependencies>
+
+  <build>
+    <plugins>
+    <!-- 
+      <plugin>
+        <groupId>com.mysema.querydsl</groupId>
+        <artifactId>querydsl-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+          <testClasspath>true</testClasspath>
+          <targetFolder>target/genericExporter</targetFolder>
+          <packages>
+            <package>com.mysema.query.domain</package>
+          </packages>
+        </configuration>
+      </plugin>
+       -->
+      <plugin>
+        <groupId>com.springsource.bundlor</groupId>
+        <artifactId>com.springsource.bundlor.maven</artifactId>
+      </plugin>    
+         
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.4.3</version>
+        <configuration>
+          <useSystemClassLoader>false</useSystemClassLoader>
+        </configuration>
+      </plugin>  
+         
+      <plugin>
+        <groupId>com.mysema.maven</groupId>
+        <artifactId>maven-apt-plugin</artifactId>
+        <version>1.0.3</version>
+        <executions>  
+          <execution>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>test-process</goal>
+              <goal>add-test-sources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target/generated-test-sources/java</outputDirectory>
+              <showWarnings>true</showWarnings>
+              <processors>
+                <processor>com.mysema.query.apt.QuerydslAnnotationProcessor</processor>
+                <processor>com.mysema.query.apt.hibernate.HibernateAnnotationProcessor</processor> 
+                <processor>com.mysema.query.apt.jdo.JDOAnnotationProcessor</processor>
+              </processors>              
+            </configuration>
+          </execution>		                    
+        </executions>
+      </plugin>
+      
+      <!-- 
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.3</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>target/generated-test-sources/java</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+       -->
+    </plugins>
+  </build>
+  
+</project>

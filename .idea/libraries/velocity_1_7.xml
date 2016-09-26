@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="velocity-1.7">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/velocity/1.7/jar/velocity-1.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/velocity/1.7/source/velocity-1.7.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="apache"
+		module="ivy-install"
+		revision="1.0"
+		conf="default"
+		confs="default"
+		date="20160622100849"/>
+	<dependencies>
+		<module organisation="eclipse_swing" name="org.dyno.visual.swing_0.9.12.I20090527-2200">
+			<revision name="1.0" error="not found" downloaded="false" searched="false" conf="*" position="-1">
+				<caller organisation="apache" name="ivy-install" conf="default" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="1.0"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

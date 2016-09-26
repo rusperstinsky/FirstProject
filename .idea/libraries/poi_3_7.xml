@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="poi-3.7">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/poi/3.7/jar/poi-3.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/poi/3.7/source/poi-3.7.jar!/" />
+    </SOURCES>
+  </library>
+</component>

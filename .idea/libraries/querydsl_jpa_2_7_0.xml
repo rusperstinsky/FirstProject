@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="querydsl-jpa-2.7.0">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/querydsl-jpa/2.7.0/jar/querydsl-jpa-2.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/querydsl-jpa/2.7.0/source/querydsl-jpa-2.7.0.jar!/" />
+    </SOURCES>
+  </library>
+</component>

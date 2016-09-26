@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="gpayAPI">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/gpayAPI.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
