@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jboss-transaction-api_1.1_spec-1.0.0.Final">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/jboss-transaction-api_1.1_spec/1.0.0.Final/jar/jboss-transaction-api_1.1_spec-1.0.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/jboss-transaction-api_1.1_spec/1.0.0.Final/source/jboss-transaction-api_1.1_spec-1.0.0.Final.jar!/" />
+    </SOURCES>
+  </library>
+</component>

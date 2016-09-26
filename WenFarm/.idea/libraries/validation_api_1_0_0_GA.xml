@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="validation-api-1.0.0.GA">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/validation-api/1.0.0.GA/jar/validation-api-1.0.0.GA.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/validation-api/1.0.0.GA/source/validation-api-1.0.0.GA.jar!/" />
+    </SOURCES>
+  </library>
+</component>

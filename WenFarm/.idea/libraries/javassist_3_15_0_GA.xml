@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="javassist-3.15.0-GA">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/javassist/3.15.0-GA/jar/javassist-3.15.0-GA.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/javassist/3.15.0-GA/source/javassist-3.15.0-GA.jar!/" />
+    </SOURCES>
+  </library>
+</component>

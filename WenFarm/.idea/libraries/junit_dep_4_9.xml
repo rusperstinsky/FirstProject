@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="junit-dep-4.9">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/junit-dep/4.9/jar/junit-dep-4.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/junit-dep/4.9/source/junit-dep-4.9.jar!/" />
+    </SOURCES>
+  </library>
+</component>

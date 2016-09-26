@@ -7,7 +7,7 @@
 		revision="1.0"
 		conf="default"
 		confs="default"
-		date="20160622100849"/>
+		date="20160926132601"/>
 	<dependencies>
 		<module organisation="eclipse_swing" name="org.dyno.visual.swing_0.9.12.I20090527-2200">
 			<revision name="1.0" error="not found" downloaded="false" searched="false" conf="*" position="-1">

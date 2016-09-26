@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="ehcache-core-2.4.3">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/ehcache-core/2.4.3/jar/ehcache-core-2.4.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/ehcache-core/2.4.3/source/ehcache-core-2.4.3.jar!/" />
+    </SOURCES>
+  </library>
+</component>
