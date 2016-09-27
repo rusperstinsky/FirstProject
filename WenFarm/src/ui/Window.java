@@ -7,9 +7,16 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -24,18 +31,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 
-public class Window {
+public class Window implements ActionListener{
 
 	private JFrame frame;
 	private final JPanel panel_1 = new JPanel();
 	private BufferedImage image;
 	private JTextField textField;
-	private JTable table;
+	NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.getDefault());
+	private Double price = 10.00;
+	DefaultTableModel model = new DefaultTableModel();
 	String[] columns = new String[]{"Sku","Articulo","Cantidad","Precio"};
 	Object[][] data = {{"12345", "Aspirina Bayer",new Integer(2), new Double(10.00)}};
-	private JTable table_1;
-
+	
 
 	/**
 	 * Launch the application.
@@ -183,8 +192,9 @@ public class Window {
 		gbc_lblVendedor.gridx = 0;
 		gbc_lblVendedor.gridy = 4;
 		panel_2.add(lblVendedor, gbc_lblVendedor);
-		
-		JLabel lblNewLabel_1 = new JLabel("24/09/2016");
+
+		SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+		JLabel lblNewLabel_1 = new JLabel( f.format(new Date()) );
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.gridx = 2;
 		gbc_lblNewLabel_1.gridy = 4;
@@ -196,7 +206,7 @@ public class Window {
 		
 		try {
 		  File here = new File(".");
-	      File file = new File(here.getCanonicalPath()+"/src/ui/utils/aspirina.jpg");
+	      File file = new File("./aspirina.jpg");
 	      image = ImageIO.read(file);	      
 	      Image imagen = ImageIO.read(file);	      
 	      GridBagLayout gbl_panel_3 = new GridBagLayout();
@@ -224,25 +234,63 @@ public class Window {
 	      textField = new JTextField();
 	      textField.setBounds(12, 175, 812, 38);
 	      panel_1.add(textField);
-	      textField.setColumns(10);	      
+	      textField.setColumns(10);
+	      textField.addActionListener(this);
 	      
-	      DefaultTableModel model = new DefaultTableModel();
+	      
+	      
 
 	      model.addColumn("Sku");
 	      model.addColumn("Articulo");
 	      model.addColumn("Cantidad");
 	      model.addColumn("Precio");
 
-	      model.addRow(new Object[] { "1234", "Aspirinas", "2", "$10.00" });
+	      //model.addRow(new Object[] { "1234", "Aspirinas", "2", "$10.00" });
 	      JTable table_2 = new JTable(model);
 	      
   	      JScrollPane scrollPane = new JScrollPane(table_2);
   	      scrollPane.setBounds(12, 260, 824, 324);
   	      panel_1.add(scrollPane);
+  	      
+  	      JButton btnTerminar = new JButton("Terminar");
+  	      btnTerminar.setBounds(711, 596, 125, 41);
+  	      panel_1.add(btnTerminar);
+  	      btnTerminar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			  model.setRowCount(0);			  
+			}
+		});
+  	      
+  	      JButton btnCancelarVenta = new JButton("Cancelar Venta");
+  	      btnCancelarVenta.setBounds(537, 596, 162, 41);  	      
+  	      panel_1.add(btnCancelarVenta);
+  	      btnCancelarVenta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			  model.setRowCount(0);			  
+			}
+		});
 	      frame.setVisible(true);
 	      	      	      	     
 	    } catch (IOException ex) {
 	      System.out.println(ex.getMessage());
 	    }	    
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	  if(textField.getText().trim().length() > 0){
+		String strPrice = nf.format(price+Math.random());
+		Random rn = new Random();
+		Integer sku = rn.nextInt();				
+		if( sku < 0 ){
+	      sku = sku*-1;
+		}
+		model.addRow(new Object[] { sku, textField.getText().trim(), "1", strPrice });
+		textField.setText("");		
+	  }
 	}
 }
