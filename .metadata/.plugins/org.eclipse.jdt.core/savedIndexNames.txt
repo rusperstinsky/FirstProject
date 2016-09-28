@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+INDEX VERSION 1.129+D:\Projects\FirstProject\.metadata\.plugins\org.eclipse.jdt.core
+646060411.index
+1504335512.index
+=======
 INDEX VERSION 1.126+/home/sucursal/Descargas/Wen/FirstProject/.metadata/.plugins/org.eclipse.jdt.core
 1044582077.index
 4070638816.index
@@ -14,3 +19,4 @@ INDEX VERSION 1.126+/home/sucursal/Descargas/Wen/FirstProject/.metadata/.plugins
 73240328.index
 4275635882.index
 2094324875.index
+>>>>>>> origin
