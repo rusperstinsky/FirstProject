@@ -1,0 +1,4 @@
+rootProject.name = 'pvf'
+include 'core'
+include 'reports'
+include 'ui'

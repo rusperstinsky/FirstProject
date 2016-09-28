@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="hibernate-jpa-2.0-api-1.0.1.Final">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/hibernate-jpa-2.0-api/1.0.1.Final/jar/hibernate-jpa-2.0-api-1.0.1.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/hibernate-jpa-2.0-api/1.0.1.Final/source/hibernate-jpa-2.0-api-1.0.1.Final.jar!/" />
+    </SOURCES>
+  </library>
+</component>

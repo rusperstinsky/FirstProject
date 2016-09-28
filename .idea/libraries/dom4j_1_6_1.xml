@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="dom4j-1.6.1">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/dom4j/1.6.1/jar/dom4j-1.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/dom4j/1.6.1/source/dom4j-1.6.1.jar!/" />
+    </SOURCES>
+  </library>
+</component>

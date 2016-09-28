@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="59" version="2.0">
+<workbench progressCount="63" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="0" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -24,7 +24,7 @@
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wb.core.guiEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.browser.editor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -36,13 +36,23 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.wb.core.guiEditor" name="Window.java" partName="Window.java" path="/home/sucursal/Descargas/Wen/FirstProject/WenFarm/src/ui/Window.java" title="Window.java" tooltip="WenFarm/src/ui/Window.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WenFarm/src/ui/Window.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="9206" selectionTopPixel="3949"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10519" selectionTopPixel="5372"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PagoDialogo.java" partName="PagoDialogo.java" path="/home/sucursal/Descargas/Wen/FirstProject/WenFarm/src/ui/PagoDialogo.java" title="PagoDialogo.java" tooltip="WenFarm/src/ui/PagoDialogo.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WenFarm/src/ui/PagoDialogo.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3863" selectionTopPixel="1927"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Login.java" partName="Login.java" path="/home/sucursal/Descargas/Wen/FirstProject/WenFarm/src/ui/Login.java" title="Login.java" tooltip="WenFarm/src/ui/Login.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WenFarm/src/ui/Login.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2562" selectionTopPixel="999"/>
 </editor>
 </editors>
 <views>
@@ -51,8 +61,7 @@
 </view>
 <view id="org.eclipse.ui.views.AllMarkersView" partName="Markers">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.allSeverityField" categoryGroup="org.eclipse.ui.ide.type" markerContentGenerator="org.eclipse.ui.ide.allMarkersGenerator" partName="Markers">
-<expanded>
-<category IMemento.internal.id="Java Problems (3 items)"/>
+<expanded>&#x0A;<category IMemento.internal.id="Java Problems (3 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.allSeverityField="350" org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="311" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.allSeverityField"/>
@@ -204,58 +213,160 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" uri="file:/home/sucursal/pgadmin.log"/>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" uri="file:/home/sucursal/Descargas/Wen/FirstProject/src/ui/Main.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wb.core.guiEditor" path="/WenFarm/src/ui/Window.java"/>
-<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=WenFarm/\/usr\/local\/java\/jdk1.7.0_51\/jre\/lib\/rt.jar&lt;java.lang(Math.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WenFarm/src/ui/Login.java"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=WenFarm/\/usr\/local\/java\/jdk1.7.0_51\/jre\/lib\/rt.jar&lt;java.awt(Window.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WenFarm/src/ui/PagoDialogo.java"/>
 </editors>
-<item historyLabel="pgadmin.log" index="0">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11028" y="0"/>
 </item>
-<item historyLabel="Main.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2558" y="0"/>
 </item>
-<item historyLabel="Main.java" index="1">
-<position info="not_deleted" x="545" y="0"/>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11028" y="0"/>
 </item>
-<item historyLabel="Main.java" index="1">
-<position info="not_deleted" x="584" y="0"/>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2558" y="0"/>
 </item>
-<item historyLabel="Window.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11028" y="0"/>
 </item>
-<item historyLabel="Window.java" index="2">
-<position info="not_deleted" x="6484" y="60"/>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11121" y="0"/>
 </item>
-<item historyLabel="Window.java" index="2">
-<position info="not_deleted" x="8250" y="0"/>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2703" y="0"/>
 </item>
-<item historyLabel="Window.java" index="2">
-<position info="not_deleted" x="8073" y="0"/>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="2173" y="0"/>
 </item>
-<item historyLabel="Window.java" index="2">
-<position info="not_deleted" x="977" y="0"/>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2703" y="0"/>
 </item>
-<item historyLabel="Window.java" index="2">
-<position info="not_deleted" x="945" y="6"/>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2662" y="0"/>
 </item>
-<item historyLabel="Window.java" index="2">
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="2173" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="2089" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11121" y="0"/>
+</item>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="3153" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11121" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="2112" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="2114" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11027" y="0"/>
+</item>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="1082" y="5"/>
+</item>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="3124" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11027" y="0"/>
+</item>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="3124" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11027" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11054" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="2067" y="31"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11029" y="0"/>
+</item>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="1135" y="0"/>
+</item>
+<item historyLabel="Window.class" index="2">
 <position/>
 </item>
-<item historyLabel="Window.java" index="2">
-<position info="not_deleted" x="9028" y="0"/>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="1135" y="0"/>
 </item>
-<item historyLabel="Window.java" index="2">
-<position info="not_deleted" x="8310" y="0"/>
+<item historyLabel="Window.class" index="2">
+<position info="not_deleted" x="101325" y="35"/>
 </item>
-<item historyLabel="Window.java" index="2">
-<position info="not_deleted" x="9323" y="0"/>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2205" y="0"/>
 </item>
-<item historyLabel="Math.class" index="3">
-<position info="not_deleted" x="28701" y="0"/>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11029" y="0"/>
 </item>
-<item active="true" historyLabel="Window.java" index="2">
-<position info="not_deleted" x="9343" y="0"/>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2662" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11029" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="2169" y="0"/>
+</item>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2662" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="2169" y="0"/>
+</item>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2662" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="8610" y="0"/>
+</item>
+<item historyLabel="PagoDialogo.java" index="3">
+<position info="not_deleted" x="2244" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="11028" y="0"/>
+</item>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2661" y="0"/>
+</item>
+<item historyLabel="PagoDialogo.java" index="3">
+<position info="not_deleted" x="2244" y="0"/>
+</item>
+<item historyLabel="PagoDialogo.java" index="3">
+<position info="not_deleted" x="2585" y="0"/>
+</item>
+<item historyLabel="PagoDialogo.java" index="3">
+<position info="not_deleted" x="3863" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="10404" y="2"/>
+</item>
+<item historyLabel="PagoDialogo.java" index="3">
+<position info="not_deleted" x="3863" y="0"/>
+</item>
+<item historyLabel="Window.java" index="0">
+<position info="not_deleted" x="10759" y="0"/>
+</item>
+<item historyLabel="Login.java" index="1">
+<position info="not_deleted" x="2562" y="0"/>
+</item>
+<item active="true" historyLabel="Window.java" index="0">
+<position info="not_deleted" x="10759" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -275,6 +386,21 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Login.java" tooltip="WenFarm/src/ui/Login.java">
+<persistable path="/WenFarm/src/ui/Login.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PagoDialogo.java" tooltip="WenFarm/src/ui/PagoDialogo.java">
+<persistable path="/WenFarm/src/ui/PagoDialogo.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Window.class" tooltip="java.awt.Window">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=WenFarm/\/usr\/local\/java\/jdk1.7.0_51\/jre\/lib\/rt.jar&lt;java.awt(Window.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Dialog.class" tooltip="java.awt.Dialog">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=WenFarm/\/usr\/local\/java\/jdk1.7.0_51\/jre\/lib\/rt.jar&lt;java.awt(Dialog.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Component.class" tooltip="java.awt.Component">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=WenFarm/\/usr\/local\/java\/jdk1.7.0_51\/jre\/lib\/rt.jar&lt;java.awt(Component.class"/>
+</file>
 <file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Math.class" tooltip="java.lang.Math">
 <persistable org.eclipse.jdt.ui.ClassFileIdentifier="=WenFarm/\/usr\/local\/java\/jdk1.7.0_51\/jre\/lib\/rt.jar&lt;java.lang(Math.class"/>
 </file>

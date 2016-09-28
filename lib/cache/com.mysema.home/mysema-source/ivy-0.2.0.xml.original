@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mysema.home</groupId>
+  <artifactId>mysema-source</artifactId>
+  <version>0.2.0</version>
+  <name>Mysema Source</name>
+  <description>OpenSource projects hosted by Mysema Ltd</description>
+  <url>http://source.mysema.com</url>
+  <packaging>pom</packaging>
+
+  <inceptionYear>2008</inceptionYear>
+  
+  <organization>
+    <name>Mysema Ltd</name>
+    <url>http://www.mysema.com</url>
+  </organization>
+    
+  <build>      
+    <plugins>   
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-eclipse-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <ajdtVersion>none</ajdtVersion>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.4.3</version>
+        <configuration>
+          <useSystemClassLoader>false</useSystemClassLoader>
+        </configuration>
+      </plugin>      
+    <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>            
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>      
+    </plugins>               
+  </build>      
+
+  <developers>
+    <developer>
+      <id>tiwe</id>
+      <name>Timo Westkämper</name>
+      <email>timo.westkamper@mysema.com</email>
+      <organization>Mysema Ltd</organization>
+      <roles>
+        <role>Architect</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>sasa</id>
+      <name>Samppa Saarela</name>
+      <email>samppa.saarela@mysema.com</email>
+      <organization>Mysema Ltd</organization>
+      <roles>
+        <role>Architect</role>
+        <role>CEO</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>laim</id>
+      <name>Lassi Immonen</name>
+      <email>lassi.immonen@mysema.com</email>
+      <organization>Mysema Ltd</organization>
+      <roles>
+        <role>Consultant</role>
+      </roles>
+    </developer>
+  </developers>
+  
+  <distributionManagement>
+    <repository>
+      <id>source-maven-releases</id>
+      <url>scp://source.mysema.com/var/www/source/maven2/releases</url>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>source-maven-snapshots</id>
+      <url>scp://source.mysema.com/var/www/source/maven2/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+  
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License, Version 2.1</name>
+      <url>LICENSE.txt</url>
+    </license>
+  </licenses>
+  
+   <scm>
+    <url>https://source.mysema.com/viewvc/mysema</url>
+  </scm>    
+  
+ <profiles>
+    <profile>
+      <id>noTest</id>
+      <properties>
+        <test>
+        </test>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin
+            </artifactId>
+            <version>2.4.3</version>
+            <configuration>
+              <failIfNoTests>false</failIfNoTests>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>  
+  
+</project>

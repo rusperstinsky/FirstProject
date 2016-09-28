@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="itext-2.1.7">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/itext/2.1.7/jar/itext-2.1.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/itext/2.1.7/source/itext-2.1.7.jar!/" />
+    </SOURCES>
+  </library>
+</component>

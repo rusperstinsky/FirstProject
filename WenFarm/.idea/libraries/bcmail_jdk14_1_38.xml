@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bcmail-jdk14-1.38">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/bcmail-jdk14/1.38/jar/bcmail-jdk14-1.38.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/bcmail-jdk14/1.38/source/bcmail-jdk14-1.38.jar!/" />
+    </SOURCES>
+  </library>
+</component>

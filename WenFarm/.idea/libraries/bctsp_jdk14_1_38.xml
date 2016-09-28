@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bctsp-jdk14-1.38">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/bctsp-jdk14/1.38/jar/bctsp-jdk14-1.38.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/bctsp-jdk14/1.38/source/bctsp-jdk14-1.38.jar!/" />
+    </SOURCES>
+  </library>
+</component>

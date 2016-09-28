@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bcprov-jdk14-1.38">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/bcprov-jdk14/1.38/jar/bcprov-jdk14-1.38.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/bcprov-jdk14/1.38/source/bcprov-jdk14-1.38.jar!/" />
+    </SOURCES>
+  </library>
+</component>

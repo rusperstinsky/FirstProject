@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="aspectjrt-1.6.12">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/aspectjrt/1.6.12/jar/aspectjrt-1.6.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/aspectjrt/1.6.12/source/aspectjrt-1.6.12.jar!/" />
+    </SOURCES>
+  </library>
+</component>

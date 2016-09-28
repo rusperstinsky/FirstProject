@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="castor-1.2">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/castor/1.2/jar/castor-1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/castor/1.2/source/castor-1.2.jar!/" />
+    </SOURCES>
+  </library>
+</component>

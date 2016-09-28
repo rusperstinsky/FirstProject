@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="geronimo-stax-api_1.0_spec-1.0">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/geronimo-stax-api_1.0_spec/1.0/jar/geronimo-stax-api_1.0_spec-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/geronimo-stax-api_1.0_spec/1.0/source/geronimo-stax-api_1.0_spec-1.0.jar!/" />
+    </SOURCES>
+  </library>
+</component>

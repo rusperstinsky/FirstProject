@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="cglib-2.2">
+    <CLASSES>
+      <root url="jar:///soi/lib/contents/cglib/2.2/jar/cglib-2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///soi/lib/contents/cglib/2.2/source/cglib-2.2.jar!/" />
+    </SOURCES>
+  </library>
+</component>
