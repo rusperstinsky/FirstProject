@@ -34,7 +34,7 @@ class LogInPanel extends JPanel implements KeyListener{
   }
 
   private void buildUI( ) {
-    sb.panel( this, layout: new MigLayout( 'wrap,center', '[fill]', '[top]' ) ) {
+    sb.panel( this, layout: new MigLayout( 'wrap,center', '[fill,center]', '[fill,center]' ) ) {
       panel( border: new TitledBorder( 'Ingresa tus datos:' ),
           layout: new MigLayout( 'wrap 2', '[fill,100!][fill,130!]', '[fill,30!][fill,30!][][]' ),
       ) {

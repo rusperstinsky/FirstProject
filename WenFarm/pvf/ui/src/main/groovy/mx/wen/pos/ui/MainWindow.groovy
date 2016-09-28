@@ -115,7 +115,7 @@ class MainWindow extends JFrame implements KeyListener {
           title: 'Punto de Venta',
           focusable: true,
           layout: new MigLayout( 'fill,insets 1,center,wrap', '[fill]', '[top]' ),
-          minimumSize: [ 800, 600 ] as Dimension,
+          minimumSize: [ 900, 700 ] as Dimension,
           //extendedState: JFrame.MAXIMIZED_BOTH,
           location: [ 70, 35 ] as Point,
           pack: true,
@@ -522,7 +522,7 @@ class MainWindow extends JFrame implements KeyListener {
           versionLabel = label( constraints: BorderLayout.LINE_END )
         }
 
-        mainPanel = panel( layout: new CardLayout() )
+        mainPanel = panel( layout: new CardLayout(), alignmentX: CENTER_ALIGNMENT, alignmentY: CENTER_ALIGNMENT )
         mainPanel.add( 'logInPanel', logInPanel )
       }
     }

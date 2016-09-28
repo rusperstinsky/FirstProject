@@ -20,6 +20,7 @@ import javax.swing.*
 import java.awt.*
 import java.awt.event.*
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.List
 
 class OrderPanel extends JPanel implements FocusListener {
@@ -66,10 +67,10 @@ class OrderPanel extends JPanel implements FocusListener {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass())
     private SwingBuilder sb
-    //private Order order
+    private Order order
     //private Customer customer
-    private JComboBox operationType
-    private JButton customerName
+    private JLabel operationType
+    private JLabel customerName
     private JButton closeButton
     private JButton quoteButton
     private JButton printButton
@@ -78,6 +79,7 @@ class OrderPanel extends JPanel implements FocusListener {
     private JButton cancelOrderButton
     private JTextArea comments
     private JTextField itemSearch
+    private JTextField itemQty
     private DefaultTableModel itemsModel
     private DefaultTableModel paymentsModel
     private DefaultTableModel promotionModel
@@ -112,6 +114,9 @@ class OrderPanel extends JPanel implements FocusListener {
     private String MSJ_ERROR_WARRANTY = ""
     private String TXT_ERROR_WARRANTY = ""
     private MainWindow mainWindow
+    private SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy")
+    private def displayFontTit = new Font('', Font.BOLD, 16)
+    private def displayFontGen = new Font('', Font.BOLD, 18)
 
     public Integer numQuote = 0
 
@@ -129,42 +134,39 @@ class OrderPanel extends JPanel implements FocusListener {
     }
 
     private void buildUI() {
-        sb.panel(this, layout: new MigLayout('insets 5,fill,wrap 2', '[fill][fill,grow]', '[fill]')) {
-            panel(layout: new MigLayout('insets 0,fill', '[fill,260][fill,180][fill,300!]', '[fill]'), constraints: 'span') {
-                panel(border: loweredEtchedBorder(), layout: new MigLayout('wrap 2', '[][fill,220!]', '[top]')) {
-                    label('Cliente')
-                    customerName = button(enabled: false, /*actionPerformed: doCustomerSearch*/)
-
-                    label('Tipo')
-                    operationType = comboBox(/*items: customerTypes, itemStateChanged: operationTypeChanged*/)
+        sb.panel(this, layout: new MigLayout('insets 5,fill,wrap 2', '[fill][fill]', '[fill]')) {
+            panel(layout: new MigLayout('insets 0,fill', '[fill,400][fill,300][fill,250!]', '[fill]'), constraints: 'span') {
+                panel(border: loweredEtchedBorder(), layout: new MigLayout('wrap 2', '[][fill,right]', '[top]')) {
+                    label( constraints: 'span' )
+                    label( constraints: 'span' )
+                    label('Cliente: ', font: displayFontTit)
+                    customerName = label( "Publico General", font: displayFontGen )
+                    label('Tipo: ', font: displayFontTit)
+                    operationType = label("Publico General", font: displayFontGen)
                 }
 
                 panel(border: loweredEtchedBorder(), layout: new MigLayout('wrap 2', '[][grow,right]', '[top]')) {
-                    def displayFont = new Font('', Font.BOLD, 19)
-                    label()
-                    date = label(font: displayFont)
-                    label('Folio')
-                    folio = label()
-                    label('Factura')
-                    bill = label()
+                    label( constraints: 'span' )
+                    label( constraints: 'span' )
+                    //date = label(font: displayFont)
+                    label('Folio: ', font: displayFontTit)
+                    folio = label(font: displayFontGen)
+                    label('Fecha: ', font: displayFontTit)
+                    label( df.format(new Date()), font: displayFontGen )
                 }
 
                 panel(border: loweredEtchedBorder(), layout: new MigLayout('wrap 2', '[][grow,right]', '[top]')) {
                     def displayFont = new Font('', Font.BOLD, 22)
-                    label('Venta')
+                    label('Venta', font: displayFontTit)
                     total = label(font: displayFont)
-                    label('Pagado')
+                    label('Pagado', font: displayFontTit)
                     paid = label(font: displayFont)
-                    label('Saldo')
+                    label('Saldo', font: displayFontTit)
                     due = label(font: displayFont)
                 }
             }
 
-            button( text: "?", actionPerformed: doHelp )
-            itemSearch = textField(font: new Font('', Font.BOLD, 16), document: new UpperCaseDocument(), actionPerformed: { doItemSearch( false, "actionPerformed" ) })
-            itemSearch.addFocusListener(this)
-
-            scrollPane(border: titledBorder(title: 'Art\u00edculos'), constraints: 'span') {
+            scrollPane(border: titledBorder(title: 'Art\u00edculos'), constraints: 'span', preferredSize: [200,550] ) {
                 table(selectionMode: ListSelectionModel.SINGLE_SELECTION, mouseClicked: doShowItemClick) {
                     itemsModel = tableModel(list: new ArrayList<OrderItem>()) {
                         closureColumn(
@@ -207,11 +209,16 @@ class OrderPanel extends JPanel implements FocusListener {
                 }
             }
 
-            panel(layout: new MigLayout('insets 0,fill', '[fill][fill,240!]', '[fill]'), constraints: 'span') {
-                /*scrollPane(border: titledBorder(title: "Promociones"),
-                        mouseClicked: { MouseEvent ev -> onMouseClickedAtPromotions(ev) },
-                        mouseReleased: { MouseEvent ev -> onMouseClickedAtPromotions(ev) }
-                ) {
+            panel(layout: new MigLayout('insets 0,fill', '[fill][fill,300!]', '[]'), constraints: 'span') {
+              panel(layout: new MigLayout('wrap 2', '[fill][fill,grow]', '[]'), border: titledBorder(title: "") ) {
+                //button( text: "?", actionPerformed: doHelp )
+                label( "Articulo" )
+                itemSearch = textField(font: new Font('', Font.BOLD, 16), document: new UpperCaseDocument(),
+                        actionPerformed: { doItemSearch( false, "actionPerformed" ) })
+                label( "Cantidad" )
+                itemQty = textField( font: new Font('', Font.BOLD, 16) )
+                itemSearch.addFocusListener(this)
+              }/* {
                     table(selectionMode: ListSelectionModel.SINGLE_SELECTION,
                             mouseClicked: { MouseEvent ev -> onMouseClickedAtPromotions(ev) },
                             mouseReleased: { MouseEvent ev -> onMouseClickedAtPromotions(ev) }
@@ -244,6 +251,7 @@ class OrderPanel extends JPanel implements FocusListener {
                     }
                 }*/
 
+
                 scrollPane(border: titledBorder(title: 'Pagos'), mouseClicked: doNewPaymentClick) {
                     table(selectionMode: ListSelectionModel.SINGLE_SELECTION, mouseClicked: doShowPaymentClick) {
                         paymentsModel = tableModel(list: new ArrayList<Payment>()) {
@@ -271,20 +279,7 @@ class OrderPanel extends JPanel implements FocusListener {
                     cancelOrderButton = button(TXT_BTN_CANCEL_ORDER,
                             preferredSize: UI_Standards.BUTTON_SIZE,
                             actionPerformed: { fireRequestCancelOrder( ) },
-                            constraints: 'hidemode 3',
-                            visible: false
-                    )
-                    newOrderButton = button(TXT_BTN_NEW_ORDER,
-                            preferredSize: UI_Standards.BUTTON_SIZE,
-                            actionPerformed: { fireRequestNewOrder(itemsModel) }
-                    )
-                    quoteButton = button(TXT_BTN_QUOTE,
-                            preferredSize: UI_Standards.BUTTON_SIZE,
-                            actionPerformed: { fireRequestQuote() }
-                    )
-                    continueButton = button(TXT_BTN_CONTINUE,
-                            preferredSize: UI_Standards.BUTTON_SIZE,
-                            actionPerformed: { fireRequestContinue(itemsModel) }
+                            constraints: 'hidemode 3'
                     )
                     printButton = button(TXT_BTN_PRINT,
                             preferredSize: UI_Standards.BUTTON_SIZE,
@@ -301,8 +296,6 @@ class OrderPanel extends JPanel implements FocusListener {
       sb.build {
             bean(customerName, text: bind { customer?.fullName })
             bean(folio, text: bind { order.id })
-            bean(bill, text: bind { order.bill })
-            bean(date, text: bind(source: order, sourceProperty: 'date', converter: dateConverter), alignmentX: CENTER_ALIGNMENT)
             if( promoAmount.compareTo(BigDecimal.ZERO) > 0 && !promoApplied() ){
                 BigDecimal amountParcial = BigDecimal.ZERO
                 BigDecimal amountEnsure = BigDecimal.ZERO
@@ -1374,9 +1367,6 @@ class OrderPanel extends JPanel implements FocusListener {
 
 
 
-    Order getOrder() {
-        //return order
-    }
 
     void refreshData() {
         /*if( promotionListTmp.size() > 0 ){

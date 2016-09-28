@@ -24,10 +24,10 @@ class Branch {
       Branch branch = new Branch(
           id: sucursal.id,
           name: sucursal.nombre,
-          address: sucursal.direccion,
+          address: sucursal.colonia,
           colony: sucursal.colonia,
           postalCode: sucursal.cp,
-          city: sucursal.ciudad,
+          city: sucursal.idLocalidad,
           telephoneNumbers: sucursal.telefonos,
           costCenter: sucursal.centroCostos
       )

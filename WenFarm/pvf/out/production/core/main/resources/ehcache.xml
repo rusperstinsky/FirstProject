@@ -10,7 +10,7 @@
                   diskPersistent="false"/>
     <cache name="org.hibernate.cache.spi.UpdateTimestampsCache" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
     <cache name="org.hibernate.cache.internal.StandardQueryCache" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
-    <!--cache name="mx.lux.pos.model.Acuse" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
+    <cache name="mx.lux.pos.model.Acuse" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
     <cache name="mx.lux.pos.model.AcusesTipo" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
     <cache name="mx.lux.pos.model.Apertura" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
     <cache name="mx.lux.pos.model.Articulo" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
@@ -114,5 +114,5 @@
     <cache name="mx.lux.pos.model.TrabajoEstado" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
     <cache name="mx.lux.pos.model.TrabajoTrack" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
     <cache name="mx.lux.pos.model.TransInv" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
-    <cache name="mx.lux.pos.model.TransInvDetalle" maxElementsInMemory="3000" timeToIdleSeconds="10"/!-->
+    <cache name="mx.lux.pos.model.TransInvDetalle" maxElementsInMemory="3000" timeToIdleSeconds="10"/>
 </ehcache>
