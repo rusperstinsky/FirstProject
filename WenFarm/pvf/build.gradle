@@ -1,6 +1,6 @@
 apply plugin: 'application'
 
-mainClassName = 'mx.lux.pos.ui.MainWindow'
+mainClassName = 'mx.wen.pos.ui.MainWindow'
 
 dependencies {
   compile project( ':ui' )
@@ -25,7 +25,7 @@ allprojects {
   apply plugin: 'idea'
   apply plugin: 'eclipse'
 
-  group = 'mx.lux'
+  group = 'mx.wen'
   version = '1.0'
 
   sourceCompatibility = 1.6

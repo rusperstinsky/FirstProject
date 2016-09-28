@@ -12,7 +12,7 @@ CREATE TABLE empleado
   passwd character(10),
   fecha_alta timestamp without time zone NOT NULL DEFAULT now(),
   fecha_mod timestamp without time zone NOT NULL DEFAULT now(),
-  id_sucursal integer NOT NULL DEFAULT esta_sucursal(),
+  id_sucursal integer NOT NULL,
   CONSTRAINT empleado_pkey PRIMARY KEY (id_empleado)
 )
 WITH ( OIDS=FALSE );
