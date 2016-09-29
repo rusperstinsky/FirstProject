@@ -407,11 +407,11 @@ class OrderPanel extends JPanel implements FocusListener {
                       JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE )
                 if( question == 0){
                   Item item = results.first()
-                  validarVentaNegativa( item )
+                  creaVenta( item )
                 }
               } else {
                 Item item = results.first()
-                validarVentaNegativa( item )
+                creaVenta( item )
               }
             } else {
               SuggestedItemsDialog dialog = new SuggestedItemsDialog( itemSearch, input, results )
@@ -422,10 +422,10 @@ class OrderPanel extends JPanel implements FocusListener {
                   Integer question =JOptionPane.showConfirmDialog( new JDialog(), MSG_NO_STOCK, TXT_NO_STOCK,
                         JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE )
                   if( question == 0){
-                    validarVentaNegativa( item )
+                    creaVenta( item )
                   }
                 } else {
-                  validarVentaNegativa( item )
+                  creaVenta( item )
                 }
               }
             }
@@ -531,11 +531,11 @@ class OrderPanel extends JPanel implements FocusListener {
         }*/
     }
 
-    private void validarVentaNegativa(Item item) {
+    private void creaVenta(Item item) {
       User u = Session.get(SessionItem.USER) as User
       order.setEmployee(u.username)
       Branch branch = Session.get(SessionItem.BRANCH) as Branch
-      order = OrderController.addItemToOrder(order, item, surte)
+      order = OrderController.addItemToOrder(order.id, item)
         updateOrder( order.id )
       /*
         if( isOnePackage ){

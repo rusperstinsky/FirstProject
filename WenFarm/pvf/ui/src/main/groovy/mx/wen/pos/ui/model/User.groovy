@@ -14,7 +14,7 @@ class User {
   String name
   String fathersName
   String mothersName
-  String username
+  Integer username
   String password
   Integer suc
 

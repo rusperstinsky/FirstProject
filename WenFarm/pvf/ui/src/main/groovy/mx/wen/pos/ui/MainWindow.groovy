@@ -8,6 +8,7 @@ import mx.wen.pos.ui.model.SessionItem
 import mx.wen.pos.ui.model.User
 import mx.wen.pos.ui.view.panel.OrderPanel
 import net.miginfocom.swing.MigLayout
+import org.apache.commons.lang.StringUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
@@ -550,7 +551,7 @@ class MainWindow extends JFrame implements KeyListener {
     mainPanel.layout.show( mainPanel, 'orderPanel' )
     User user = Session.get( SessionItem.USER ) as User
     Branch branch = Session.get( SessionItem.BRANCH ) as Branch
-    userLabel.text = "[${user?.username ?: ''}] ${user?.fullName ?: ''}"
+    userLabel.text = "[${StringUtils.trimToEmpty(user?.username.toString()) ?: ''}] ${user?.fullName ?: ''}"
     branchLabel.text = "[${branch?.id ?: ''}] ${branch?.name ?: ''}"
     versionLabel.text = version
     infoBar.visible = true

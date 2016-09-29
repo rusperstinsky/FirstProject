@@ -4,13 +4,9 @@ import groovy.beans.Bindable
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import groovy.util.logging.Slf4j
-/*import mx.lux.pos.model.Cliente
-import mx.lux.pos.model.Examen
-import mx.lux.pos.model.FormaContacto
-import mx.lux.pos.model.NotaVenta
-import mx.lux.pos.model.Titulo
-import mx.lux.pos.java.repository.ClientesJava
-import mx.lux.pos.ui.controller.CustomerController*/
+import mx.wen.pos.model.Cliente
+import mx.wen.pos.model.NotaVenta
+import mx.wen.pos.ui.controller.CustomerController
 import org.apache.commons.lang3.StringUtils
 
 import java.text.SimpleDateFormat
@@ -21,89 +17,72 @@ import java.text.SimpleDateFormat
 @EqualsAndHashCode
 class Customer {
     Integer id
+    String location
+    String state
+    String dateCreate
     String name
     String fathersName
     String mothersName
-    String title
-    boolean legalEntity
-    //CustomerType type = CustomerType.DOMESTIC
-    String rfc = CustomerType.DOMESTIC.rfc
-    Date dob
-    /*GenderType gender = GenderType.MALE
-    Address address = new Address()
-    List<Contact> contacts = []*/
-    Integer age = EDAD_DEFAULT
-    Date fechaNacimiento
-    Date fechaUltimoExamen
-    Date fechaUltimaVenta
-    String ultimaVenta
-    String celular
-    String idBranch
-    String cliOri
-    String histCuc
-    String histCli
-
-    private static final Integer EDAD_DEFAULT = 25
+    String rfc = ""//CustomerType.DOMESTIC.rfc
+    String adress
+    String block
+    String telHome
+    String telWork
+    String extWork
+    String telAdi
+    String extAdi
+    String email
+    String dateMod
+    Integer idStore
+    String udf1
+    String udf2
+    String udf3
+    String udf4
+    String udf5
+    String udf6
+    String obs
+    Date dateBirth
+    Date timeCreate
 
     String getFullName() {
-        "${title ? "${StringUtils.trimToEmpty(title)} " : ''}${StringUtils.trimToEmpty(name) ?: ''} ${StringUtils.trimToEmpty(fathersName) ?: ''} ${StringUtils.trimToEmpty(mothersName) ?: ''}"
+        "${StringUtils.trimToEmpty(name) ?: ''} ${StringUtils.trimToEmpty(fathersName) ?: ''} ${StringUtils.trimToEmpty(mothersName) ?: ''}"
     }
 
-    String getOnlyFullName() {
-        "${name ?: ''} ${fathersName ?: ''} ${mothersName ?: ''}"
+    static Customer toCustomer(Cliente cliente) {
+      if (cliente?.id) {
+        Customer customer = new Customer(
+          id: cliente.id,
+          location: cliente.idLocalidad,
+          state: cliente.idLocalidad,
+          dateCreate: cliente.fechaAlta,
+          name: cliente.nombre,
+          fathersName: cliente.apellidoPaterno,
+          mothersName: cliente.apellidoMaterno,
+          rfc: cliente.rfc,
+          adress: cliente.direccion,
+          block: cliente.colonia,
+          telHome: cliente.telefonoCasa,
+          telWork: cliente.telefonoTrabajo,
+          extWork: cliente.extTrabajo,
+          telAdi: cliente.telefonoAdicional,
+          extAdi: cliente.extAdicional,
+          email: cliente.email,
+          dateMod: cliente.fechaModificado,
+          idStore: cliente.idSucursal,
+          udf1: cliente.udf1,
+          udf2: cliente.udf2,
+          udf3: cliente.udf3,
+          udf4: cliente.udf4,
+          udf5: cliente.udf5,
+          udf6: cliente.udf6,
+          obs: cliente.obs,
+          dateBirth: cliente.fechaNacimiento,
+          timeCreate: cliente.horaAlta
+        )
+        return customer
+      }
+      return null
     }
-
-    static Integer parse(String edad) {
-        Integer age = EDAD_DEFAULT
-        try {
-            if (edad.length() > 0) {
-                age = Integer.parseInt(edad)
-            } else {
-                age = null
-            }
-        } catch (Exception e) {
-            log.error("Error en la edad", e)
-        }
-        return age
-    }
-
-    /*static Customer toCustomer(Cliente cliente) {
-
-        if (cliente?.id) {
-            Customer customer = new Customer(
-                    id: cliente.id,
-                    name: cliente.nombre,
-                    fathersName: cliente.apellidoPaterno,
-                    mothersName: cliente.apellidoMaterno,
-                    title: cliente.titulo,
-                    rfc: cliente.rfc,
-                    dob: cliente.fechaNacimiento,
-                    gender: GenderType.parse(cliente.sexo),
-                    address: Address.toAddress(cliente),
-                    age: parse(StringUtils.trimToEmpty(cliente.udf1)),
-                    fechaNacimiento: cliente.fechaNacimiento,
-                    idBranch: cliente.idSucursal != null ? cliente.idSucursal : ""
-            )
-            if (cliente.clientePais?.id) {
-                customer.type = CustomerType.FOREIGN
-                customer.rfc = CustomerType.FOREIGN.rfc
-            }
-            if (StringUtils.isNotBlank(cliente.telefonoCasa)) {
-                Contact phone = new Contact(type: ContactType.HOME_PHONE)
-                phone.setPhoneNumber(cliente.telefonoCasa)
-                customer.contacts.add(phone)
-            }
-            if (StringUtils.isNotBlank(cliente.email)) {
-                Contact mail = new Contact(type: ContactType.EMAIL)
-                mail.setEmail(cliente.email)
-                customer.contacts.add(mail)
-            }
-
-//            this.fechaNacimiento = this.fechaNacimiento.format('dd/MMM/yyyy')
-            return customer
-        }
-        return null
-    }*/
 
 
     boolean equals(Object pObj) {

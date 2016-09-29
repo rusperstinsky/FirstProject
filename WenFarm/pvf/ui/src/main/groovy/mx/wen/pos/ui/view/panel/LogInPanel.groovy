@@ -66,7 +66,7 @@ class LogInPanel extends JPanel implements KeyListener{
   private def doLogIn = {
     logInButton.enabled = false
     User user = AccessController.logIn( username.text, password.text )
-    if ( StringUtils.isNotBlank( user?.username ) ) {
+    if ( user?.username != null ) {
       messages.text = null
       messages.visible = false
       doAction()

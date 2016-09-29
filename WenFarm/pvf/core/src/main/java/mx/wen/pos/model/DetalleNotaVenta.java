@@ -31,11 +31,11 @@ public class DetalleNotaVenta implements Serializable {
     @Column( name = "cantidad_fac" )
     private Double cantidadFac;
 
-    @Type( type = "mx.lux.pos.model.MoneyAdapter" )
+    @Type( type = "mx.wen.pos.model.MoneyAdapter" )
     @Column( name = "precio_unit_lista" )
     private BigDecimal precioUnitLista;
 
-    @Type( type = "mx.lux.pos.model.MoneyAdapter" )
+    @Type( type = "mx.wen.pos.model.MoneyAdapter" )
     @Column( name = "precio_unit_final" )
     private BigDecimal precioUnitFinal;
 

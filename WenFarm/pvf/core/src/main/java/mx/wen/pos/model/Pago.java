@@ -28,7 +28,7 @@ public class Pago implements Serializable {
     @Column( name = "referencia_pago" )
     private String referenciaPago;
 
-    @Type( type = "mx.lux.pos.model.MoneyAdapter" )
+    @Type( type = "mx.wen.pos.model.MoneyAdapter" )
     @Column( name = "monto_pago" )
     private BigDecimal monto;
 
@@ -36,8 +36,8 @@ public class Pago implements Serializable {
     @Column( name = "fecha_pago", nullable = false )
     private Date fecha;
 
-    @Column( name = "id_empleado", length = 13 )
-    private String idEmpleado;
+    @Column( name = "id_empleado" )
+    private Integer idEmpleado;
 
     @Temporal( TemporalType.TIMESTAMP )
     @Column( name = "fecha_mod", nullable = false )
@@ -54,7 +54,7 @@ public class Pago implements Serializable {
 
     @ManyToOne
     @NotFound( action = NotFoundAction.IGNORE )
-    @JoinColumn( name = "id_factura", insertable = false, updatable = false )
+    @JoinColumn( name = "id_factura", referencedColumnName = "id_factura", insertable = false, updatable = false )
     private NotaVenta notaVenta;
 
     @ManyToOne
@@ -81,7 +81,6 @@ public class Pago implements Serializable {
     private void onPostLoad() {
         idFactura = StringUtils.trimToEmpty( idFactura );
         referenciaPago = StringUtils.trimToEmpty( referenciaPago );
-        idEmpleado = StringUtils.trimToEmpty( idEmpleado );
         idFPago = StringUtils.trimToEmpty( idFPago );
         idPlan = StringUtils.trimToEmpty( idPlan );
     }
@@ -137,11 +136,11 @@ public class Pago implements Serializable {
         this.fecha = fecha;
     }
 
-    public String getIdEmpleado() {
+    public Integer getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado( String idEmpleado ) {
+    public void setIdEmpleado( Integer idEmpleado ) {
         this.idEmpleado = idEmpleado;
     }
 

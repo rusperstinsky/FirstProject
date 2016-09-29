@@ -26,18 +26,10 @@ class EmpleadoServiceImpl implements EmpleadoService {
   static final Integer TAG_ID_EMPRESA = 7
 
   @Override
-  Empleado obtenerEmpleado( String id ) {
+  Empleado obtenerEmpleado( Integer id ) {
     log.info( "obteniendo empleado id: ${id}" )
-    if ( StringUtils.isNotBlank( id ) ) {
-      Integer idEmp = 0
-      if( StringUtils.trimToEmpty(id).isNumber() ){
-        try{
-          idEmp = NumberFormat.getInstance().parse(StringUtils.trimToEmpty(id));
-        } catch ( ParseException e ){
-          println e.message
-        }
-      }
-      Empleado empleado = empleadoRepository.findOne( idEmp )
+    if ( id != null ) {
+      Empleado empleado = empleadoRepository.findOne( id )
       if ( empleado?.id ) {
         return empleado
       } else {
@@ -52,7 +44,7 @@ class EmpleadoServiceImpl implements EmpleadoService {
   @Override
   void actualizarPass( Empleado empleado ){
       log.info( "actualizando password de empleado id: ${empleado.id}" )
-      if ( StringUtils.isNotBlank( empleado.id ) ) {
+      if ( empleado.id  != null ) {
           Empleado emp = empleadoRepository.save( empleado )
           empleadoRepository.flush()
       }

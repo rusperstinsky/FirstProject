@@ -3,8 +3,8 @@ package mx.wen.pos.ui.model
 import groovy.beans.Bindable
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
-/*import mx.wen.pos.model.NotaVenta
-import mx.wen.pos.ui.controller.OrderController*/
+import mx.wen.pos.model.NotaVenta
+import mx.wen.pos.ui.controller.OrderController
 import org.apache.commons.lang3.StringUtils
 
 import java.text.NumberFormat
@@ -17,28 +17,27 @@ class Order {
   private static final String OPHTALMIC_TYPE = 'B'
 
   String id
-  String bill
-  String comments
-  String status
-  Date date
-  Date deliveryDate
-  Branch branch
+  Integer employee
   Customer customer
-  String employee
-  String country
-  String employeeDeliver
-  List<OrderItem> items = [ ]
+  BigDecimal totalSell
+  BigDecimal netSell
+  BigDecimal paid
   List<Payment> payments = [ ]
-  BigDecimal total = BigDecimal.ZERO
-  BigDecimal paid = BigDecimal.ZERO
+  Date date
+  List<OrderItem> items
+  Integer percentaje
+  BigDecimal discountAmount
+  String typeDiscount
+  String status
+  String comments
+  Date dateMod
+  Integer idStore
+  String bill
   BigDecimal due = BigDecimal.ZERO
-  String dioptra
   String udf2
   String udf3
-  Date fechaEntrega
-  String empEntrega
-
-  Integer rx
+  String udf4
+  String udf5
 
 
   private Double usdRate
@@ -48,7 +47,7 @@ class Order {
   }
 
   String getTicket( ) {
-    "${branch?.costCenter ?: ''}-${bill ?: ''}"
+    "${bill ?: ''}"
   }
 
   private Double getUsdDue( ) {
@@ -58,87 +57,50 @@ class Order {
 
   String getDueString( ) {
     String str = String.format( "\$%,.2f", this.due )
-    if ( OrderController.requestUsdDisplayed() ) {
+    /*if ( OrderController.requestUsdDisplayed() ) {
       str = String.format( "\$%,.2f/US\$%,.0f", this.due, this.usdDue )
-    }
+    }*/
     return str
   }
 
   protected void round( ) {
-    this.total = NumberFormat.getInstance().parse(String.format( "%.2f", this.total ))
+    this.totalSell = NumberFormat.getInstance().parse(String.format( "%.2f", this.totalSell ))
+    this.netSell = NumberFormat.getInstance().parse(String.format( "%.2f", this.netSell ))
     this.paid = NumberFormat.getInstance().parse(String.format( "%.2f", this.paid ))
     //this.total = NumberUtils.createBigDecimal( String.format( "%.2f", this.total ) )
     //this.paid = NumberUtils.createBigDecimal( String.format( "%.2f", this.paid ) )
   }
 
-  /*static Order toOrder( NotaVenta notaVenta ) {
+  static Order toOrder( NotaVenta notaVenta ) {
     if ( notaVenta?.id ) {
       Order order = new Order(
           id: notaVenta.id,
-          bill: notaVenta.factura,
-          date: notaVenta.fechaHoraFactura,
-          deliveryDate: notaVenta.fechaEntrega,
-          comments: notaVenta.observacionesNv,
-          status: notaVenta.sFactura,
-          branch: Branch.toBranch( notaVenta.sucursal ),
+          employee:notaVenta.idEmpleado,
           customer: Customer.toCustomer( notaVenta.cliente ),
-          items: notaVenta.detalles?.collect {OrderItem.toOrderItem( it )},
-          payments: notaVenta.pagos?.collect {Payment.toPaymment( it )},
-          total: notaVenta.ventaNeta ?: 0,
+          totalSell: notaVenta.ventaTotal ?: 0,
+          netSell: notaVenta.ventaNeta ?: 0,
           paid: notaVenta.sumaPagos ?: 0,
-          country:notaVenta.udf2 != null ? notaVenta.udf2: '',
-          employee: "${[notaVenta.idEmpleado]}${notaVenta.empleado?.nombreCompleto}",
-          employeeDeliver: "${[notaVenta?.empEntrego]}${notaVenta?.empleadoEntrego?.nombreCompleto}",
-          dioptra: notaVenta.codigo_lente,
+          payments: notaVenta.pagos?.collect {Payment.toPaymment( it )},
+          date: notaVenta.fechaHoraFactura,
+          items: notaVenta.detalles?.collect {OrderItem.toOrderItem( it )},
+          percentaje: notaVenta.por100Descuento,
+          discountAmount: notaVenta.montoDescuento,
+          typeDiscount: notaVenta.tipoDescuento,
+          status: notaVenta.sFactura,
+          comments: notaVenta.observacionesNv,
+          dateMod: notaVenta.fechaMod,
+          idStore: notaVenta.idSucursal,
+          bill: notaVenta.factura,
           udf2: notaVenta.udf2,
           udf3: notaVenta.udf3,
-
-          fechaEntrega: notaVenta.fechaEntrega,
-          empEntrega: "[${notaVenta.empEntrego}] ${notaVenta.empleadoEntrego != null ? notaVenta.empleadoEntrego.nombreCompleto : ""}",
-
-          rx: notaVenta.receta
-
+          udf4: notaVenta.udf4,
+          udf5: notaVenta.udf5
       )
-      order.deals = new ArrayList<IPromotion>()
-      if ( notaVenta.ordenPromDet != null ) {
-        order.deals.addAll( notaVenta.ordenPromDet?.collect {OrderLinePromotion.toPromotions( it )} )
-      }
-      IPromotion descuento = OrderDiscount.toPromotions( notaVenta )
-      if ( descuento != null ) {
-        order.deals.add( descuento )
-      }
       order.round()
-      order.due = ((order.total.subtract( order.paid )).compareTo(new BigDecimal(0.05)) > 0 || (order.total.subtract( order.paid )).compareTo(new BigDecimal(-0.05)) < 0) ? order.total.subtract( order.paid ) : BigDecimal.ZERO
-      order.usdRate = OrderController.requestUsdRate()
+      order.due = ((order.netSell.subtract( order.paid )).compareTo(new BigDecimal(0.05)) > 0 || (order.netSell.subtract( order.paid )).compareTo(new BigDecimal(-0.05)) < 0) ? order.total.subtract( order.paid ) : BigDecimal.ZERO
       return order
     }
     return null
-  }*/
-
-
-  Double getAdvancePct( ) {
-    Double pct = 0
-    if ( this.total.toDouble() < 0.001 ) {
-      if ( this.paid.toDouble() > 0.001 ) {
-        pct = 0.0
-      } else {
-        pct = 100.0
-      }
-    } else {
-      pct = this.paid.toDouble() / this.total.toDouble()
-    }
-    return pct
-  }
-
-  Boolean containsOphtalmic( ) {
-    Boolean contained = false
-    for ( OrderItem orderLine : this.items ) {
-      if ( orderLine.item.type.equals( OPHTALMIC_TYPE ) )  {
-        contained = true
-        break
-      }
-    }
-    return contained
   }
 
 }

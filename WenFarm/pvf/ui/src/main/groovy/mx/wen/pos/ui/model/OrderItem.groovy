@@ -4,9 +4,8 @@ import groovy.beans.Bindable
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import groovy.util.logging.Slf4j
-/*import mx.lux.pos.model.DetalleNotaVenta
-import mx.lux.pos.java.repository.DetalleNotaVentaJava
-import mx.lux.pos.ui.resources.ServiceManager*/
+import mx.wen.pos.model.DetalleNotaVenta
+import mx.wen.pos.ui.resources.ServiceManager
 import org.apache.commons.lang.StringUtils
 
 @Slf4j
@@ -38,14 +37,12 @@ class OrderItem {
     }
 
 
-  /*static OrderItem toOrderItem( DetalleNotaVenta detalleNotaVenta ) {
+  static OrderItem toOrderItem( DetalleNotaVenta detalleNotaVenta ) {
     try {
       if ( detalleNotaVenta?.id ) {
         OrderItem orderItem = new OrderItem(
             item: Item.toItem( detalleNotaVenta ),
             quantity: detalleNotaVenta.cantidadFac,
-            delivers: detalleNotaVenta.surte
-
         )
         return orderItem
       }
@@ -53,5 +50,5 @@ class OrderItem {
       log.error( "Error en el DetalleNotaVenta ", e.toString() )
     }
     return null
-  }*/
+  }
 }

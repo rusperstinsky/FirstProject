@@ -23,21 +23,21 @@ public class NotaVenta implements Serializable {
     @Column( name = "id_factura" )
     private String id;
 
-    @Column( name = "id_empleado", length = 13 )
-    private String idEmpleado;
+    @Column( name = "id_empleado" )
+    private Integer idEmpleado;
 
     @Column( name = "id_cliente" )
     private Integer idCliente;
 
-    @Type( type = "mx.lux.pos.model.MoneyAdapter" )
+    @Type( type = "mx.wen.pos.model.MoneyAdapter" )
     @Column( name = "venta_total" )
     private BigDecimal ventaTotal;
 
-    @Type( type = "mx.lux.pos.model.MoneyAdapter" )
+    @Type( type = "mx.wen.pos.model.MoneyAdapter" )
     @Column( name = "venta_neta" )
     private BigDecimal ventaNeta;
 
-    @Type( type = "mx.lux.pos.model.MoneyAdapter" )
+    @Type( type = "mx.wen.pos.model.MoneyAdapter" )
     @Column( name = "suma_pagos" )
     private BigDecimal sumaPagos;
 
@@ -48,7 +48,7 @@ public class NotaVenta implements Serializable {
     @Column( name = "por100_descuento" )
     private Integer por100Descuento = 0;
 
-    @Type( type = "mx.lux.pos.model.MoneyAdapter" )
+    @Type( type = "mx.wen.pos.model.MoneyAdapter" )
     @Column( name = "monto_descuento" )
     private BigDecimal montoDescuento;
 
@@ -85,12 +85,12 @@ public class NotaVenta implements Serializable {
 
     @OneToMany( fetch = FetchType.EAGER )
     @NotFound( action = NotFoundAction.IGNORE )
-    @JoinColumn( name = "id_factura", insertable = false, updatable = false )
+    @JoinColumn( name = "id_factura", referencedColumnName = "id_factura", insertable = false, updatable = false )
     private Set<DetalleNotaVenta> detalles = new HashSet<DetalleNotaVenta>();
 
     @OneToMany( fetch = FetchType.EAGER )
     @NotFound( action = NotFoundAction.IGNORE )
-    @JoinColumn( name = "id_factura", insertable = false, updatable = false )
+    @JoinColumn( name = "id_factura", referencedColumnName = "id_factura", insertable = false, updatable = false )
     private Set<Pago> pagos = new HashSet<Pago>();
 
     @ManyToOne
@@ -126,7 +126,6 @@ public class NotaVenta implements Serializable {
 
     @PostLoad
     void onPostLoad() {
-        idEmpleado = StringUtils.trimToEmpty( idEmpleado );
         tipoDescuento = StringUtils.trimToEmpty( tipoDescuento );
         sFactura = StringUtils.trimToEmpty( sFactura );
         observacionesNv = StringUtils.trimToEmpty( observacionesNv );
@@ -141,15 +140,15 @@ public class NotaVenta implements Serializable {
         return id;
     }
 
-    public void setId( String id ) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getIdEmpleado() {
+    public Integer getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado( String idEmpleado ) {
+    public void setIdEmpleado(Integer idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 
@@ -157,7 +156,7 @@ public class NotaVenta implements Serializable {
         return idCliente;
     }
 
-    public void setIdCliente( Integer idCliente ) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -165,7 +164,7 @@ public class NotaVenta implements Serializable {
         return ventaTotal;
     }
 
-    public void setVentaTotal( BigDecimal ventaTotal ) {
+    public void setVentaTotal(BigDecimal ventaTotal) {
         this.ventaTotal = ventaTotal;
     }
 
@@ -173,7 +172,7 @@ public class NotaVenta implements Serializable {
         return ventaNeta;
     }
 
-    public void setVentaNeta( BigDecimal ventaNeta ) {
+    public void setVentaNeta(BigDecimal ventaNeta) {
         this.ventaNeta = ventaNeta;
     }
 
@@ -181,7 +180,7 @@ public class NotaVenta implements Serializable {
         return sumaPagos;
     }
 
-    public void setSumaPagos( BigDecimal sumaPagos ) {
+    public void setSumaPagos(BigDecimal sumaPagos) {
         this.sumaPagos = sumaPagos;
     }
 
@@ -189,7 +188,7 @@ public class NotaVenta implements Serializable {
         return fechaHoraFactura;
     }
 
-    public void setFechaHoraFactura( Date fechaHoraFactura ) {
+    public void setFechaHoraFactura(Date fechaHoraFactura) {
         this.fechaHoraFactura = fechaHoraFactura;
     }
 
@@ -197,7 +196,7 @@ public class NotaVenta implements Serializable {
         return por100Descuento;
     }
 
-    public void setPor100Descuento( Integer por100Descuento ) {
+    public void setPor100Descuento(Integer por100Descuento) {
         this.por100Descuento = por100Descuento;
     }
 
@@ -205,7 +204,7 @@ public class NotaVenta implements Serializable {
         return montoDescuento;
     }
 
-    public void setMontoDescuento( BigDecimal montoDescuento ) {
+    public void setMontoDescuento(BigDecimal montoDescuento) {
         this.montoDescuento = montoDescuento;
     }
 
@@ -213,7 +212,7 @@ public class NotaVenta implements Serializable {
         return tipoDescuento;
     }
 
-    public void setTipoDescuento( String tipoDescuento ) {
+    public void setTipoDescuento(String tipoDescuento) {
         this.tipoDescuento = tipoDescuento;
     }
 
@@ -221,7 +220,7 @@ public class NotaVenta implements Serializable {
         return sFactura;
     }
 
-    public void setsFactura( String sFactura ) {
+    public void setsFactura(String sFactura) {
         this.sFactura = sFactura;
     }
 
@@ -229,7 +228,7 @@ public class NotaVenta implements Serializable {
         return observacionesNv;
     }
 
-    public void setObservacionesNv( String observacionesNv ) {
+    public void setObservacionesNv(String observacionesNv) {
         this.observacionesNv = observacionesNv;
     }
 
@@ -237,7 +236,7 @@ public class NotaVenta implements Serializable {
         return fechaMod;
     }
 
-    public void setFechaMod( Date fechaMod ) {
+    public void setFechaMod(Date fechaMod) {
         this.fechaMod = fechaMod;
     }
 
@@ -245,7 +244,7 @@ public class NotaVenta implements Serializable {
         return idSucursal;
     }
 
-    public void setIdSucursal( Integer idSucursal ) {
+    public void setIdSucursal(Integer idSucursal) {
         this.idSucursal = idSucursal;
     }
 
@@ -253,7 +252,7 @@ public class NotaVenta implements Serializable {
         return factura;
     }
 
-    public void setFactura( String factura ) {
+    public void setFactura(String factura) {
         this.factura = factura;
     }
 
@@ -261,7 +260,7 @@ public class NotaVenta implements Serializable {
         return udf2;
     }
 
-    public void setUdf2( String udf2 ) {
+    public void setUdf2(String udf2) {
         this.udf2 = udf2;
     }
 
@@ -269,7 +268,7 @@ public class NotaVenta implements Serializable {
         return udf3;
     }
 
-    public void setUdf3( String udf3 ) {
+    public void setUdf3(String udf3) {
         this.udf3 = udf3;
     }
 
@@ -277,7 +276,7 @@ public class NotaVenta implements Serializable {
         return udf4;
     }
 
-    public void setUdf4( String udf4 ) {
+    public void setUdf4(String udf4) {
         this.udf4 = udf4;
     }
 
@@ -285,7 +284,7 @@ public class NotaVenta implements Serializable {
         return udf5;
     }
 
-    public void setUdf5( String udf5 ) {
+    public void setUdf5(String udf5) {
         this.udf5 = udf5;
     }
 
@@ -293,7 +292,7 @@ public class NotaVenta implements Serializable {
         return detalles;
     }
 
-    public void setDetalles( Set<DetalleNotaVenta> detalles ) {
+    public void setDetalles(Set<DetalleNotaVenta> detalles) {
         this.detalles = detalles;
     }
 
@@ -301,7 +300,7 @@ public class NotaVenta implements Serializable {
         return pagos;
     }
 
-    public void setPagos( Set<Pago> pagos ) {
+    public void setPagos(Set<Pago> pagos) {
         this.pagos = pagos;
     }
 
@@ -309,7 +308,7 @@ public class NotaVenta implements Serializable {
         return cliente;
     }
 
-    public void setCliente( Cliente cliente ) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
@@ -317,7 +316,7 @@ public class NotaVenta implements Serializable {
         return empleado;
     }
 
-    public void setEmpleado( Empleado empleado ) {
+    public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
 
@@ -325,7 +324,7 @@ public class NotaVenta implements Serializable {
         return sucursal;
     }
 
-    public void setSucursal( Sucursal sucursal ) {
+    public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
     }
 }

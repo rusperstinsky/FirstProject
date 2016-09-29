@@ -9,7 +9,7 @@ CREATE TABLE pagos
   referencia_pago text,
   monto_pago money,
   fecha_pago timestamp without time zone NOT NULL DEFAULT now(),
-  id_empleado character(13),
+  id_empleado integer,
   fecha_mod timestamp without time zone NOT NULL DEFAULT now(),
   id_sucursal integer NOT NULL DEFAULT esta_sucursal(),
   id_f_pago character(5),

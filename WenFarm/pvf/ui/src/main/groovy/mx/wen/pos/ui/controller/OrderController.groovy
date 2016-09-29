@@ -1,13 +1,14 @@
 package mx.wen.pos.ui.controller
 
 import groovy.util.logging.Slf4j
-import mx.lux.pos.repository.impl.RepositoryFactory
-import mx.lux.pos.service.impl.ServiceFactory
-import mx.lux.pos.ui.MainWindow
-import mx.lux.pos.ui.resources.ServiceManager
-import mx.lux.pos.ui.view.dialog.ManualPriceDialog
-import mx.lux.pos.ui.view.panel.OrderPanel
+import mx.wen.pos.repository.impl.RepositoryFactory
+import mx.wen.pos.service.impl.ServiceFactory
+import mx.wen.pos.ui.MainWindow
+import mx.wen.pos.ui.resources.ServiceManager
+//import mx.wen.pos.ui.view.dialog.ManualPriceDialog
+import mx.wen.pos.ui.view.panel.OrderPanel
 import mx.wen.pos.model.NotaVenta
+import mx.wen.pos.service.NotaVentaService
 import mx.wen.pos.ui.model.Item
 import mx.wen.pos.ui.model.Order
 import org.apache.commons.lang.NumberUtils
@@ -18,15 +19,15 @@ import org.springframework.stereotype.Component
 import javax.swing.JOptionPane
 import javax.swing.JPanel
 
-import mx.lux.pos.model.*
-import mx.lux.pos.service.*
-import mx.lux.pos.ui.model.*
+import mx.wen.pos.model.*
+import mx.wen.pos.service.*
+import mx.wen.pos.ui.model.*
 
 import java.text.DateFormat
 import java.text.NumberFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import mx.lux.pos.service.business.Registry
+import mx.wen.pos.service.business.Registry
 
 @Slf4j
 @Component
@@ -36,14 +37,13 @@ class OrderController {
   private static DetalleNotaVentaService detalleNotaVentaService
   private static PagoService pagoService
   private static TicketService ticketService
-  private static BancoService bancoService
+  //private static BancoService bancoService
   private static InventarioService inventarioService
-  private static MonedaExtranjeraService fxService
   private static Boolean displayUsd
-  private static PromotionService promotionService
-  private static CancelacionService cancelacionService
+  //private static PromotionService promotionService
+  //private static CancelacionService cancelacionService
   private static EmpleadoService empleadoService
-  private static CierreDiarioService cierreDiarioService
+  //private static CierreDiarioService cierreDiarioService
   private static SucursalService sucursalService
 
   private static final String TAG_USD = "USD"
@@ -58,27 +58,27 @@ class OrderController {
       NotaVentaService notaVentaService,
       DetalleNotaVentaService detalleNotaVentaService,
       PagoService pagoService,
-      TicketService ticketService,
-      BancoService bancoService,
       InventarioService inventarioService,
+      TicketService ticketService,
+      /*BancoService bancoService,
       MonedaExtranjeraService monedaExtranjeraService,
       PromotionService promotionService,
-      CancelacionService cancelacionService,
+      CancelacionService cancelacionService,*/
       EmpleadoService empleadoService,
-      CierreDiarioService cierreDiarioService,
+      //CierreDiarioService cierreDiarioService,
       SucursalService sucursalService
   ) {
     this.notaVentaService = notaVentaService
     this.detalleNotaVentaService = detalleNotaVentaService
     this.pagoService = pagoService
     this.ticketService = ticketService
-    this.bancoService = bancoService
+    //this.bancoService = bancoService
     this.inventarioService = inventarioService
-    fxService = monedaExtranjeraService
+    /*fxService = monedaExtranjeraService
     this.promotionService = promotionService
-    this.cancelacionService = cancelacionService
+    this.cancelacionService = cancelacionService*/
     this.empleadoService = empleadoService
-    this.cierreDiarioService = cierreDiarioService
+    //this.cierreDiarioService = cierreDiarioService
     this.sucursalService = sucursalService
   }
 
@@ -96,10 +96,10 @@ class OrderController {
       List<Pago> pagos = pagoService.listarPagosPorIdFactura( orderId )
       pagos?.each { Pago tmp ->
         Payment paymentTmp = Payment.toPaymment( tmp )
-        if ( tmp?.idBancoEmisor?.integer ) {
+        /*if ( tmp?.idBancoEmisor?.integer ) {
           BancoEmisor banco = bancoService.obtenerBancoEmisor( tmp?.idBancoEmisor?.toInteger() )
           paymentTmp.issuerBank = banco?.descripcion
-        }
+        }*/
         order.payments?.add( paymentTmp )
       }
       return order
@@ -121,43 +121,12 @@ class OrderController {
       orderId = ( notaVentaService.obtenerNotaVenta( orderId ) ? orderId : openOrder()?.id )
       NotaVenta nota = notaVentaService.obtenerNotaVenta( orderId )
       DetalleNotaVenta detalle = null
-      if ( item.isManualPriceItem() ) {
-        String rmks = nota.observacionesNv
-        ManualPriceDialog dlg = ManualPriceDialog.instance
-        dlg.item = item
-        dlg.remarks = rmks
-        dlg.activate()
-        if ( dlg.itemAccepted ) {
-          item.listPrice = item.price
-          detalle = new DetalleNotaVenta(
-              idArticulo: item.id,
-              cantidadFac: 1,
-              precioUnitLista: item.listPrice,
-              precioUnitFinal: item.price,
-              precioCalcLista: item.listPrice,
-              precioFactura: item.price,
-              precioCalcOferta: 0,
-              precioConv: 0,
-              idTipoDetalle: 'N',
-              surte: 'S'
-          )
-          nota.observacionesNv = dlg.remarks
-          notaVentaService.registrarNotaVenta( nota )
-        }
-      } else {
-        detalle = new DetalleNotaVenta(
-            idArticulo: item.id,
-            cantidadFac: 1,
-            precioUnitLista: item.listPrice,
-            precioUnitFinal: item.price,
-            precioCalcLista: item.listPrice,
-            precioFactura: item.price,
-            precioCalcOferta: 0,
-            precioConv: 0,
-            idTipoDetalle: 'N',
-            surte: 'S'
-        )
-      }
+      detalle = new DetalleNotaVenta(
+        idArticulo: item.id,
+        cantidadFac: 1,
+        precioUnitLista: item.price,
+        precioUnitFinal: item.price.subtract(nota.montoDescuento),
+      )
       if ( detalle != null ) {
         nota = notaVentaService.registrarDetalleNotaVentaEnNotaVenta( orderId, detalle )
       }
@@ -240,7 +209,7 @@ class OrderController {
     log.info( "eliminando pago id: ${payment?.id}, monto: ${payment?.amount}, tipo: ${payment?.paymentTypeId}" )
     log.info( "de orden id: ${orderId}" )
     if ( StringUtils.isNotBlank( orderId ) && payment?.id ) {
-        cancelacionService.restablecerMontoAlBorrarPago( payment.id )
+        //pagoService.restablecerMontoAlBorrarPago( payment.id )
         NotaVenta notaVenta = notaVentaService.eliminarPagoEnNotaVenta( orderId, payment.id )
       if ( notaVenta?.id ) {
         return Order.toOrder( notaVenta )
@@ -269,7 +238,7 @@ class OrderController {
         notaVenta.empEntrego = user?.username
         notaVenta.udf2 = order.country.toUpperCase()
         notaVenta = notaVentaService.cerrarNotaVenta( notaVenta )
-        for(Pago pago : notaVenta.pagos){
+        /*for(Pago pago : notaVenta.pagos){
             if( pago.idFPago.equalsIgnoreCase(TAG_TIPO_PAGO_NOTA_CREDITO)){
                 Retorno retorno = pagoService.obtenerRetorno( pago.referenciaPago.trim() )
                 if(retorno != null ){
@@ -277,7 +246,7 @@ class OrderController {
                     pagoService.actualizarRetorno( retorno )
                 }
             }
-        }
+        }*/
         if ( inventarioService.solicitarTransaccionVenta( notaVenta ) ) {
           log.debug( "transaccion de inventario correcta" )
         } else {
@@ -330,7 +299,7 @@ class OrderController {
     return Order.toOrder( result )
   }
 
-  static Double requestUsdRate( ) {
+  /*static Double requestUsdRate( ) {
     log.info( "Request USD rate" )
     Double rate = 1.0
     MonedaDetalle fxrate = fxService.findActiveRate( TAG_USD )
@@ -346,11 +315,11 @@ class OrderController {
       displayUsd = fxService.requestUsdDisplayed()
     }
     return displayUsd
-  }
+  }*/
 
-  static SalesWithNoInventory requestConfigSalesWithNoInventory( ) {
+  /*static SalesWithNoInventory requestConfigSalesWithNoInventory( ) {
     return notaVentaService.obtenerConfigParaVentasSinInventario()
-  }
+  }*/
 
   static DetalleNotaVenta getDetalleNotaVenta( String idFactura, Integer idArticulo ) {
     log.debug( "getDetalleNotaVenta( String idFactura, Integer idArticulo )" )
@@ -360,7 +329,7 @@ class OrderController {
     return venta
   }
 
-  static Promocion getPromocion( Integer idPromocion ) {
+  /*static Promocion getPromocion( Integer idPromocion ) {
     log.debug( "getPromocion( Integer idPromocion )" )
     Promocion promocion = promotionService.obtenerPromocion( idPromocion )
     return promocion
@@ -395,7 +364,7 @@ class OrderController {
       }
     }
     return orderNbr
-  }
+  }*/
 
   static String requestEmployee( String pOrderId ) {
     String empName = ''
@@ -433,18 +402,18 @@ class OrderController {
     return cust
   }
 
-  static boolean validaDatos( String factura, String vendedor ){
+  static boolean validaDatos( String factura, Integer vendedor ){
       log.debug( "Cambiando vendedor de factura $factura" )
       Boolean cambioValido = false
       NotaVenta notaVenta = notaVentaService.obtenerNotaVentaPorFactura( factura.trim() )
-      Empleado empleado = empleadoService.obtenerEmpleado( vendedor.trim() )
+      Empleado empleado = empleadoService.obtenerEmpleado( vendedor )
       if( empleado != null && notaVenta != null ){
           cambioValido = true
       }
       return cambioValido
   }
 
-  static boolean validaDiaAbierto( String factura, String vendedor ){
+  /*static boolean validaDiaAbierto( String factura, String vendedor ){
       Boolean diaAbierto = false
       NotaVenta notaVenta = notaVentaService.obtenerNotaVentaPorFactura( factura.trim() )
       Empleado empleado = empleadoService.obtenerEmpleado( vendedor.trim() )
@@ -493,7 +462,7 @@ class OrderController {
           monto = retorno.monto
       }
       return monto
-  }
+  }*/
 
 
   static Boolean validDate(){
@@ -502,7 +471,7 @@ class OrderController {
       return df.format(new Date()).equalsIgnoreCase(StringUtils.trimToEmpty(fechaLogeo.trim()))
   }
 
-  static Boolean validateCloseDate(){
+  /*static Boolean validateCloseDate(){
       Boolean diaValido = false
       DateFormat df = new SimpleDateFormat( "dd/MM/yyyy" )
       String fechaLogeo = sucursalService.obtenerParametroFecha()
@@ -535,7 +504,7 @@ class OrderController {
 
   static String findArticlesOfGroupPromotion( Integer idGroup ){
       return promotionService.articulosGupoPromocion( idGroup )
-  }
+  }*/
 
   static String obtenerEmpleadoPorNotaVenta( String factura ){
       String empleado = ''
@@ -549,7 +518,7 @@ class OrderController {
   }
 
 
-  static BigDecimal maximumDollars( ){
+  /*static BigDecimal maximumDollars( ){
     log.debug( 'maximumDollars( )' )
     BigDecimal montoLimite = BigDecimal.ZERO
     try{
@@ -567,64 +536,7 @@ class OrderController {
       }
     }
     return validaPromo
-  }
-
-  static Payment readCard( String idOrder, Payment tmpPayment ){
-    Payment payment = null
-    Pago pago = new Pago()
-    pago.idFPago = tmpPayment.paymentTypeId
-    pago.idTerminal = ""
-    pago.idBancoEmisor = tmpPayment.issuerBankId
-    pago.monto = tmpPayment.amount
-    pago.idPlan = tmpPayment.planId
-    pago.plan = new mx.lux.pos.model.Plan()
-    pago.plan.id = StringUtils.trimToEmpty(tmpPayment.planId)
-    pago.plan.descripcion = tmpPayment.plan
-    User user = Session.get( SessionItem.USER ) as User
-    pago = pagoService.leerTarjeta( idOrder, pago, user.username )
-    if( pago != null ){
-      payment = new Payment(
-         order: pago.idFactura,
-         paymentReference: pago.referenciaPago,
-         codeReference: pago.referenciaClave,
-         username: pago.idEmpleado,
-         paymentType: pago.eTipoPago?.descripcion,
-         paymentTypeId: pago.idFPago,
-         terminal: pago.terminal?.descripcion,
-         terminalId: pago.idTerminal,
-         plan: pago.plan?.descripcion,
-         planId: pago.idPlan,
-         issuerBankId: pago.idBancoEmisor,
-         factura: pago.notaVenta?.factura,
-         amount: pago.monto,
-         refundable: pago.porDevolver,
-         date: pago.fecha
-        )
-    }
-    return payment
-  }
-
-
-  static void printVoucherTpv( String orderId, Boolean reprint ) {
-    List<Pago> lstPagosTarj = new ArrayList<>()
-    NotaVenta nota = notaVentaService.obtenerNotaVenta( StringUtils.trimToEmpty(orderId) )
-    if(nota != null){
-      for(Pago pago : nota.pagos){
-        if( !StringUtils.trimToEmpty(pago.idFPago).equalsIgnoreCase("TR") && StringUtils.trimToEmpty(pago.idTerminal).contains("|") ){
-          lstPagosTarj.add(pago)
-        }
-      }
-    }
-    if(Registry.activeTpv && lstPagosTarj.size() > 0){
-      for(Pago pay : lstPagosTarj){
-        ticketService.imprimeVoucherTpv( pay, "ORIGINAL", reprint )
-        ticketService.imprimeVoucherTpv( pay, "COPIA CLIENTE", reprint )
-        //pagoService.actualizarLogTpv( pay )
-      }
-    }
-  }
-
-
+  }*/
 
   static void correctionTransactions( Boolean onlyToday, Date closeDate ){
     List<NotaVenta> lstNotas = lstOrdersWithoutTrans( )
@@ -665,7 +577,7 @@ class OrderController {
     return notaVentaService.obtenerNotasCanSinTransaccion()
   }
 
-  static Boolean validWarranty( List<IPromotionAvailable> lstPromotionsApplied, Item item ){
+  /*static Boolean validWarranty( List<IPromotionAvailable> lstPromotionsApplied, Item item ){
     Boolean valid = true
     Boolean hasWarrantyApplied = false
     for(IPromotionAvailable prom : lstPromotionsApplied){
@@ -679,7 +591,7 @@ class OrderController {
       valid = false
     }
     return valid
-  }
+  }*/
 
 
   static Boolean keyFree( String key ){
@@ -701,13 +613,13 @@ class OrderController {
   }
 
 
-  static String descriptionDiscount( String idOrder ){
+  /*static String descriptionDiscount( String idOrder ){
     List<Descuento> lstDescuento = RepositoryFactory.discounts.findByIdFactura( StringUtils.trimToEmpty(idOrder) )
     if( lstDescuento.size() > 0 ){
       return lstDescuento.first().tipoClave
     } else {
       return ""
     }
-  }
+  }*/
 
 }

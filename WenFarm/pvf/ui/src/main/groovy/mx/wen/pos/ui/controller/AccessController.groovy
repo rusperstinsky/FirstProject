@@ -13,6 +13,9 @@ import mx.wen.pos.service.SucursalService
 
 import mx.wen.pos.model.Empleado
 
+import java.text.NumberFormat
+import java.text.ParseException
+
 @Slf4j
 @Component
 class AccessController {
@@ -28,14 +31,20 @@ class AccessController {
 
   static User getUser( String username ) {
     log.info( "solicitando usuario: ${username}" )
-    return User.toUser( empleadoService.obtenerEmpleado( username ) )
+    Integer value = 0
+    try{
+      value = NumberFormat.getInstance().parse(StringUtils.trimToEmpty(username))
+    } catch ( ParseException e ){
+      println e.message
+    }
+    return User.toUser( empleadoService.obtenerEmpleado( value ) )
   }
 
   static boolean checkCredentials( String username, String password ) {
     log.info( "comprobando credenciales para el usuario: ${username}" )
     if ( StringUtils.isNotBlank( username ) && StringUtils.isNotBlank( password ) ) {
       User user = getUser( username )
-      if ( StringUtils.isNotBlank( user?.username ) ) {
+      if ( user?.username != null ) {
         if ( password.equalsIgnoreCase( user?.password ) ) {
           log.info( "credenciales correctas" )
           return true
@@ -89,8 +98,8 @@ class AccessController {
   static boolean isAuthorizerInSession( ) {
     log.info( "comprobando si usuario en sesion requiere autorizacion" )
     User user = Session.get( SessionItem.USER ) as User
-    log.debug( "usuario en sesion: ${user?.username}" )
-    if ( StringUtils.isNotBlank( user?.username ) ) {
+    log.debug( "usuario en sesion: ${StringUtils.trimToEmpty(user?.username.toString())}" )
+    if ( user?.username != null ) {
       Empleado empleado = empleadoService.obtenerEmpleado( user.username )
       if ( isAuthorizer( empleado ) ) {
         log.info( "usuario autorizador, no requiere autorizacion" )

@@ -77,7 +77,7 @@ class SuggestedItemsDialog extends JDialog {
           model = tableModel( list: suggestions ) {
             closureColumn( header: 'Sku', read: {Item tmp -> tmp?.id}, maxWidth: 60 )
             closureColumn( header: 'Art\u00edculo', read: {Item tmp -> tmp?.name}, maxWidth: 120 )
-            closureColumn( header: 'Descripci\u00f3n', read: {Item tmp -> tmp?.description}, maxWidth: 180 )
+            closureColumn( header: 'Descripci\u00f3n', read: {Item tmp -> tmp?.desc}, maxWidth: 180 )
              closureColumn( header: 'Precio', read: {Item tmp -> tmp?.price}, cellRenderer: new MoneyCellRenderer(), maxWidth: 100 )
             closureColumn( header: 'Existencia', read: {Item tmp -> tmp?.stock}, type: Integer, maxWidth: 80 )
           } as DefaultTableModel
@@ -90,7 +90,7 @@ class SuggestedItemsDialog extends JDialog {
             String idArticle = tableItems.getValueAt( tableItems.selectedRow, COLUMN_ID ).toString()
             List<Item> item = ItemController.findItemsByQuery( idArticle )
             if( item.first() != null ){
-              String description = item.first().reference.trim().replace( ' ','' )
+              String description = item.first().desc.trim().replace( ' ','' )
               if( description.length() > 80 ){
                 if( description.length() < 160 ){
                   lblDescripcion.text = "<html>${description.substring(0,80)}<br>${description.substring(80)}<br><html>"
