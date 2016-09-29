@@ -13,4 +13,4 @@ CREATE TABLE folios
 WITH ( OIDS=FALSE );
 ALTER TABLE folios OWNER TO postgres;
 
-INSERT INTO folios VALUES('nota_venta_id_factura',(SELECT esta_sucursal FROM esta_sucursal()),'A00000',NOW());
+INSERT INTO folios VALUES('nota_venta_id_factura',(SELECT valor::integer FROM gparametro WHERE id_parametro = 'id_sucursal'),'F000000000',NOW());
