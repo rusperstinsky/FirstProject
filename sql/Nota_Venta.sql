@@ -54,3 +54,17 @@ CREATE INDEX nota_venta_id_factura_idx
   ON nota_venta
   USING btree
   (id_factura);
+
+
+-- Sequence: factura_seq
+
+-- DROP SEQUENCE factura_seq;
+
+CREATE SEQUENCE factura_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 1000000
+  START 1
+  CACHE 1;
+ALTER TABLE factura_seq OWNER TO postgres;
+

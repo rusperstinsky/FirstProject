@@ -11,7 +11,7 @@ CREATE TABLE articulos
   fecha_mod timestamp without time zone NOT NULL DEFAULT now(),
   id_sucursal integer NOT NULL,
   existencia integer,
-  tipo integer,
+  tipo test,
   subtipo text,
   marca text,
   proveedor text,

@@ -1,5 +1,6 @@
 package mx.wen.pos.service.business
 
+import org.apache.commons.lang3.StringUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import mx.wen.pos.model.NotaVenta
@@ -63,7 +64,11 @@ class EliminarNotaVentaTask {
     PagoRepository catalog = RepositoryFactory.payments
     try {
       for ( String idFactura : idFacturas ) {
-        catalog.deleteByIdFactura( idFactura )
+        List<Pago> lstPagos = catalog.findByIdFactura( StringUtils.trimToEmpty(idFactura) )
+        for(Pago pago : lstPagos){
+          catalog.delete( pago.id )
+        }
+        //catalog.deleteByIdFactura( StringUtils.trimToEmpty(idFactura) )
       }
       catalog.flush()
     } catch ( Exception e ) {
@@ -104,7 +109,6 @@ class EliminarNotaVentaTask {
   void run( ) {
     status = TaskStatus.Running
     if ( idFacturas.size() > 0 ) {
-      //this.deleteHistoricoPromocion()
       this.deletePagos()
       this.deleteDetalleNotaVenta()
       this.deleteNotaVenta()

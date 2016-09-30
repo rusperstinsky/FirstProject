@@ -97,7 +97,7 @@ class Order {
           udf5: notaVenta.udf5
       )
       order.round()
-      order.due = ((order.netSell.subtract( order.paid )).compareTo(new BigDecimal(0.05)) > 0 || (order.netSell.subtract( order.paid )).compareTo(new BigDecimal(-0.05)) < 0) ? order.total.subtract( order.paid ) : BigDecimal.ZERO
+      order.due = ((order.netSell.subtract( order.paid )).compareTo(new BigDecimal(0.05)) > 0 || (order.netSell.subtract( order.paid )).compareTo(new BigDecimal(-0.05)) < 0) ? order.netSell.subtract( order.paid ) : BigDecimal.ZERO
       return order
     }
     return null

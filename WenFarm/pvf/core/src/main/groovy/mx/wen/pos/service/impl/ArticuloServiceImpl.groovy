@@ -7,6 +7,7 @@ import mx.wen.pos.model.Articulo
 import mx.wen.pos.model.QArticulo
 import mx.wen.pos.repository.ArticuloRepository
 import mx.wen.pos.service.ArticuloService
+import mx.wen.pos.service.business.Registry
 import org.apache.commons.lang.StringUtils
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -171,15 +172,6 @@ class ArticuloServiceImpl implements ArticuloService {
     }
 
     return lstArticulos
-  }
-
-
-  String obtenerListaGenericosPrecioVariable( ) {
-    return Registry.getManualPriceTypeList()
-  }
-
-  Boolean useShortItemDescription( ) {
-    return Registry.isShortDescription()
   }
 
 

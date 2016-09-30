@@ -14,6 +14,7 @@ CREATE TABLE clientes
   rfc_cli character(13),
   direccion_cli text,
   colonia_cli text,
+  codigo character(5),
   tel_casa_cli character(15),
   tel_trab_cli character(15),
   ext_trab_cli character(5),
@@ -82,3 +83,18 @@ CREATE INDEX clientes_rfc_cli_idx
   (rfc_cli);
 
 
+-- Sequence: clientes_id_cliente_seq
+
+-- DROP SEQUENCE clientes_id_cliente_seq;
+
+CREATE SEQUENCE clientes_id_cliente_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 2147483647
+  START 1
+  CACHE 1;
+ALTER TABLE clientes_id_cliente_seq OWNER TO postgres;
+
+
+
+INSERT INTO clientes(nombre_cli,apellido_pat_cli,apellido_mat_cli) VALUES('PUBLICO','GENERAL','');

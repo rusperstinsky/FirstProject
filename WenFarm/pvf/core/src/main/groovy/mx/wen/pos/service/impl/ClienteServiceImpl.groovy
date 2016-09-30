@@ -74,9 +74,9 @@ class ClienteServiceImpl implements ClienteService {
     if ( StringUtils.isNotBlank( cliente?.nombre ) ) {
       cliente.idSucursal = sucursalRepository.getCurrentSucursalId()
       try {
-          if( editar ) {
+          /*if( editar ) {
             this.eliminarCliente( cliente.id )
-          }
+          }*/
         cliente = clienteRepository.saveAndFlush( cliente )
         log.debug( "se registra cliente con id: ${cliente?.id}" )
         return cliente
@@ -87,4 +87,15 @@ class ClienteServiceImpl implements ClienteService {
     return null
   }
 
+
+  @Override
+  Cliente obtenerClientePorDefecto( ) {
+    log.debug( "obteniendo cliente generico" )
+    def idCliente = parametroRepository.findOne( TipoParametro.ID_CLIENTE_GENERICO.value )?.valor
+    log.debug( "id cliente generico: ${idCliente}" )
+    if ( idCliente?.isInteger() ) {
+      return clienteRepository.findOne( idCliente?.toInteger() )
+    }
+    return null
+  }
 }

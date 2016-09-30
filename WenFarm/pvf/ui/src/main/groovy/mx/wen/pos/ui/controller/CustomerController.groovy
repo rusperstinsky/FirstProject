@@ -2,10 +2,10 @@ package mx.wen.pos.ui.controller
 
 import groovy.util.logging.Slf4j
 import mx.wen.pos.model.Cliente
+import mx.wen.pos.service.ClienteService
 import org.apache.commons.lang3.StringUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import mx.wen.pos.service.*
 import mx.wen.pos.ui.model.*
 
 @Slf4j

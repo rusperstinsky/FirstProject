@@ -22,7 +22,9 @@ class Payment {
   Date dateMod
   Integer idStore
   String paymentTypeId
+  String paymentType
   String planId
+  String issuerBankId
 
   String getDescription( ) {
     Integer pos = ( paymentReference?.size() >= 4 ) ? ( paymentReference.size() - 4 ) : 0
@@ -51,7 +53,9 @@ class Payment {
         dateMod: pago.fechaModificacion,
         idStore: pago.idSucursal,
         paymentTypeId: pago.idFPago,
+        paymentType: pago.eTipoPago?.descripcion,
         planId: pago.idPlan,
+        issuerBankId: pago.idBanco
       )
       return payment
     }

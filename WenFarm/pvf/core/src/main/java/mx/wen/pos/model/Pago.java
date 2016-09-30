@@ -49,8 +49,11 @@ public class Pago implements Serializable {
     @Column( name = "id_f_pago" )
     private String idFPago;
 
-    @Column( name = "id_plan", length = 20 )
+    @Column( name = "id_banco", length = 20 )
     private String idPlan;
+
+    @Column( name = "id_plan" )
+    private String idBanco;
 
     @ManyToOne
     @NotFound( action = NotFoundAction.IGNORE )
@@ -214,5 +217,13 @@ public class Pago implements Serializable {
 
     public void setPlan( Plan plan ) {
         this.plan = plan;
+    }
+
+    public String getIdBanco() {
+        return idBanco;
+    }
+
+    public void setIdBanco(String idBanco) {
+        this.idBanco = idBanco;
     }
 }

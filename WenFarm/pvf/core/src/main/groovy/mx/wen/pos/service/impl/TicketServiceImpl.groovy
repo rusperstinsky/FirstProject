@@ -265,11 +265,11 @@ class TicketServiceImpl implements TicketService {
           if(Registry.tipoPagoDolares.contains(StringUtils.trimToEmpty(pmt.idFPago))){
             tipoPagoUsd = true
           }*/
-        if ( creditoEmp ) {
+        /*if ( creditoEmp ) {
           tipoPago = pmt?.eTipoPago?.descripcion
-        } else {
+        } else {*/
           tipoPago = "${pmt?.eTipoPago?.descripcion} ${ref.substring( pos )}"
-        }
+        //}
         if(pmt.idFPago.equalsIgnoreCase(TAG_FORMA_PAGO_USD)){
             pagoUsd = true
         }
@@ -292,7 +292,7 @@ class TicketServiceImpl implements TicketService {
         }*/
       }
       BigDecimal ventaNeta = notaVenta.ventaNeta ?: 0
-      String empleado = String.format( "%s [%s]", notaVenta.empleado.nombreCompleto, StringUtils.trimToEmpty( notaVenta?.empleado?.id ) )
+      String empleado = String.format( "%s [%d]", notaVenta.empleado.nombreCompleto, notaVenta?.empleado?.id )
       RuleBasedNumberFormat textFormatter = new RuleBasedNumberFormat( locale, RuleBasedNumberFormat.SPELLOUT )
       String textoVentaNeta = ( "${textFormatter.format( ventaNeta.intValue() )} PESOS "
           + "${ventaNeta.remainder( 1 ).unscaledValue()}/100 M.N." )

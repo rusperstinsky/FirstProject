@@ -36,7 +36,7 @@ public class QNotaVenta extends EntityPathBase<NotaVenta> {
 
     public final NumberPath<Integer> idCliente = createNumber("idCliente", Integer.class);
 
-    public final StringPath idEmpleado = createString("idEmpleado");
+    public final NumberPath<Integer> idEmpleado = createNumber("idEmpleado", Integer.class);
 
     public final NumberPath<Integer> idSucursal = createNumber("idSucursal", Integer.class);
 

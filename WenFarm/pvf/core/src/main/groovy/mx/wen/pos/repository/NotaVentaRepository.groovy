@@ -41,4 +41,5 @@ interface NotaVentaRepository extends JpaRepository<NotaVenta, String>, QueryDsl
   @Transactional
   @Query( value = "SELECT * FROM nota_venta WHERE factura is not null AND factura != '' AND s_factura = 'T' AND id_factura NOT IN (SELECT referencia from trans_inv WHERE id_tipo_trans = 'DEVOLUCION') order by factura", nativeQuery = true )
   List<NotaVenta> findOrdersCanWithoutTrans(  )
+
 }

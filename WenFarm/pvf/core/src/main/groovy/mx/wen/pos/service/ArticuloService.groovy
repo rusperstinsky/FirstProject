@@ -16,9 +16,7 @@ interface ArticuloService {
 
   List<Articulo> findArticuloyColor( String articulo, String color )
 
-  String obtenerListaGenericosPrecioVariable( )
-
-  Boolean useShortItemDescription( )
+  Boolean validarArticulo( Integer id )
 
   Articulo buscaArticulo( Integer id )
 }

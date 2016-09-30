@@ -46,5 +46,7 @@ interface NotaVentaService {
 
   NotaVenta obtenerNotaVentaPorClaveSeguro( String clave )
 
-  //void restableceTransaccionesInconclusas( Date fecha )
+  void borrarNotaVenta( String idFactura )
+
+  List<NotaVenta> listarNotasPendientes( )
 }

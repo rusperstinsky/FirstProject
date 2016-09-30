@@ -19,14 +19,14 @@ class OrderItem {
 
   String getDescription( ) {
     String descripcion
-    if ( ServiceManager.partService.useShortItemDescription() ) {
+    /*if ( ServiceManager.partService.useShortItemDescription() ) {
       String desc = item?.description?.replaceFirst(StringUtils.trimToEmpty(item.name) + "/", "" )
       descripcion = "[${item?.id ?: ''}] ${desc ?: ''}"
     } else {
       descripcion = "${item?.description ?: ''}${delivers ? " (${delivers})" : ''}"
 
-    }
-    return descripcion
+    }*/
+    return item.desc
   }
 
     String getTipo(){

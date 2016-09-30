@@ -3,6 +3,7 @@ package mx.wen.pos.ui.view.panel
 import groovy.model.DefaultTableModel
 import groovy.swing.SwingBuilder
 import mx.wen.pos.service.business.Registry
+import mx.wen.pos.ui.controller.CustomerController
 import mx.wen.pos.ui.controller.ItemController
 import mx.wen.pos.ui.controller.OrderController
 import mx.wen.pos.ui.model.Branch
@@ -16,6 +17,9 @@ import mx.wen.pos.ui.model.SessionItem
 import mx.wen.pos.ui.model.UpperCaseDocument
 import mx.wen.pos.ui.model.User
 import mx.wen.pos.ui.resources.UI_Standards
+import mx.wen.pos.ui.view.dialog.ItemDialog
+import mx.wen.pos.ui.view.dialog.OrderActiveSelectionDialog
+import mx.wen.pos.ui.view.dialog.PaymentDialog
 import mx.wen.pos.ui.view.dialog.SuggestedItemsDialog
 import mx.wen.pos.ui.view.renderer.MoneyCellRenderer
 import net.miginfocom.swing.MigLayout
@@ -78,11 +82,11 @@ class OrderPanel extends JPanel implements FocusListener {
     private Logger logger = LoggerFactory.getLogger(this.getClass())
     private SwingBuilder sb
     private Order order
-    //private Customer customer
+    private Customer customer
     private JLabel operationType
     private JLabel customerName
     private JButton closeButton
-    private JButton quoteButton
+    private JButton searchButton
     private JButton printButton
     private JButton continueButton
     private JButton newOrderButton
@@ -135,7 +139,7 @@ class OrderPanel extends JPanel implements FocusListener {
         order = new Order()
         this.mainWindow = mainWindow
         advanceOnlyInventariable = false
-        //customer = CustomerController.findDefaultCustomer()
+        customer = CustomerController.findDefaultCustomer()
         buildUI()
         doBindings()
         //itemsModel.addTableModelListener(this.promotionDriver)
@@ -145,12 +149,12 @@ class OrderPanel extends JPanel implements FocusListener {
 
     private void buildUI() {
         sb.panel(this, layout: new MigLayout('insets 5,fill,wrap 2', '[fill][fill]', '[fill]')) {
-            panel(layout: new MigLayout('insets 0,fill', '[fill,400][fill,300][fill,250!]', '[fill]'), constraints: 'span') {
+            panel(layout: new MigLayout('insets 0,fill', '[fill,400][fill,300][fill,300!]', '[fill]'), constraints: 'span') {
                 panel(border: loweredEtchedBorder(), layout: new MigLayout('wrap 2', '[][fill,right]', '[top]')) {
                     label( constraints: 'span' )
                     label( constraints: 'span' )
                     label('Cliente: ', font: displayFontTit)
-                    customerName = label( "Publico General", font: displayFontGen )
+                    customerName = label( font: displayFontGen )
                     label('Tipo: ', font: displayFontTit)
                     operationType = label("Publico General", font: displayFontGen)
                 }
@@ -178,22 +182,16 @@ class OrderPanel extends JPanel implements FocusListener {
 
             scrollPane(border: titledBorder(title: 'Art\u00edculos'), constraints: 'span', preferredSize: [200,550] ) {
                 table(selectionMode: ListSelectionModel.SINGLE_SELECTION, mouseClicked: doShowItemClick) {
-                    itemsModel = tableModel(list: new ArrayList<OrderItem>()) {
+                    itemsModel = tableModel(list: order.items) {
                         closureColumn(
                                 header: 'Art\u00edculo',
-                                read: { OrderItem tmp -> "${tmp?.item?.name} ${tmp?.item?.color ?: ''}" },
-                                minWidth: 80,
-                                maxWidth: 100
+                                read: { OrderItem tmp -> "${tmp?.item?.name}" },
+                                minWidth: 180,
+                                maxWidth: 200
                         )
                         closureColumn(
                                 header: 'Descripci\u00f3n',
                                 read: { OrderItem tmp -> tmp?.description }
-                        )
-                        closureColumn(
-                                header: 'Surte',
-                                read: {OrderItem tmp -> tmp?.item?.surte},
-                                maxWidth: 50,
-                                minWidth: 30
                         )
                         closureColumn(
                                 header: 'Cantidad',
@@ -225,8 +223,10 @@ class OrderPanel extends JPanel implements FocusListener {
                 label( "Articulo" )
                 itemSearch = textField(font: new Font('', Font.BOLD, 16), document: new UpperCaseDocument(),
                         actionPerformed: { doItemSearch( ) })
-                label( "Cantidad" )
+                /*label( "Cantidad" )
                 itemQty = textField( font: new Font('', Font.BOLD, 16) )
+                label( " " )
+                searchButton = button(TXT_BTN_PRINT, actionPerformed: { doItemSearch( ) } )*/
                 itemSearch.addFocusListener(this)
               }/* {
                     table(selectionMode: ListSelectionModel.SINGLE_SELECTION,
@@ -286,15 +286,20 @@ class OrderPanel extends JPanel implements FocusListener {
                 }
                 change = label(foreground: UI_Standards.WARNING_FOREGROUND, constraints: BorderLayout.CENTER)
                 panel(constraints: BorderLayout.LINE_END, border: BorderFactory.createEmptyBorder(0, 0, 0, 0)) {
-                    cancelOrderButton = button(TXT_BTN_CANCEL_ORDER,
-                            preferredSize: UI_Standards.BUTTON_SIZE,
-                            actionPerformed: { fireRequestCancelOrder( ) },
-                            constraints: 'hidemode 3'
-                    )
-                    printButton = button(TXT_BTN_PRINT,
-                            preferredSize: UI_Standards.BUTTON_SIZE,
-                            actionPerformed: doPrint
-                    )
+                  button("<html><p align=\"center\">Recuperar Nota</p></html>",
+                        preferredSize: UI_Standards.BUTTON_SIZE,
+                        actionPerformed: { fireRequestOldOrders( ) },
+                        constraints: 'hidemode 3'
+                  )
+                  cancelOrderButton = button(TXT_BTN_CANCEL_ORDER,
+                        preferredSize: UI_Standards.BUTTON_SIZE,
+                        actionPerformed: { fireRequestCancelOrder( ) },
+                        constraints: 'hidemode 3'
+                  )
+                  printButton = button(TXT_BTN_PRINT,
+                        preferredSize: UI_Standards.BUTTON_SIZE,
+                        actionPerformed: doPrint
+                  )
                 }
             }
         }
@@ -322,7 +327,7 @@ class OrderPanel extends JPanel implements FocusListener {
                 total.text = NumberFormat.getCurrencyInstance(Locale.US).format((amountParcial.subtract(promoAmount)).add(amountEnsure))
                 due.text = NumberFormat.getCurrencyInstance(Locale.US).format(((amountParcial.subtract(promoAmount)).add(amountEnsure)).subtract(order.paid))
             } else {
-              bean(total, text: bind(source: order, sourceProperty: 'total', converter: currencyConverter))
+              bean(total, text: bind(source: order, sourceProperty: 'totalSell', converter: currencyConverter))
               bean(due, text: bind(source: order, sourceProperty: 'dueString'))
             }
             bean(paid, text: bind(source: order, sourceProperty: 'paid', converter: currencyConverter))
@@ -337,7 +342,7 @@ class OrderPanel extends JPanel implements FocusListener {
 
     //Busca y actualiza la nota actual para mostrar los datos correspondientes
     void updateOrder(String pOrderId) {
-      /*String comments = ''
+      String comments = ''
       if( order.comments != null && order.comments != '' ){
         comments = order.comments
       }
@@ -348,7 +353,7 @@ class OrderPanel extends JPanel implements FocusListener {
         }
         order = tmp
         doBindings()
-      }*/
+      }
     }
 
     private def dateConverter = { Date val ->
@@ -446,89 +451,37 @@ class OrderPanel extends JPanel implements FocusListener {
     }
 
     private def doShowItemClick = { MouseEvent ev ->
-        /*OperationType operationType1 = operationType.selectedItem as OperationType
-        if (SwingUtilities.isLeftMouseButton(ev) && !operationType1.equals(OperationType.PAYING )) {
-            if (ev.clickCount == 2) {
-                new ItemDialog(ev.component, order, ev.source.selectedElement, this).show()
-                updateOrder(order?.id)
-                List<IPromotionAvailable> promotionsListTmp = new ArrayList<>()
-                promotionsListTmp.addAll(promotionList)
-                for(IPromotionAvailable promo : promotionsListTmp){
-                    this.promotionDriver.requestCancelPromotion(promo)
-                    OrderController.deleteCuponMv( order.id )
-                }
-            }
-        }*/
+      if (SwingUtilities.isLeftMouseButton(ev)) {
+        if (ev.clickCount == 2) {
+          new ItemDialog(ev.component, order, ev.source.selectedElement as OrderItem).show()
+          updateOrder(order?.id)
+        }
+      }
     }
 
     private def doNewPaymentClick = { MouseEvent ev ->
-        /*if (SwingUtilities.isLeftMouseButton(ev)) {
-          OperationType operationType1 = operationType.selectedItem as OperationType
-          Boolean valid = true
-          String term = StringUtils.trimToEmpty(Registry.terminalCaja)
-          if( term.length() > 0 ){
-            if( operationType1.equals(OperationType.DEFAULT) ){
-              if( StringUtils.trimToEmpty(term).length() > 0 && (!term.contains(ip) || ip.length() <= 0) ){
-                valid = false
-              }
-            }
+      if (SwingUtilities.isLeftMouseButton(ev)) {
+        if ( ev.clickCount == 1 ) {
+          if (order.due) {
+            new PaymentDialog( ev.component, order, null, order.due, mainWindow ).show()
+            updateOrder(order?.id)
+            doBindings()
+          } else {
+            sb.optionPane( message: 'No hay saldo para aplicar pago', messageType: JOptionPane.ERROR_MESSAGE)
+                  .createDialog(this, 'Pago sin saldo').show()
           }
-           if (ev.clickCount == 1 && valid && (!operationType1.equals(OperationType.PENDING) &&
-                   !operationType1.equals(OperationType.EDIT_PAYING) && !operationType1.equals(OperationType.QUOTE))) {
-                if (order.due) {
-                  Boolean hasDiscount = false
-                  for(int i=0;i<promotionList.size();i++){
-                    if(promotionList.get(i) instanceof PromotionAvailable){
-                      if( promotionList.get(i).applied && promotionList.get(i).discountAmount > 0.00 ){
-                        hasDiscount = true
-                      }
-                    } else if(promotionList.get(i) instanceof PromotionDiscount){
-                      if( promotionList.get(i).discountAmount > 0.00 ){
-                        println "Tiene descuento"
-                        hasDiscount = true
-                      }
-                    }
-                  }
-                  if( !hasDiscount && promoAgeActive ){
-                    if( promoAmount.compareTo(BigDecimal.ZERO) > 0 ){
-                      hasDiscount = true
-                    }
-                  }
-                    CuponMvView cuponMvView = OrderController.cuponValid( order.customer.id )
-                    println "PromoAmount: "+promoAmount
-                    new PaymentDialog(ev.component, order, null, cuponMvView, this, hasDiscount, promoAmount, discountAgeApplied).show()
-                    updateOrder(order?.id)
-                    //validTransferCuponMv()
-                    doBindings()
-                } else {
-                    sb.optionPane(
-                            message: 'No hay saldo para aplicar pago',
-                            messageType: JOptionPane.ERROR_MESSAGE
-                    ).createDialog(this, 'Pago sin saldo')
-                            .show()
-                }
-            }
-        }*/
+        }
+      }
     }
 
     private def doShowPaymentClick = { MouseEvent ev ->
-        /*if (SwingUtilities.isLeftMouseButton(ev)) {
-          OperationType operationType1 = operationType.selectedItem as OperationType
-          Boolean valid = true
-          String term = StringUtils.trimToEmpty(Registry.terminalCaja)
-          if( term.length() > 0 ){
-                if( operationType1.equals(OperationType.DEFAULT) ){
-                    if( StringUtils.trimToEmpty(term).length() > 0 && (!term.contains(ip) || ip.length() <= 0) ){
-                        valid = false
-                    }
-                }
-          }
-            if (ev.clickCount == 2 && valid && (!operationType1.equals(OperationType.PENDING) &&
-                    !operationType1.equals(OperationType.EDIT_PAYING) && !operationType1.equals(OperationType.QUOTE))) {
-                new PaymentDialog(ev.component, order, ev.source.selectedElement, new CuponMvView(), this, false, promoAmount, discountAgeApplied).show()
-                updateOrder(order?.id)
-            }
-        }*/
+      if (SwingUtilities.isLeftMouseButton(ev)) {
+        Boolean valid = true
+        if ( ev.clickCount == 2 ) {
+          new PaymentDialog( ev.component, order, ev.source.selectedElement, BigDecimal.ZERO, mainWindow ).show()
+          updateOrder(order?.id)
+        }
+      }
     }
 
     private void creaVenta(Item item) {
@@ -536,7 +489,7 @@ class OrderPanel extends JPanel implements FocusListener {
       order.setEmployee(u.username)
       Branch branch = Session.get(SessionItem.BRANCH) as Branch
       order = OrderController.addItemToOrder(order.id, item)
-        updateOrder( order.id )
+      updateOrder( order.id )
       /*
         if( isOnePackage ){
           if( isOneLens ){
@@ -668,355 +621,39 @@ class OrderPanel extends JPanel implements FocusListener {
     }
 
     private def doPrint = { ActionEvent ev ->
-      /*Registry.getSolicitaGarbageColector()
-      if( OrderController.validOrderNotCancelled( StringUtils.trimToEmpty(order?.id) ) ){
-        int artCount = 0
-        dioptra = new Dioptra()
-        Boolean hasDioptra = false
-        Boolean hasLc = false
-        for(OrderItem it : order.items){
-            Item result = ItemController.findItemsById(it.item.id)
-            if( result != null ){
-              if( StringUtils.trimToEmpty(it.item.indexDiotra).length() <= 0 || it.item.indexDiotra.contains("@")) {
-                controlItem( result, true, "" )
-              }
-              if( result.indexDiotra != null && result.indexDiotra.trim().length() > 0 ){
-                hasDioptra = true
-              }
-            }
-            if( StringUtils.trimToEmpty(it.item.type).equalsIgnoreCase(TAG_GENERICO_LENTE_CONTACTO) ){
-              hasLc = true
-            }
-        }
-        sb.doOutside {
-          Registry.getSolicitaGarbageColector()
-        }
-        if( !hasDioptra ){
-          order.dioptra = null
-        }
-        dioptra = OrderController.generaDioptra(OrderController.preDioptra(order?.dioptra))
-        String dio = OrderController.codigoDioptra(dioptra)
-        List<Item> itemLc = OrderController.existeLenteContacto(order)
-        if( itemLc.size() > 0 ) {
-          for(Item it : itemLc){
-            validaLC( it, true )
+        if ( isValidOrder() ) {
+          sb.doOutside {
+                Registry.getSolicitaGarbageColector()
           }
-        }
-        Boolean warranty = false
-        if( true ){
-            NotaVentaJava notaWarranty = OrderController.ensureOrder( StringUtils.trimToEmpty(order.id) )
-            warranty = OrderController.validWarranty( OrderController.findOrderJavaByidOrder(StringUtils.trimToEmpty(order.id)), true, null, notaWarranty.idFactura, true )
+          saveOrder( )
         } else {
-          warranty = true
+            printButton.enabled = true
+            closeButton.enabled = true
+            operationType.enabled = true
+            /*mainWindow.ordersMenu.enabled = true
+            mainWindow.inventoryMenu.enabled = true
+            mainWindow.sendReceivedInventoryMenu.enabled = true
+            mainWindow.reportsMenu.enabled = true
+            mainWindow.toolsMenu.enabled = true*/
         }
-        sb.doOutside {
-          Registry.getSolicitaGarbageColector()
-        }
-        String couponKeyValid = ""
-        for(int i=0;i<promotionList.size();i++){
-          if(promotionList.get(i) instanceof PromotionDiscount){
-            if( promotionList.get(i).discountAmount > 0.00 ){
-              couponKeyValid = OrderController.couponKeyValid( promotionList.get(i).discountType != null ? promotionList.get(i).discountType.description : "", order )
-            }
-          }
-        }
-        Boolean hasLens = false
-        Integer quantFrame = 0
-        Boolean validQuantity = true
-        for(OrderItem it: order.items){
-          if( StringUtils.trimToEmpty(it.item.type).equalsIgnoreCase(TAG_GENERICO_LENTE) ){
-            hasLens = true
-          } else if( StringUtils.trimToEmpty(it.item.type).equalsIgnoreCase(TAG_GENERICO_ARMAZON) ){
-            quantFrame = quantFrame+it.quantity
-          }
-        }
-        if( quantFrame > 1){
-          validQuantity = false
-        }
-        if( validQuantity ){
-        if( warranty ){
-          if( validLensesPack() ){
-            if( OrderController.validRxData(order.id, dio) ){
-            if( StringUtils.trimToEmpty(couponKeyValid).length() <= 0 ){
-            Boolean continueSave = true
-            rec = OrderController.findRx(order, customer)
-            if( hasLc && (rec == null || rec.idReceta == null) ){
-              Branch branch = Session.get(SessionItem.BRANCH) as Branch
-              EditRxDialog editRx = new EditRxDialog(this, new Rx(), customer?.id, branch?.id, 'Nueva Receta', "M", false, true, order.id)
-              editRx.show()
-              try {
-                if( rec != null ){
-                  OrderController.saveRxOrder(order?.id, this.rec.idReceta)
-                } else {
-                  continueSave = false
-                }
-              } catch ( Exception e ){ println e }
-            }
-              if( continueSave ){
-                if (!dioptra.getLente().equals(null)) {
-                    Item i = OrderController.findArt(dio.trim())
-                    if (i?.id != null || dio.trim().equals('nullnullnullnullnullnull')) {
-                        String tipoArt = null
-                        for (int row = 0; row <= itemsModel.rowCount; row++) {
-                            String artString = itemsModel.getValueAt(row, 0).toString()
-                            Item it = itemsModel.rowModel.value.item
-                            if (it.type.trim().equalsIgnoreCase('B')) {
-                              artCount = artCount + 1
-                              tipoArt = StringUtils.trimToEmpty(it.lensDesign)
-                            }
-                            if (artString.trim().equals('SV')) {
-                                artCount = artCount + 1
-                                tipoArt = StringUtils.trimToEmpty(it.lensDesign)
-                            } else if (artString.trim().equals('B') || artString.trim().equals('L')) {
-                                artCount = artCount + 1
-                                tipoArt = StringUtils.trimToEmpty(it.lensDesign)
-                            } else if (artString.trim().equals('P')) {
-                                artCount = artCount + 1
-                                tipoArt = StringUtils.trimToEmpty(it.lensDesign)
-                            }
-                        }
-                        armazonString = OrderController.armazonString(order?.id)
-
-                        if (artCount == 0) {
-                            JButton source = ev.source as JButton
-                            source.enabled = false
-                            ticketRx = false
-                            flujoImprimir(artCount)
-                            source.enabled = true
-                        } else {
-                            rec = OrderController.findRx(order, customer)
-                            Order armOrder = OrderController.getOrder(order?.id)
-                            if (rec.idReceta == null) {   //Receta Nueva
-                                Branch branch = Session.get(SessionItem.BRANCH) as Branch
-                                EditRxDialog editRx = new EditRxDialog(this, new Rx(), customer?.id, branch?.id, 'Nueva Receta', tipoArt, false, true, order.id)
-                                editRx.show()
-                                try {
-                                    OrderController.saveRxOrder(order?.id, rec.idReceta)
-                                    JButton source = ev.source as JButton
-                                    source.enabled = false
-                                    ticketRx = true
-                                    if (armOrder?.udf2.equals('')) {
-                                        ArmRxDialog armazon = new ArmRxDialog(this, order, armazonString)
-                                        armazon.show()
-                                        order = armazon.order
-                                    }
-                                    flujoImprimir(artCount)
-                                    source.enabled = true
-                                } catch ( Exception e) { println e }
-                            } else {
-                                JButton source = ev.source as JButton
-                                source.enabled = false
-                                ticketRx = true
-                                if (armOrder?.udf2.equals('')) {
-                                    ArmRxDialog armazon = new ArmRxDialog(this, order, armazonString)
-                                    armazon.show()
-                                    order = armazon.order
-                                }
-                                flujoImprimir(artCount)
-                                source.enabled = true
-                            }
-                        }
-                    } else {
-                        sb.optionPane(message: "Codigo Dioptra Incorrecto", optionType: JOptionPane.DEFAULT_OPTION)
-                                .createDialog(new JTextField(), "Error")
-                                .show()
-                    }
-                } else {
-                    ticketRx = false
-                    flujoImprimir(artCount)
-                }
-            }
-            } else {
-              sb.optionPane(message: "Monto minimo de compra ${couponKeyValid}.", optionType: JOptionPane.DEFAULT_OPTION)
-                      .createDialog(new JTextField(), "Error")
-                      .show()
-            }
-          } else {
-              sb.optionPane(message: "Valores invalidos en Receta.", optionType: JOptionPane.DEFAULT_OPTION)
-                      .createDialog(new JTextField(), "Error")
-                      .show()
-          }
-          } else {
-                sb.optionPane(message: "Favor de capturar paquete.", optionType: JOptionPane.DEFAULT_OPTION)
-                        .createDialog(new JTextField(), "Error")
-                        .show()
-          }
-        } else {
-          lstWarranty.clear()
-          if( !canceledWarranty ){
-            TXT_ERROR_WARRANTY = "No se puede registrar la venta"
-            if( OrderController.MSJ_ERROR_WARRANTY.length() <= 0 ){
-              MSJ_ERROR_WARRANTY = "Error al asignar el seguro, Verifiquelo e intente nuevamente."
-            } else {
-              MSJ_ERROR_WARRANTY = OrderController.MSJ_ERROR_WARRANTY
-            }
-            sb.optionPane(
-               message: MSJ_ERROR_WARRANTY,
-               messageType: JOptionPane.ERROR_MESSAGE
-            ).createDialog( this, TXT_ERROR_WARRANTY )
-              .show()
-          }
-        }
-      } else {
-        JOptionPane.showMessageDialog( null, "Cantidad de armazon incorrecta.",
-                "Error", JOptionPane.ERROR_MESSAGE )
-        }
-      } else {
-          JOptionPane.showMessageDialog( null, "La venta ya ha sido anulada",
-                  "Venta Anulada", JOptionPane.ERROR_MESSAGE )
-      }*/
-    }
-
-    private void flujoImprimir(int artCount) {
-      /*armazonString = null
-      Boolean validOrder = isValidOrder()
-      if (artCount != 0) {
-        Parametros diaIntervalo = Registry.find(mx.lux.pos.java.TipoParametro.DIA_PRO)
-        Date diaPrometido = new Date() + (diaIntervalo != null ? diaIntervalo?.valor?.toInteger() : 0)
-        OrderController.savePromisedDate(order?.id, diaPrometido)
-        Double pAnticipo = Registry.getAdvancePct()
-        Boolean onlyInventariable = OrderController.validOnlyInventariable( order )
-        if( onlyInventariable && order?.paid < (order?.total.subtract(promoAmount)) ){
-          AuthorizationDialog authDialog = new AuthorizationDialog(this, "Anticipo requiere autorizaci\u00f3n")
-          authDialog.show()
-          if (authDialog.authorized) {
-            advanceOnlyInventariable = true
-            validOrder = isValidOrder()
-          } else {
-            validOrder = false
-            sb.optionPane(
-                    message: 'Datos no validos',
-                    messageType: JOptionPane.ERROR_MESSAGE
-            ).createDialog(this, 'No se puede registrar la venta').show()
-          }
-        } else if (order?.paid < ((order?.total.subtract(promoAmount)) * pAnticipo)) {
-        sb.doOutside {
-          Registry.getSolicitaGarbageColector()
-        }
-        Boolean requierAuth = OrderController.requiereAuth( order )
-                if( requierAuth ){
-                  AuthorizationDialog authDialog = new AuthorizationDialog(this, "Anticipo menor al permitido, esta operacion requiere autorizaci\u00f3n")
-                  authDialog.show()
-                  if (authDialog.authorized) {
-                      validOrder = isValidOrder()
-                  } else {
-                      validOrder = false
-                      sb.optionPane(
-                              message: 'El monto del anticipo tiene que ser minimo de: $' + ((order?.total.subtract(promoAmount)) * pAnticipo),
-                              messageType: JOptionPane.ERROR_MESSAGE
-                      ).createDialog(this, 'No se puede registrar la venta')
-                              .show()
-                  }
-                } else {
-                    validOrder = false
-                    sb.optionPane(
-                            message: 'El monto del anticipo tiene que ser minimo de: $' + (order?.total * pAnticipo),
-                            messageType: JOptionPane.ERROR_MESSAGE
-                    ).createDialog(this, 'No se puede registrar la venta')
-                            .show()
-                }
-        } else {
-          validOrder = isValidOrder()
-        }
-      } else {
-            if( OrderController.validGenericNoDelivered( order.id ) ){
-              Double pAnticipo = Registry.getAdvancePct()
-              Boolean requierAuth = OrderController.requiereAuth( order )
-              if(order?.paid < (order?.total * pAnticipo)){
-                if( requierAuth ){
-                  AuthorizationDialog authDialog = new AuthorizationDialog(this, "Anticipo menor al permitido, esta operacion requiere autorizaci\u00f3n")
-                  authDialog.show()
-                  if (authDialog.authorized) {
-                    validOrder = isValidOrder()
-                  } else {
-                    validOrder = false
-                    sb.optionPane(
-                            message: 'El monto del anticipo tiene que ser minimo de: $' + (order?.total * pAnticipo),
-                            messageType: JOptionPane.ERROR_MESSAGE
-                    ).createDialog(this, 'No se puede registrar la venta')
-                            .show()
-                  }
-                } else {
-                  validOrder = false
-                  sb.optionPane(
-                          message: 'El monto del anticipo tiene que ser minimo de: $' + (order?.total * pAnticipo),
-                          messageType: JOptionPane.ERROR_MESSAGE
-                  ).createDialog(this, 'No se puede registrar la venta')
-                          .show()
-                }
-              } else {
-                validOrder = isValidOrder()
-              }
-            } else {
-              validOrder = isValidOrder()
-            }
-      }
-      if( !validLenses() ){
-        order.dioptra = null
-      }
-      if (validOrder) {
-        Boolean onlyInventariable = OrderController.validOnlyInventariable( order )
-        Boolean noDelivered = OrderController.validGenericNoDelivered( order.id )
-        if( onlyInventariable && order?.paid < (order?.total.subtract(promoAmount)) && !noDelivered ){
-          AuthorizationDialog authDialog = new AuthorizationDialog(this, "Anticipo requiere autorizaci\u00f3n")
-          authDialog.show()
-          if (authDialog.authorized) {
-            advanceOnlyInventariable = true
-            doBindings()
-            refreshDioptra()
-            if( dioptra != null ){
-              if( OrderController.validDioptra( StringUtils.trimToEmpty(order.id) ) ){
-                saveOrder()
-              } else {
-                refreshDioptra()
-                saveOrder()
-              }
-            } else {
-              saveOrder()
-            }
-          } else {
-            validOrder = false
-            sb.optionPane(
-                    message: 'Datos no validos',
-                    messageType: JOptionPane.ERROR_MESSAGE
-            ).createDialog(this, 'No se puede registrar la venta')
-                    .show()
-          }
-        } else {
-          doBindings()
-          if( dioptra.material != null || dioptra.lente != null || dioptra.tipo != null || dioptra.especial != null ||
-                  dioptra.tratamiento != null || dioptra.color != null ){
-            if( OrderController.validDioptra( StringUtils.trimToEmpty(order.id) ) ){
-              saveOrder()
-            } else {
-              refreshDioptra()
-              saveOrder()
-            }
-          } else {
-            saveOrder()
-          }
-        }
-      }*/
     }
 
     private void saveOrder() {
-      /*User user = Session.get(SessionItem.USER) as User
+      User user = Session.get(SessionItem.USER) as User
       String vendedor = user.username
-      if( OrderController.showValidEmployee() ){
-        CambiaVendedorDialog cambiaVendedor = new CambiaVendedorDialog(this,user?.username)
-        cambiaVendedor.show()
-        vendedor = cambiaVendedor?.vendedor
-      }
-      sb.doOutside {
-        Registry.getSolicitaGarbageColector()
-      }
-        if( discountAgeApplied && promoAgeActive && promoAmount.compareTo(BigDecimal.ZERO) > 0 ){
-          promotionDriver.addPromoDiscountAge( order, promoAmount )
+        Order newOrder = OrderController.placeOrder(order)
+        if ( StringUtils.isNotBlank( newOrder?.id ) ) {
+          OrderController.printOrder( newOrder.id )
+          cleanOrder()
+        } else {
+            sb.optionPane(
+                    message: 'Ocurrio un error al registrar la venta, intentar nuevamente',
+                    messageType: JOptionPane.ERROR_MESSAGE
+            ).createDialog( this, 'No se puede registrar la venta' )
+                    .show()
         }
-      ItemController.validTransSurtePino( StringUtils.trimToEmpty(order.id) )
-      OrderController.validSPWithoutLens( order )
-        //CuponMvView cuponMvView = OrderController.cuponValid( customer.id )
-      Order newOrder = OrderController.placeOrder(order, vendedor, false)
+      /*
+
       OrderController.genreatedEntranceSP( StringUtils.trimToEmpty(newOrder.id) )
       if( newOrder.rx != null ){
         OrderController.sendFax( newOrder )
@@ -1246,18 +883,13 @@ class OrderPanel extends JPanel implements FocusListener {
 
     void setCustomer(Customer pCustomer) {
         this.logger.debug(String.format('Assign Customer: %s', pCustomer.toString()))
-
         customer = pCustomer
         doBindings()
     }
 
     void setOrder(Order pOrder) {
-        this.logger.debug(String.format('Assign Order: %s', pOrder.toString()))
-        this.updateOrder(pOrder.id)
-    }
-
-    void setPromotion( Order pOrder ){
-      this.promotionDriver.updatePromotionClient( pOrder )
+      this.logger.debug(String.format('Assign Order: %s', pOrder.toString()))
+      this.updateOrder(pOrder.id)
     }
 
     void disableUI() {
@@ -1271,34 +903,45 @@ class OrderPanel extends JPanel implements FocusListener {
 
 
     private void fireRequestCancelOrder( ) {
-      /*List<Order> lstOrders = CancellationController.findOrderToResetValues(order.id)
-      for (Order order : lstOrders) {
-        CancellationController.resetValuesofCancellation(order.id)
-      }
       OrderController.deleteOrder( StringUtils.trimToEmpty(order.id) )
       User u = Session.get(SessionItem.USER) as User
-      OrderController.addLogOrderCancelled( StringUtils.trimToEmpty(order.id), StringUtils.trimToEmpty(u.username) )
-      this.reset()*/
+      cleanOrder()
     }
+
+
+    private void fireRequestOldOrders( ) {
+      OrderActiveSelectionDialog dialog = new OrderActiveSelectionDialog()
+      dialog.orderList = OrderController.findPendingOrders( )
+      dialog.activate()
+      if (dialog.orderSelected != null) {
+        Order o = dialog.orderSelected.order
+        Customer c = dialog.orderSelected.customer
+        cleanOrder()
+        disableUI()
+        setCustomer(c)
+        setOrder(o)
+        enableUI()
+        doBindings()
+      }
+      dialog.dispose()
+    }
+
 
     private Boolean isPaymentListEmpty() {
         return (order.payments.size() == 0)
     }
 
-    public void cleanAll( ){
+    /*public void cleanAll( ){
       sb = null
       order = null
       customer = null
-    }
+    }*/
 
     private void cleanOrder(){
-        order = new Order()
-        advanceOnlyInventariable = false
-        String clientesActivos = OrderController.obtieneTiposClientesActivos()
-        customer = CustomerController.findDefaultCustomer()
-        ticketRx = false
-        doBindings()
-        uiEnabled = true
+      order = new Order()
+      advanceOnlyInventariable = false
+      customer = CustomerController.findDefaultCustomer()
+      doBindings()
     }
 
 

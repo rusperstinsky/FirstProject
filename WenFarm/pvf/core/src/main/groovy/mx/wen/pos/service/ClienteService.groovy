@@ -10,4 +10,6 @@ interface ClienteService {
 
   Cliente agregarCliente( Cliente cliente, boolean editar )
 
+  Cliente obtenerClientePorDefecto( )
+
 }

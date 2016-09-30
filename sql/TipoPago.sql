@@ -19,5 +19,5 @@ WITH (
 ALTER TABLE tipo_pago OWNER TO postgres;
 
 INSERT INTO tipo_pago VALUES('EF','EFECTIVO','','','','','');
-INSERT INTO tipo_pago VALUES('TD','TARJETA DE DEBITO','Num. Tarjeta','Autorizacion','Id.','Term','');
-INSERT INTO tipo_pago VALUES('TC','TARJETA DE CREDITO','Num. Tarjeta','Autorizacion','Id.','Term','Plan');
+INSERT INTO tipo_pago VALUES('TD','TARJETA DE DEBITO','Num. Tarjeta','Autorizacion','Id.','','');
+INSERT INTO tipo_pago VALUES('TC','TARJETA DE CREDITO','Num. Tarjeta','Autorizacion','Id.','','Plan');

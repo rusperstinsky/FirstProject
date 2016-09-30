@@ -15,13 +15,13 @@ class RepositoryFactory {
   private static TransInvRepository inventoryMaster
   private static TransInvDetalleRepository inventoryDetail
   private static TipoTransInvRepository trTypes
-  private static NotaVentaRepository orders
-  private static DetalleNotaVentaRepository orderLines
   private static OrdenPromDetRepository orderLinePromotionDetail
   private static OrdenPromRepository orderPromotionDetail*/
+  private static NotaVentaRepository orders
+  private static DetalleNotaVentaRepository orderLines
   private static ArticuloRepository partMaster
-  /*private static PagoRepository payments
-  private static PromocionRepository promotionCatalog
+  private static PagoRepository payments
+  /*private static PromocionRepository promotionCatalog
   private static PrecioRepository priceCatalog*/
   private static ParametroRepository registry
   /*private static ImpuestoRepository taxMaster
@@ -46,14 +46,14 @@ class RepositoryFactory {
   RepositoryFactory( ArticuloRepository pArticuloRepository,
                      /*ClienteRepository pClienteRepository,
                      PrecioRepository pPrecioRepository,
-                     NotaVentaRepository pNotaVentaRepository,
-                     DetalleNotaVentaRepository pDetalleNotaVentaRepository,
                      PromocionRepository pPromocionRepository,
                      GrupoArticuloRepository pGrupoArticuloRepository,
                      GrupoArticuloDetRepository pGrupoArticuloDetRepository,
                      OrdenPromRepository pOrdenPromRepository,
-                     OrdenPromDetRepository pOrdenPromDetRepository,
-                     PagoRepository pPagoRepository,*/
+                     OrdenPromDetRepository pOrdenPromDetRepository,*/
+                     NotaVentaRepository pNotaVentaRepository,
+                     DetalleNotaVentaRepository pDetalleNotaVentaRepository,
+                     PagoRepository pPagoRepository,
                      ParametroRepository pParametroRepository,
                      /*DescuentoRepository pDescuentoRepository,
                      GenericoRepository pGenericoRepository,
@@ -81,14 +81,15 @@ class RepositoryFactory {
     discounts = pDescuentoRepository
     groupPartMaster = pGrupoArticuloRepository
     groupPartDetail = pGrupoArticuloDetRepository
+    */
+    orders = pNotaVentaRepository
     orderLines = pDetalleNotaVentaRepository
-    orders = pNotaVentaRepository*/
     partMaster = pArticuloRepository
     /*priceCatalog = pPrecioRepository
     promotionCatalog = pPromocionRepository
     orderPromotionDetail = pOrdenPromRepository
-    orderLinePromotionDetail = pOrdenPromDetRepository
-    payments = pPagoRepository*/
+    orderLinePromotionDetail = pOrdenPromDetRepository*/
+    payments = pPagoRepository
     registry = pParametroRepository
     /*genres = pGenericoRepository
     inventoryMaster = pTransInvRepository
@@ -146,14 +147,6 @@ class RepositoryFactory {
     return trTypes
   }
 
-  static DetalleNotaVentaRepository getOrderLines( ) {
-    return orderLines
-  }
-
-  static NotaVentaRepository getOrders( ) {
-    return orders
-  }
-
   static OrdenPromRepository getOrderPromotionDetail( ) {
     return orderPromotionDetail
   }
@@ -162,21 +155,29 @@ class RepositoryFactory {
     return orderLinePromotionDetail
   }*/
 
+  static NotaVentaRepository getOrders( ) {
+    return orders
+  }
+
+  static DetalleNotaVentaRepository getOrderLines( ) {
+    return orderLines
+  }
+
   static ArticuloRepository getPartMaster( ) {
     return partMaster
   }
 
-  /*static PagoRepository getPayments( ) {
+  static PagoRepository getPayments( ) {
     return payments
   }
 
-  static PrecioRepository getPriceCatalog( ) {
-    return priceCatalog
-  }
+    /*static PrecioRepository getPriceCatalog( ) {
+      return priceCatalog
+    }
 
-  static PromocionRepository getPromotionCatalog( ) {
-    return promotionCatalog
-  }*/
+    static PromocionRepository getPromotionCatalog( ) {
+      return promotionCatalog
+    }*/
 
   static ParametroRepository getRegistry( ) {
     return registry

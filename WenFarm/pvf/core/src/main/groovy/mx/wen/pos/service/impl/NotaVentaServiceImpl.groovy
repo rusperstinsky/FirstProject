@@ -61,7 +61,7 @@ class NotaVentaServiceImpl implements NotaVentaService {
   NotaVenta obtenerNotaVenta( String idNotaVenta ) {
     log.info( "obteniendo notaVenta: ${idNotaVenta}" )
     if ( StringUtils.isNotBlank( idNotaVenta ) ) {
-      NotaVenta notaVenta = notaVentaRepository.findOne( idNotaVenta )
+      NotaVenta notaVenta = notaVentaRepository.findOne( StringUtils.trimToEmpty(idNotaVenta) )
       log.debug( "obtiene notaVenta id: ${notaVenta?.id}," )
       log.debug( "fechaHoraFactura: ${notaVenta?.fechaHoraFactura?.format( DATE_TIME_FORMAT )}" )
       return notaVenta
@@ -239,8 +239,8 @@ class NotaVentaServiceImpl implements NotaVentaService {
     log.info( "registrando pago id: ${pago?.id} idFormaPago: ${pago?.idFormaPago} monto: ${pago?.monto}" )
     log.info( "en notaVenta id: ${idNotaVenta}" )
     NotaVenta notaVenta = obtenerNotaVenta( idNotaVenta )
-    if ( StringUtils.isNotBlank( notaVenta?.id ) && StringUtils.isNotBlank( pago?.idFormaPago ) && pago?.monto ) {
-      String formaPago = pago.idFormaPago
+    if ( StringUtils.isNotBlank( notaVenta?.id ) && StringUtils.isNotBlank( pago?.idFPago ) && pago?.monto ) {
+      String formaPago = pago.idFPago
       if ( 'ES'.equalsIgnoreCase( formaPago ) ) {
         formaPago = 'EFM'
       } else if ( 'TS'.equalsIgnoreCase( formaPago ) ) {
@@ -248,10 +248,10 @@ class NotaVentaServiceImpl implements NotaVentaService {
       }
       log.debug( "forma pago definida: ${formaPago}" )
       Date fechaActual = new Date()
-      pago.idFormaPago = formaPago
+      pago.idFPago = formaPago
       pago.idFactura = idNotaVenta
       pago.idSucursal = sucursalRepository.getCurrentSucursalId()
-      pago.tipoPago = DateUtils.isSameDay( notaVenta.fechaHoraFactura ?: fechaActual, fechaActual ) ? 'a' : 'l'
+      pago.fecha = new Date()
       log.debug( "obteniendo existencia de pago con id: ${pago.id}" )
       Pago tmp = pagoRepository.findOne( pago.id ?: 0 )
       if ( tmp?.id ) {
@@ -307,13 +307,7 @@ class NotaVentaServiceImpl implements NotaVentaService {
       if ( notaVentaRepository.exists( idNotaVenta ) ) {
         Date fecha = new Date()
         notaVenta.factura = notaVentaRepository.getFacturaSequence()
-        notaVenta.tipoNotaVenta = 'F'
-        notaVenta.tipoDescuento = 'N'
-        notaVenta.tipoEntrega = 'S'
-        notaVenta.setfExpideFactura( true )
-        notaVenta.fechaEntrega = notaVenta.fechaEntrega ?: fecha
-        notaVenta.horaEntrega = notaVenta.horaEntrega ?: fecha
-        notaVenta.fechaPrometida = notaVenta.fechaPrometida ?: fecha
+        notaVenta.tipoDescuento = notaVenta.montoDescuento.compareTo(BigDecimal.ZERO) > 0 ? 'D' : ''
         return registrarNotaVenta( notaVenta )
       } else {
         log.warn( "no se cierra notaVenta, id no existe" )
@@ -648,4 +642,25 @@ class NotaVentaServiceImpl implements NotaVentaService {
   }
 
 
+  @Override
+  @Transactional
+  void borrarNotaVenta( String idFactura ){
+    NotaVenta notaVenta = notaVentaRepository.findOne( idFactura )
+    if( notaVenta != null && StringUtils.trimToEmpty(notaVenta.factura).length() <= 0 ){
+      EliminarNotaVentaTask task = new EliminarNotaVentaTask()
+      task.addNotaVenta( notaVenta.id )
+      log.debug( task.toString() )
+      task.run()
+      log.debug( task.toString() )
+    }
+  }
+
+
+  @Override
+  List<NotaVenta> listarNotasPendientes( ) {
+    log.info( "listando notas pendientes" )
+    QNotaVenta qNotaVenta = QNotaVenta.notaVenta
+    List<NotaVenta> results = notaVentaRepository.findAll( qNotaVenta.factura.isEmpty() )
+    return results?.any() ? results : [ ]
+  }
 }

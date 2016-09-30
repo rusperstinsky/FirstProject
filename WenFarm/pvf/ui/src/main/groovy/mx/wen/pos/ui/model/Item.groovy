@@ -34,6 +34,7 @@ class Item {
         name: articulo.articulo,
         desc: articulo.descripcion,
         price: articulo.precio,
+        priceDiscount: articulo.precio,
         dateMod: articulo.fechaMod,
         idStore: articulo.idSucursal,
         stock: articulo.cantExistencia,
@@ -50,13 +51,14 @@ class Item {
 
   static Item toItem( DetalleNotaVenta detalleNotaVenta ) {
     try {
-      if ( detalleNotaVenta?.id ) {
+      if ( detalleNotaVenta?.id && detalleNotaVenta?.articulo ) {
         Articulo articulo = detalleNotaVenta.articulo
         Item item = new Item(
           id: articulo.id,
           name: articulo.articulo,
           desc: articulo.descripcion,
-          price: articulo.precio,
+          price: detalleNotaVenta.precioUnitLista,
+          priceDiscount: detalleNotaVenta.precioUnitFinal,
           dateMod: articulo.fechaMod,
           idStore: articulo.idSucursal,
           stock: articulo.cantExistencia,

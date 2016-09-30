@@ -1,7 +1,7 @@
 package mx.wen.pos.repository
 
 import mx.wen.pos.model.Pago
-import mx.wen.pos.repository.custom.PagoRepositoryCustom
+
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.querydsl.QueryDslPredicateExecutor
 import org.springframework.data.jpa.repository.Modifying

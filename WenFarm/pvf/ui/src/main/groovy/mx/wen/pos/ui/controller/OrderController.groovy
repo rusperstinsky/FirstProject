@@ -143,14 +143,8 @@ class OrderController {
       DetalleNotaVenta detalle = new DetalleNotaVenta(
           idArticulo: orderItem.item.id,
           cantidadFac: orderItem.quantity ?: 1,
-          precioUnitLista: orderItem.item.listPrice,
-          precioUnitFinal: orderItem.item.price,
-          precioCalcLista: orderItem.item.listPrice,
-          precioFactura: orderItem.item.price,
-          precioCalcOferta: 0,
-          precioConv: 0,
-          idTipoDetalle: 'N',
-          surte: 'S'
+          precioUnitLista: orderItem.item.price,
+          precioUnitFinal: orderItem.item.priceDiscount,
       )
       NotaVenta notaVenta = notaVentaService.registrarDetalleNotaVentaEnNotaVenta( orderId, detalle )
       return Order.toOrder( notaVenta )
@@ -179,23 +173,13 @@ class OrderController {
     log.info( "agregando pago monto: ${payment?.amount}, tipo: ${payment?.paymentTypeId} a orden id: ${orderId}" )
     if ( StringUtils.isNotBlank( orderId ) && StringUtils.isNotBlank( payment?.paymentTypeId ) && payment?.amount ) {
       User user = Session.get( SessionItem.USER ) as User
-      println "Banco Emisor:: ${payment.issuerBankId}"
       String idfPayment = StringUtils.trimToEmpty(payment.paymentTypeId)
-      if( payment.paymentTypeId.contains("TPV") ){
-        idfPayment = payment.paymentTypeId.replace("TPV","")
-        idfPayment = StringUtils.trimToEmpty(idfPayment)
-      }
       Pago pago = new Pago(
-          idFormaPago: idfPayment,
-          referenciaPago: payment.paymentReference,
-          monto: payment.amount,
-          idEmpleado: user?.username,
-          idFPago: idfPayment,
-          clave: payment.paymentReference,
-          referenciaClave: payment.codeReference,
-          idBancoEmisor: payment.issuerBankId,
-          idTerminal: payment.terminalId,
-          idPlan: payment.planId
+        referenciaPago: payment.paymentReference,
+        monto: payment.amount,
+        idEmpleado: user?.username,
+        idFPago: idfPayment,
+        idPlan: payment.planId
       )
       NotaVenta notaVenta = notaVentaService.registrarPagoEnNotaVenta( orderId, pago )
       return Order.toOrder( notaVenta )
@@ -228,31 +212,20 @@ class OrderController {
       NotaVenta notaVenta = notaVentaService.obtenerNotaVenta( order.id )
       if ( StringUtils.isNotBlank( notaVenta?.id ) ) {
         User user = Session.get( SessionItem.USER ) as User
-        if ( StringUtils.isBlank( notaVenta.idEmpleado ) ) {
+        if ( notaVenta.idEmpleado == null ) {
           notaVenta.idEmpleado = user?.username
         }
-        if ( notaVenta.idCliente != null ) {
+        if ( notaVenta.idCliente == null ) {
           notaVenta.idCliente = order.customer.id
         }
         notaVenta.observacionesNv = order.comments
-        notaVenta.empEntrego = user?.username
-        notaVenta.udf2 = order.country.toUpperCase()
         notaVenta = notaVentaService.cerrarNotaVenta( notaVenta )
-        /*for(Pago pago : notaVenta.pagos){
-            if( pago.idFPago.equalsIgnoreCase(TAG_TIPO_PAGO_NOTA_CREDITO)){
-                Retorno retorno = pagoService.obtenerRetorno( pago.referenciaPago.trim() )
-                if(retorno != null ){
-                    retorno.ticketDestino = notaVenta.factura
-                    pagoService.actualizarRetorno( retorno )
-                }
-            }
-        }*/
         if ( inventarioService.solicitarTransaccionVenta( notaVenta ) ) {
           log.debug( "transaccion de inventario correcta" )
         } else {
           log.warn( "no se pudo procesar la transaccion de inventario" )
         }
-        ServiceManager.ioServices.logSalesNotification( notaVenta.id )
+        //ServiceManager.ioServices.logSalesNotification( notaVenta.id )
         return Order.toOrder( notaVenta )
       } else {
         log.warn( "no se registra orden, notaVenta no existe" )
@@ -613,13 +586,18 @@ class OrderController {
   }
 
 
-  /*static String descriptionDiscount( String idOrder ){
-    List<Descuento> lstDescuento = RepositoryFactory.discounts.findByIdFactura( StringUtils.trimToEmpty(idOrder) )
-    if( lstDescuento.size() > 0 ){
-      return lstDescuento.first().tipoClave
-    } else {
-      return ""
+  static void deleteOrder( String idOrder ){
+    notaVentaService.borrarNotaVenta( idOrder )
+  }
+
+
+  static List<Order> findPendingOrders( ) {
+    log.info( "obteniendo ordenes pendientes de hoy" )
+    List<NotaVenta> results = notaVentaService.listarNotasPendientes( )
+    return results?.collect { NotaVenta tmp ->
+      Order.toOrder( tmp )
     }
-  }*/
+  }
+
 
 }

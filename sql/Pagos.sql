@@ -14,6 +14,7 @@ CREATE TABLE pagos
   id_sucursal integer NOT NULL DEFAULT esta_sucursal(),
   id_f_pago character(5),
   id_plan character(20),
+  id_banco text,
   CONSTRAINT pagos_pkey PRIMARY KEY (id_pago)
 )
 WITH ( OIDS=FALSE );
