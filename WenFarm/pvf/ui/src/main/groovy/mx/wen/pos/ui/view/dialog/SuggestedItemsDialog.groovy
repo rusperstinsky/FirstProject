@@ -88,7 +88,7 @@ class SuggestedItemsDialog extends JDialog {
           void valueChanged( ListSelectionEvent ev ) {
 
             String idArticle = tableItems.getValueAt( tableItems.selectedRow, COLUMN_ID ).toString()
-            List<Item> item = ItemController.findItemsByQuery( idArticle )
+            List<Item> item = ItemController.findItemsByQuery( idArticle, "" )
             if( item.first() != null ){
               String description = item.first().desc.trim().replace( ' ','' )
               if( description.length() > 80 ){

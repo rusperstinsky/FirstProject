@@ -1,6 +1,7 @@
 package mx.wen.pos.service.impl
 
 import groovy.util.logging.Slf4j
+import mx.wen.pos.service.business.Registry
 import org.apache.commons.lang.StringUtils
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -33,14 +34,20 @@ class SucursalServiceImpl implements SucursalService {
   private ParametroRepository parametroRepository
 
   @Override
-  Sucursal obtenSucursalActual( Integer idSuc ) {
+  Sucursal obtenSucursalActual( ) {
     log.debug( "obteniendo sucursal actual" )
+    return sucursalRepository.findOne( Registry.currentSite )
+  }
+
+
+  @Override
+  Sucursal obtenSucursalActual( Integer idSuc ) {
     if ( idSuc != null ) {
       log.debug( "sucursal solicitada ${idSuc}" )
       return sucursalRepository.findOne( idSuc )
     }else{
-    return null
-      }
+      return null
+    }
   }
 
   Sucursal obtenerSucursal( Integer pSucursal ) {

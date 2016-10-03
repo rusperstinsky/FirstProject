@@ -6,6 +6,8 @@ interface ArticuloService {
 
   Articulo obtenerArticulo( Integer id )
 
+  List<Articulo> obtenerArticuloPorTipo( String tipo )
+
   List<Articulo> listarArticulosPorCodigo( String articulo )
 
   //List<Articulo> listarArticulosPorCodigo( String articulo, boolean incluyePrecio )
@@ -19,4 +21,6 @@ interface ArticuloService {
   Boolean validarArticulo( Integer id )
 
   Articulo buscaArticulo( Integer id )
+
+  Boolean registrarListaArticulos( List<Articulo> pListaArticulo )
 }

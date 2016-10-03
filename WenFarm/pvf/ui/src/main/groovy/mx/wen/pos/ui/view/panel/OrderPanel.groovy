@@ -17,6 +17,7 @@ import mx.wen.pos.ui.model.SessionItem
 import mx.wen.pos.ui.model.UpperCaseDocument
 import mx.wen.pos.ui.model.User
 import mx.wen.pos.ui.resources.UI_Standards
+import mx.wen.pos.ui.view.dialog.HelpItemSearchDialog
 import mx.wen.pos.ui.view.dialog.ItemDialog
 import mx.wen.pos.ui.view.dialog.OrderActiveSelectionDialog
 import mx.wen.pos.ui.view.dialog.PaymentDialog
@@ -27,6 +28,7 @@ import org.apache.commons.lang3.StringUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import mx.wen.pos.ui.MainWindow
+import org.springframework.core.io.ClassPathResource
 
 import javax.swing.*
 import java.awt.*
@@ -121,7 +123,7 @@ class OrderPanel extends JPanel implements FocusListener {
     private Boolean canceledWarranty
     private Boolean discountAgeApplied
     private String sComments = ''
-    //private HelpItemSearchDialog helpItemSearchDialog
+    private HelpItemSearchDialog helpItemSearchDialog
 
     private Boolean promoAgeActive
 
@@ -218,11 +220,11 @@ class OrderPanel extends JPanel implements FocusListener {
             }
 
             panel(layout: new MigLayout('insets 0,fill', '[fill][fill,300!]', '[]'), constraints: 'span') {
-              panel(layout: new MigLayout('wrap 2', '[fill][fill,grow]', '[]'), border: titledBorder(title: "") ) {
-                //button( text: "?", actionPerformed: doHelp )
+              panel(layout: new MigLayout('wrap 3', '[fill][fill][fill,grow]', '[]'), border: titledBorder(title: "") ) {
+                button( icon: imageIcon( url: new ClassPathResource( 'img/search_16.png' )?.URL ), actionPerformed: doHelp )
                 label( "Articulo" )
                 itemSearch = textField(font: new Font('', Font.BOLD, 16), document: new UpperCaseDocument(),
-                        actionPerformed: { doItemSearch( ) })
+                        actionPerformed: { doItemSearch( "" ) })
                 /*label( "Cantidad" )
                 itemQty = textField( font: new Font('', Font.BOLD, 16) )
                 label( " " )
@@ -398,13 +400,13 @@ class OrderPanel extends JPanel implements FocusListener {
 
 
    //Busca y valida el articulo que se inserta en la caja de texto.
-    private def doItemSearch(  ) {
+    private def doItemSearch(  String tipo ) {
       Registry.getSolicitaGarbageColector()
       String input = StringUtils.trimToEmpty(itemSearch.text)
       if ( StringUtils.isNotBlank( input ) ) {
         sb.doOutside {
           //DailyCloseController.openDay()
-          List<Item> results = ItemController.findItemsByQuery( input )
+          List<Item> results = ItemController.findItemsByQuery( input, tipo )
           if ( results?.any() ) {
             if ( results.size() == 1 ) {
               if( results?.first()?.stock <= 0 ){
@@ -613,8 +615,9 @@ class OrderPanel extends JPanel implements FocusListener {
 
     private def doHelp = { ActionEvent ev ->
       if( helpItemSearchDialog == null ){
-        //helpItemSearchDialog = new HelpItemSearchDialog()
+        helpItemSearchDialog = new HelpItemSearchDialog()
         helpItemSearchDialog.show()
+
         itemSearch.text = null
         helpItemSearchDialog = null
       }
@@ -872,7 +875,7 @@ class OrderPanel extends JPanel implements FocusListener {
 
     public void focusLost(FocusEvent e) {
       if (itemSearch.text.length() > 0 && !focusItem) {
-        doItemSearch( )
+        doItemSearch( "" )
         //itemSearch.requestFocus()
       } else if( focusItem ){
         focusItem = false

@@ -18,6 +18,7 @@ import mx.wen.pos.model.*
 
 import javax.annotation.Resource
 import java.text.NumberFormat
+import java.text.ParseException
 
 @Component
 class PrepareInvTrBusiness {
@@ -55,7 +56,7 @@ class PrepareInvTrBusiness {
 
   private TransInv prepareTransaction( InvTrRequest pRequest ) {
     TipoTransInv trType = inventory.obtenerTipoTransaccion( pRequest.trType )
-    Sucursal site = sites.obtenSucursalActual()
+    Sucursal site = sites.obtenSucursalActual( )
     TransInv trMstr = null
 
     if ( ( trType != null ) && ( site != null ) ) {
@@ -69,7 +70,11 @@ class PrepareInvTrBusiness {
         }
       trMstr.observaciones = pRequest.remarks
       trMstr.sucursal = site.id
-      trMstr.idEmpleado = pRequest.idUser
+      try{
+        trMstr.idEmpleado = NumberFormat.getInstance().parse(pRequest.idUser).intValue()
+      } catch ( ParseException e ){
+        println e.message
+      }
 
         String aleatoria = claveAleatoria(trMstr.sucursal, trType.ultimoFolio+1)
         Parametro p = Registry.find( TipoParametro.TRANS_INV_TIPO_SALIDA_ALMACEN )
@@ -109,14 +114,14 @@ class PrepareInvTrBusiness {
 
       Integer iDet = 0
       for ( InvTrDetRequest detReq in pRequest.skuList ) {
-        if ( parts.esInventariable( detReq.sku ) ) {
+        //if ( parts.esInventariable( detReq.sku ) ) {
           TransInvDetalle det = new TransInvDetalle()
           det.linea = ++iDet
           det.sku = detReq.sku
           det.cantidad = detReq.qty
-          det.tipoMov = trType.tipoMovObj.codigo
+          det.tipoMov = StringUtils.trimToEmpty(trType.tipoMov)
           trMstr.add( det )
-        }
+        //}
       }
       trMstr.idTipoTrans = trType.idTipoTrans
       Parametro param = Registry.find( TipoParametro.TRANS_INV_TIPO_CANCELACION_EXTRA )

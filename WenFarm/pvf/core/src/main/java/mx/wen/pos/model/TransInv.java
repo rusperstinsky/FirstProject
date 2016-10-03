@@ -46,7 +46,7 @@ public class TransInv implements Serializable, Comparable<TransInv> {
     private String observaciones;
 
     @Column( name = "id_empleado" )
-    private String idEmpleado;
+    private Integer idEmpleado;
 
     @Column( name = "fecha_mod" )
     private Date fechaMod;
@@ -140,12 +140,12 @@ public class TransInv implements Serializable, Comparable<TransInv> {
         this.observaciones = observaciones.trim();
     }
 
-    public String getIdEmpleado() {
+    public Integer getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado( String idEmpleado ) {
-        this.idEmpleado = idEmpleado.trim().toUpperCase();
+    public void setIdEmpleado( Integer idEmpleado ) {
+        this.idEmpleado = idEmpleado;
     }
 
     public Date getFechaMod() {

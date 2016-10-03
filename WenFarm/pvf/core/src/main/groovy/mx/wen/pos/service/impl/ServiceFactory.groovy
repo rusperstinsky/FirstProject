@@ -8,7 +8,7 @@ import mx.wen.pos.service.*
 class ServiceFactory {
 
   private static EmpleadoService employeeCatalog
-  //private static InventarioService inventory
+  private static InventarioService inventory
   private static NotaVentaService salesOrders
   private static ArticuloService partMaster
   private static SucursalService sites
@@ -21,14 +21,14 @@ class ServiceFactory {
 
 
   @Autowired
-  ServiceFactory( ArticuloService pArticuloService, //InventarioService pInventarioService,
+  ServiceFactory( ArticuloService pArticuloService, InventarioService pInventarioService,
                   NotaVentaService pNotaVentaService, EmpleadoService pEmpMaster,SucursalService pSiteService/*,
                   TicketService pTicketEngine, , EstadoService pEstadoService,
                   IOService pIOServices, CierreDiarioService pCierreDiarioService,
                   MensajeService pMensajeService, CotizacionService pCotizacionService*/
   ) {
     employeeCatalog = pEmpMaster
-    //inventory = pInventarioService
+    inventory = pInventarioService
     salesOrders = pNotaVentaService
     partMaster = pArticuloService
     sites = pSiteService
@@ -44,9 +44,9 @@ class ServiceFactory {
     return employeeCatalog
   }
 
-  /*static InventarioService getInventory( ) {
+  static InventarioService getInventory( ) {
     return inventory
-  }*/
+  }
 
   static NotaVentaService getSalesOrders( ) {
     return salesOrders

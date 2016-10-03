@@ -6,6 +6,8 @@ interface SucursalService {
 
   Sucursal obtenSucursalActual( Integer idSuc )
 
+  Sucursal obtenSucursalActual( )
+
   Sucursal obtenerSucursal( Integer pSucursal )
 
   List<Sucursal> listarSucursales( )

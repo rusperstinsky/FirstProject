@@ -12,7 +12,7 @@ CREATE TABLE empleado
   passwd character(10),
   fecha_alta timestamp without time zone NOT NULL DEFAULT now(),
   fecha_mod timestamp without time zone NOT NULL DEFAULT now(),
-  id_sucursal integer NOT NULL,
+  id_sucursal integer NOT NULL DEFAULT esta_sucursal(),
   CONSTRAINT empleado_pkey PRIMARY KEY (id_empleado)
 )
 WITH ( OIDS=FALSE );
@@ -71,3 +71,6 @@ CREATE INDEX empleado_nombre_empleado_idx
   ON empleado
   USING btree
   (nombre_empleado);
+
+INSERT INTO empleado(id_empleado,nombre_empleado,id_puesto,passwd) VALUES(9999,'SISTEMAS',1,'0000');
+INSERT INTO empleado(id_empleado,nombre_empleado,id_puesto,passwd) VALUES(0001,'GERENTE',1,'1234');
