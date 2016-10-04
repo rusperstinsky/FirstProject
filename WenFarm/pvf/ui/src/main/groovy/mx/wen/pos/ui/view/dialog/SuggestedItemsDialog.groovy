@@ -4,8 +4,14 @@ import groovy.swing.SwingBuilder
 import mx.wen.pos.ui.controller.*
 import mx.wen.pos.ui.model.Item
 import mx.wen.pos.ui.view.renderer.MoneyCellRenderer
+import org.apache.commons.lang.StringUtils
+import org.springframework.core.io.ClassPathResource
 
+import javax.swing.Icon
+import javax.swing.ImageIcon
+import javax.swing.JButton
 import java.awt.Component
+import java.awt.Image
 import java.awt.event.MouseEvent
 import javax.swing.JDialog
 import javax.swing.ListSelectionModel
@@ -33,7 +39,7 @@ class SuggestedItemsDialog extends JDialog {
   private Item item
   private Item itemDesc
   private JCheckBox cbExistencias
-  private JLabel lblDescripcion
+  private JButton lblDescripcion
   private DefaultTableModel model
   private JTable tableItems
   private static final Integer COLUMN_ID = 0
@@ -54,7 +60,7 @@ class SuggestedItemsDialog extends JDialog {
   private void buildUI( Component parent ) {
     sb.dialog( this,
         title: "Art\u00edculos sugeridos con: ${code ?: ''}",
-        location: parent.locationOnScreen,
+        location: [80,80],
         resizable: false,
         preferredSize: [ 520  , 380 ] as Dimension,
         modal: true,
@@ -90,7 +96,15 @@ class SuggestedItemsDialog extends JDialog {
             String idArticle = tableItems.getValueAt( tableItems.selectedRow, COLUMN_ID ).toString()
             List<Item> item = ItemController.findItemsByQuery( idArticle, "" )
             if( item.first() != null ){
-              String description = item.first().desc.trim().replace( ' ','' )
+              String imgStr = "img/${StringUtils.trimToEmpty(item.first().id.toString())}.png"
+              lblDescripcion.setIcon(null)
+              Icon icon = new ImageIcon(new ClassPathResource( imgStr )?.URL);
+              Image image = icon.getImage(); // transform it
+              Image newimg = image.getScaledInstance(120, 120,  Image.SCALE_SMOOTH);
+              icon = new ImageIcon(newimg);  // transform it back
+              lblDescripcion.setIcon(icon)
+              lblDescripcion.revalidate()
+              /*String description = item.first().desc.trim().replace( ' ','' )
               if( description.length() > 80 ){
                 if( description.length() < 160 ){
                   lblDescripcion.text = "<html>${description.substring(0,80)}<br>${description.substring(80)}<br><html>"
@@ -99,7 +113,7 @@ class SuggestedItemsDialog extends JDialog {
                 }
               } else {
                 lblDescripcion.text = description
-              }
+              }*/
             } else {
               lblDescripcion.text = ' '
             }
@@ -109,7 +123,8 @@ class SuggestedItemsDialog extends JDialog {
 
         panel( constraints: BorderLayout.PAGE_END ) {
           borderLayout()
-          lblDescripcion = label( text: '<html> <br> <html> ', border: titledBorder( '' ), constraints: BorderLayout.PAGE_START )
+          //lblDescripcion = label( text: '<html> <br> <html> ', border: titledBorder( '' ), constraints: BorderLayout.PAGE_START )
+          lblDescripcion = button( maximumSize: [100,100], constraints: BorderLayout.PAGE_START )
           button( 'Cerrar',
               defaultButton: true,
               preferredSize: UI_Standards.BUTTON_SIZE,

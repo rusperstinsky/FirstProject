@@ -118,7 +118,7 @@ class MainWindow extends JFrame implements KeyListener {
           layout: new MigLayout( 'fill,insets 1,center,wrap', '[fill]', '[top]' ),
           minimumSize: [ 900, 700 ] as Dimension,
           //extendedState: JFrame.MAXIMIZED_BOTH,
-          location: [ 70, 35 ] as Point,
+          location: [ 50, 15 ] as Point,
           pack: true,
           resizable: true,
           defaultCloseOperation: EXIT_ON_CLOSE
