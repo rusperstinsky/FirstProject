@@ -5,5 +5,5 @@ INSERT INTO articulos(id_articulo,articulo,desc_articulo,precio,existencia,tipo)
 INSERT INTO articulos(id_articulo,articulo,desc_articulo,precio,existencia,tipo) VALUES(1238,'ANALGESICO','ANALGESICO PASTILLAS','$100.00',3,'2');
 INSERT INTO articulos(id_articulo,articulo,desc_articulo,precio,existencia,tipo) VALUES(1239,'VITAMINA B','FRASCO DE VITAMINAS','$120.00',3,'3');
 INSERT INTO articulos(id_articulo,articulo,desc_articulo,precio,existencia,tipo) VALUES(1240,'JABON','JABON DE BAÑO','$50.00',3,'4');
-INSERT INTO articulos(id_articulo,articulo,desc_articulo,precio,existencia,tipo) VALUES(1240,'RIMEL','RIMEL AVON','$90.00',3,'5');
-INSERT INTO articulos(id_articulo,articulo,desc_articulo,precio,existencia,tipo) VALUES(1240,'COCA COLA','COCA COLA 600 ML','$10.00',3,'6');
+INSERT INTO articulos(id_articulo,articulo,desc_articulo,precio,existencia,tipo) VALUES(1241,'RIMEL','RIMEL AVON','$90.00',3,'5');
+INSERT INTO articulos(id_articulo,articulo,desc_articulo,precio,existencia,tipo) VALUES(1242,'COCA COLA','COCA COLA 600 ML','$10.00',3,'6');
