@@ -94,6 +94,7 @@ class HelpItemSearchDialog extends JDialog {
 
   private void doSearch( String type ) {
     this.type = StringUtils.trimToEmpty(type)
+    dispose()
   }
 
   public String getTipo( ){

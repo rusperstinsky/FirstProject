@@ -403,7 +403,7 @@ class OrderPanel extends JPanel implements FocusListener {
     private def doItemSearch(  String tipo ) {
       Registry.getSolicitaGarbageColector()
       String input = StringUtils.trimToEmpty(itemSearch.text)
-      if ( StringUtils.isNotBlank( input ) ) {
+      if ( StringUtils.isNotBlank( input ) || StringUtils.isNotBlank( tipo ) ) {
         sb.doOutside {
           //DailyCloseController.openDay()
           List<Item> results = ItemController.findItemsByQuery( input, tipo )
@@ -445,10 +445,10 @@ class OrderPanel extends JPanel implements FocusListener {
         sb.doLater {
           itemSearch.text = null
         }
-      } else {
+      }/* else {
         sb.optionPane( message: 'Es necesario ingresar una b\u00fasqeda v\u00e1lida', optionType: JOptionPane.DEFAULT_OPTION )
               .createDialog( new JTextField(), "B\u00fasqueda inv\u00e1lida" ).show()
-      }
+      }*/
       itemSearch.requestFocus()
     }
 
@@ -617,7 +617,7 @@ class OrderPanel extends JPanel implements FocusListener {
       if( helpItemSearchDialog == null ){
         helpItemSearchDialog = new HelpItemSearchDialog()
         helpItemSearchDialog.show()
-
+        doItemSearch(StringUtils.trimToEmpty(helpItemSearchDialog.getTipo()))
         itemSearch.text = null
         helpItemSearchDialog = null
       }
