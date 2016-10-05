@@ -660,7 +660,7 @@ class NotaVentaServiceImpl implements NotaVentaService {
   List<NotaVenta> listarNotasPendientes( ) {
     log.info( "listando notas pendientes" )
     QNotaVenta qNotaVenta = QNotaVenta.notaVenta
-    List<NotaVenta> results = notaVentaRepository.findAll( qNotaVenta.factura.isEmpty() )
+    List<NotaVenta> results = notaVentaRepository.findAll( qNotaVenta.factura.isEmpty(), qNotaVenta.fechaHoraFactura.desc() )
     return results?.any() ? results : [ ]
   }
 }

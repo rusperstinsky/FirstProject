@@ -30,7 +30,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../lib/contents/commons-lang3/3.1/jar/commons-lang3-3.1.jar!/" />
@@ -41,7 +41,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../lib/contents/slf4j-api/1.6.1/jar/slf4j-api-1.6.1.jar!/" />
@@ -52,7 +52,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../lib/contents/jcl-over-slf4j/1.6.1/jar/jcl-over-slf4j-1.6.1.jar!/" />
@@ -63,7 +63,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../lib/contents/slf4j-log4j12/1.6.1/jar/slf4j-log4j12-1.6.1.jar!/" />
@@ -85,7 +85,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../lib/contents/apache-log4j-extras/1.1/bundle/apache-log4j-extras-1.1.jar!/" />
@@ -107,7 +107,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../lib/contents/ant-launcher/1.8.4/jar/ant-launcher-1.8.4.jar!/" />
@@ -129,7 +129,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../lib/contents/commons-collections/3.2.1/jar/commons-collections-3.2.1.jar!/" />
@@ -140,7 +140,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../lib/contents/commons-lang/2.4/jar/commons-lang-2.4.jar!/" />
