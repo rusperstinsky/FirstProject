@@ -5,8 +5,8 @@
     <property name="from.resolver" value="public"/>
     <property name="to.resolver" value="local"/>
     
-    <property name="settings.dir" value="/home/sucursal/Descargas/Wen/FirstProject/lib"/>
-    <property name="local.cache" value="/home/sucursal/Descargas/Wen/FirstProject/lib/cache" />
+    <property name="settings.dir" value="/home/neogeo/FirstProject/lib"/>
+    <property name="local.cache" value="/home/neogeo/FirstProject/lib/cache" />
 
     <!-- Init -->
     <target name="init">

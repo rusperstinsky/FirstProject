@@ -42,7 +42,7 @@ allprojects {
 
   repositories {
     ivy { 
-        url "/home/sucursal/Descargas/Wen/FirstProject/lib/contents"
+        url "/home/neogeo/FirstProject/lib/contents"
         layout 'pattern', {
             artifact "[module]/[revision]/[type]/[artifact]-[revision].[ext]"
             ivy "[module]/[revision]/ivy.xml"

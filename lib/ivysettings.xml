@@ -1,6 +1,6 @@
 <!-- Ivy settings for building a local Repository -->
 <ivysettings>
-  <property name="ivy.local.default.root"             value="/home/sucursal/Descargas/Wen/FirstProject/lib/contents" override="false"/>
+  <property name="ivy.local.default.root"             value="/home/neogeo/FirstProject/lib/contents" override="false"/>
   <property name="ivy.local.default.ivy.pattern"      value="[module]/[revision]/ivy.xml" override="false"/>
   <property name="ivy.local.default.artifact.pattern" value="[module]/[revision]/[type]/[artifact]-[revision].[ext]" override="false"/>
 
