@@ -1,6 +1,10 @@
 package mx.wen.pos.service.business
 
 import groovy.util.logging.Slf4j
+import mx.wen.pos.model.Parametro
+import mx.wen.pos.model.TipoParametro
+import mx.wen.pos.repository.impl.RepositoryFactory
+
 /*import mx.lux.pos.java.querys.ParametrosQuery
 import mx.lux.pos.java.repository.Parametros
 import mx.lux.pos.model.*
@@ -20,8 +24,28 @@ class Registry {
   private static final String TAG_TRANSACCION_VENTA = 'VENTA'
   private static final String TAG_TRANSACCION_REMESA = 'REM'
 
-  private static String ip = ""
-  /*static Parametro find( TipoParametro pParametro ) {
+
+  static Integer getCurrentSite( ) {
+    return asInteger( TipoParametro.ID_SUCURSAL )
+  }
+
+
+  static Integer asInteger( TipoParametro pParametro ) {
+    Integer num = 0
+    Parametro p = find( pParametro )
+    String value = StringUtils.trimToEmpty( p.valor )
+    if ( value.length() > 0 ) {
+      if ( NumberUtils.isNumber( p.valor ) ) {
+        num = NumberFormat.getInstance().parse( p.valor )
+      } else if ( NumberUtils.isNumber( pParametro.defaultValue ) ) {
+        num = NumberUtils.createInteger( pParametro.defaultValue )
+      }
+    }
+    return num
+  }
+
+
+  static Parametro find( TipoParametro pParametro ) {
     Parametro p = RepositoryFactory.getRegistry().findOne( pParametro.getValue() )
     if ( p == null ) {
       p = new Parametro()
@@ -31,8 +55,7 @@ class Registry {
     }
     return p
   }
-
-  static Parametros find( mx.lux.pos.java.TipoParametro pParametro ) {
+  /*static Parametros find( mx.lux.pos.java.TipoParametro pParametro ) {
     Parametros p = ParametrosQuery.BuscaParametroPorId( pParametro.getValor() )
     return p
   }
@@ -49,19 +72,7 @@ class Registry {
       return p
   }
 
-  static Integer asInteger( TipoParametro pParametro ) {
-    Integer num = 0
-    Parametro p = find( pParametro )
-    String value = StringUtils.trimToEmpty( p.valor )
-    if ( value.length() > 0 ) {
-      if ( NumberUtils.isNumber( p.valor ) ) {
-        num = NumberFormat.getInstance().parse( p.valor )
-      } else if ( NumberUtils.isNumber( pParametro.defaultValue ) ) {
-        num = NumberUtils.createInteger( pParametro.defaultValue )
-      }
-    }
-    return num
-  }
+
 
   static Double asDouble( mx.lux.pos.java.TipoParametro pParametro ) {
     Double d = 0
@@ -251,10 +262,6 @@ class Registry {
 
   static AddressAdapter getCompanyAddress( ) {
     return new AddressAdapter( getCompany() )
-  }
-
-  static Integer getCurrentSite( ) {
-    return asInteger( TipoParametro.ID_SUCURSAL )
   }
 
   static String getIdManager( ) {

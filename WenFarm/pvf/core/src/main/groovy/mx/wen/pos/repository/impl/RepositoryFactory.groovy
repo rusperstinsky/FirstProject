@@ -12,11 +12,11 @@ class RepositoryFactory {
   private static GenericoRepository genres
   private static GrupoArticuloRepository groupPartMaster
   private static GrupoArticuloDetRepository groupPartDetail
-  private static TransInvRepository inventoryMaster
-  private static TransInvDetalleRepository inventoryDetail
   private static TipoTransInvRepository trTypes
   private static OrdenPromDetRepository orderLinePromotionDetail
   private static OrdenPromRepository orderPromotionDetail*/
+  private static TransInvRepository inventoryMaster
+  private static TransInvDetalleRepository inventoryDetail
   private static NotaVentaRepository orders
   private static DetalleNotaVentaRepository orderLines
   private static ArticuloRepository partMaster
@@ -55,10 +55,10 @@ class RepositoryFactory {
                      DetalleNotaVentaRepository pDetalleNotaVentaRepository,
                      PagoRepository pPagoRepository,
                      ParametroRepository pParametroRepository,
-                     /*DescuentoRepository pDescuentoRepository,
-                     GenericoRepository pGenericoRepository,
                      TransInvRepository pTransInvRepository,
                      TransInvDetalleRepository pTransInvDetalleRepository,
+                     /*DescuentoRepository pDescuentoRepository,
+                     GenericoRepository pGenericoRepository,
                      TipoTransInvRepository pTipoTransInvRepository,
                      ImpuestoRepository pImpuestoRepository,
                      ContribuyenteRepository pContribuyenteRepository,
@@ -91,9 +91,9 @@ class RepositoryFactory {
     orderLinePromotionDetail = pOrdenPromDetRepository*/
     payments = pPagoRepository
     registry = pParametroRepository
-    /*genres = pGenericoRepository
     inventoryMaster = pTransInvRepository
     inventoryDetail = pTransInvDetalleRepository
+    /*genres = pGenericoRepository
     trTypes = pTipoTransInvRepository
     taxMaster = pImpuestoRepository
     rfcMaster = pContribuyenteRepository
@@ -135,14 +135,6 @@ class RepositoryFactory {
     return groupPartDetail
   }
 
-  static TransInvDetalleRepository getInventoryDetail( ) {
-    return inventoryDetail
-  }
-
-  static TransInvRepository getInventoryMaster( ) {
-    return inventoryMaster
-  }
-
   static TipoTransInvRepository getTrTypes( ) {
     return trTypes
   }
@@ -154,6 +146,14 @@ class RepositoryFactory {
   static OrdenPromDetRepository getOrderLinePromotionDetail( ) {
     return orderLinePromotionDetail
   }*/
+
+  static TransInvDetalleRepository getInventoryDetail( ) {
+    return inventoryDetail
+  }
+
+  static TransInvRepository getInventoryMaster( ) {
+    return inventoryMaster
+  }
 
   static NotaVentaRepository getOrders( ) {
     return orders

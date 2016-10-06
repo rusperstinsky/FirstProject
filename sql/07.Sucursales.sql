@@ -68,3 +68,6 @@ CREATE INDEX sucursales_nombre_idx
   ON sucursales
   USING btree
   (nombre);
+
+
+INSERT INTO sucursales(nombre,id_gerente,id_sucursal) VALUES('SUCURSAL PRINCIPAL',1,(SELECT valor::integer FROM gparametro WHERE id_parametro = 'id_sucursal'));

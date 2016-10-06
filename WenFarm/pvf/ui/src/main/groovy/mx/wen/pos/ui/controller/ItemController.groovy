@@ -84,10 +84,10 @@ class ItemController {
     }
   }
 
-  static List<Item> findItemsByQuery( final String query ) {
+  static List<Item> findItemsByQuery( final String query, String tipo ) {
     log.debug( "buscando de articulos con query: $query" )
-    if ( StringUtils.isNotBlank( query ) ) {
-      List<Articulo> items = findPartsQuery( query )
+    if ( StringUtils.isNotBlank( query ) || StringUtils.isNotBlank( tipo ) ) {
+      List<Articulo> items = findPartsQuery( query, tipo )
       if (items.size() > 0) {
         log.debug( "Items:: ${items.first()?.dump()} " )
         return items?.collect { Item.toItem( it ) }
@@ -96,10 +96,13 @@ class ItemController {
     return [ ]
   }
 
-  static List<Articulo> findPartsQuery( final String query ) {
+  static List<Articulo> findPartsQuery( final String query, String tipo ) {
     List<Articulo> items = [ ]
-    if ( StringUtils.isNotBlank( query ) ) {
-      if ( query.integer ) {
+    if ( StringUtils.isNotBlank( query ) || StringUtils.isNotBlank( tipo ) ) {
+      if( StringUtils.trimToEmpty( tipo ).length() > 0 ){
+        log.debug( "busqueda por id exacto ${query}" )
+        items = articuloService.obtenerArticuloPorTipo( tipo )
+      } else if ( query.integer ) {
         log.debug( "busqueda por id exacto ${query}" )
         Articulo articulo = articuloService.obtenerArticulo( query.toInteger() )
         if( articulo != null ){

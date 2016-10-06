@@ -118,7 +118,7 @@ class MainWindow extends JFrame implements KeyListener {
           layout: new MigLayout( 'fill,insets 1,center,wrap', '[fill]', '[top]' ),
           minimumSize: [ 900, 700 ] as Dimension,
           //extendedState: JFrame.MAXIMIZED_BOTH,
-          location: [ 70, 35 ] as Point,
+          location: [ 50, 15 ] as Point,
           pack: true,
           resizable: true,
           defaultCloseOperation: EXIT_ON_CLOSE
@@ -427,9 +427,9 @@ class MainWindow extends JFrame implements KeyListener {
           }*/
           toolsMenu = menu( text: 'Herramientas', mnemonic: 'H',
               menuSelected: {
-                /*boolean userLoggedIn = Session.contains( SessionItem.USER )
+                boolean userLoggedIn = Session.contains( SessionItem.USER )
                 sessionMenuItem.visible = userLoggedIn
-                newSalesDayMenuItem.visible = userLoggedIn
+                /*newSalesDayMenuItem.visible = userLoggedIn
                 changePasswordMenuItem.visible = userLoggedIn
                 changeSellerMenuItem.visible = userLoggedIn
                 generateIn2MenuItem.visible = userLoggedIn
@@ -438,7 +438,18 @@ class MainWindow extends JFrame implements KeyListener {
                 reprintVoucherMenuItem.visible = userLoggedIn
                 reprintWarrantyMenuItem.visible = userLoggedIn*/
               }
-          ) {}/*{
+          ) {
+            sessionMenuItem = menuItem( text: 'Cerrar Sesi\u00f3n',
+                  visible: false,
+                  actionPerformed: {
+                    requestLogout()
+                  }
+            )
+            menuItem( menuItem( text: 'Salir',
+                  visible: true,
+                  actionPerformed: { System.exit( 0 ) } )
+            )
+          }/*{
             changePasswordMenuItem = menuItem( text: 'Cambio de Password',
                 visible: true,
                 actionPerformed: {

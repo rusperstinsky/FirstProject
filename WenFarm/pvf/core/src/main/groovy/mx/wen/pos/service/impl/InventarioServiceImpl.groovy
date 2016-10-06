@@ -5,6 +5,9 @@ import mx.wen.pos.service.ArticuloService
 import mx.wen.pos.service.EmpleadoService
 import mx.wen.pos.service.InventarioService
 import mx.wen.pos.service.SucursalService
+import mx.wen.pos.service.business.InventarioServiceUtil
+import mx.wen.pos.service.business.InventoryCommit
+import mx.wen.pos.service.business.PrepareInvTrBusiness
 import mx.wen.pos.service.io.ShippingNoticeFile
 import mx.wen.pos.service.io.ShippingNoticeFileSunglass
 import org.apache.commons.lang3.time.DateUtils
@@ -21,7 +24,6 @@ import javax.annotation.Resource
 
 import mx.wen.pos.model.*
 import mx.wen.pos.repository.*
-import mx.wen.pos.service.business.*
 import mx.wen.pos.service.io.InventoryAdjustFile
 
 @Service( 'inventarioService' )
@@ -96,7 +98,7 @@ class InventarioServiceImpl implements InventarioService {
   Integer registrarTransaccion( TransInv pTrMstr ) {
     Integer trnbr = InventoryCommit.registrarTransaccion( pTrMstr )
     if ( trnbr != null ) {
-      InventoryCommit.exportarTransaccion( pTrMstr )
+      //InventoryCommit.exportarTransaccion( pTrMstr )
     }
     return trnbr
   }

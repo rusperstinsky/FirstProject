@@ -51,6 +51,12 @@ class ArticuloServiceImpl implements ArticuloService {
     return null
   }
 
+  @Override
+  List<Articulo> obtenerArticuloPorTipo( String tipo ){
+    log.info( "obteniendo articulos con tipo: ${tipo}" )
+    List<Articulo> articulos = articuloRepository.findItemsByType( StringUtils.trimToEmpty(tipo) )
+    return articulos
+  }
   /*@Override
   List<Articulo> listarArticulosPorCodigo( String articulo ) {
     return listarArticulosPorCodigo( articulo, true )
