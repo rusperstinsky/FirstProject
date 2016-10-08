@@ -637,7 +637,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../../lib/contents/commons-beanutils-1.6.jar!/" />
@@ -646,7 +646,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../../lib/contents/jsch-0.1.49.jar!/" />
@@ -721,4 +721,3 @@
     </orderEntry>
   </component>
 </module>
-

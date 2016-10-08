@@ -913,20 +913,24 @@ class OrderPanel extends JPanel implements FocusListener {
 
 
     private void fireRequestOldOrders( ) {
-      OrderActiveSelectionDialog dialog = new OrderActiveSelectionDialog()
+      /*OrderActiveSelectionDialog dialog = new OrderActiveSelectionDialog()
       dialog.orderList = OrderController.findPendingOrders( )
-      dialog.activate()
-      if (dialog.orderSelected != null) {
-        Order o = dialog.orderSelected.order
-        Customer c = dialog.orderSelected.customer
+      dialog.activate()*/
+      Order tmpOrder = OrderController.findLastPendingOrder( )
+      if (tmpOrder != null) {
+        Order o = tmpOrder
+        Customer c = tmpOrder.customer
         cleanOrder()
         disableUI()
         setCustomer(c)
         setOrder(o)
         enableUI()
         doBindings()
+      } else {
+        sb.optionPane( message: "No tiene notas pendientes", optionType: JOptionPane.DEFAULT_OPTION )
+              .createDialog( new JTextField(), "Notas Pendientes" ).show()
       }
-      dialog.dispose()
+      //dialog.dispose()
     }
 
 

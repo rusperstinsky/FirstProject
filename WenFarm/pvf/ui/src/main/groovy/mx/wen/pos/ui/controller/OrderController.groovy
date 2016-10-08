@@ -600,4 +600,11 @@ class OrderController {
   }
 
 
+  static Order findLastPendingOrder( ) {
+    log.info( "obteniendo ordenes pendientes de hoy" )
+    List<NotaVenta> results = notaVentaService.listarNotasPendientes( )
+    return results.size() > 0 ? Order.toOrder( results.first() ) : null
+  }
+
+
 }

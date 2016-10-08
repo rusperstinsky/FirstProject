@@ -10,6 +10,7 @@ import org.springframework.core.io.ClassPathResource
 import javax.swing.Icon
 import javax.swing.ImageIcon
 import javax.swing.JButton
+import javax.swing.JFrame
 import java.awt.Component
 import java.awt.Image
 import java.awt.event.MouseEvent
@@ -42,7 +43,7 @@ class SuggestedItemsDialog extends JDialog {
   private JButton lblDescripcion
   private DefaultTableModel model
   private JTable tableItems
-  private static final Integer COLUMN_ID = 0
+  private static final Integer COLUMN_ID = 1
 
   SuggestedItemsDialog( Component parent, String code, List<Item> suggestions ) {
     this.code = code
@@ -61,8 +62,9 @@ class SuggestedItemsDialog extends JDialog {
     sb.dialog( this,
         title: "Art\u00edculos sugeridos con: ${code ?: ''}",
         location: [80,80],
-        resizable: false,
-        preferredSize: [ 520  , 380 ] as Dimension,
+        resizable: true,
+        //extendedState: JFrame.MAXIMIZED_BOTH,
+        preferredSize: [ 720  , 750 ] as Dimension,
         modal: true,
         pack: true,
     ) {
@@ -79,17 +81,18 @@ class SuggestedItemsDialog extends JDialog {
             actionPerformed: { doValueChange() } )
       }
       scrollPane( constraints: BorderLayout.CENTER ) {
-        tableItems = table( selectionMode: ListSelectionModel.SINGLE_SELECTION, mouseClicked: doItemClick ) {
+        tableItems = table( selectionMode: ListSelectionModel.SINGLE_SELECTION, mouseClicked: doItemClick, rowHeight: 60 ) {
           model = tableModel( list: suggestions ) {
-            closureColumn( header: 'Sku', read: {Item tmp -> tmp?.id}, maxWidth: 60 )
-            closureColumn( header: 'Art\u00edculo', read: {Item tmp -> tmp?.name}, maxWidth: 120 )
-            closureColumn( header: 'Descripci\u00f3n', read: {Item tmp -> tmp?.desc}, maxWidth: 180 )
-             closureColumn( header: 'Precio', read: {Item tmp -> tmp?.price}, cellRenderer: new MoneyCellRenderer(), maxWidth: 100 )
-            closureColumn( header: 'Existencia', read: {Item tmp -> tmp?.stock}, type: Integer, maxWidth: 80 )
+            closureColumn( header: '', read: {Item tmp -> changeImg(imageIcon( url: new ClassPathResource( "img/${StringUtils.trimToEmpty(tmp?.id.toString())}.png" )?.URL ))},
+                    type: ImageIcon,  preferredWidth: 110 )
+            closureColumn( header: 'Sku', read: {Item tmp -> tmp?.id}, preferredWidth: 60 )
+            closureColumn( header: 'Art\u00edculo', read: {Item tmp -> tmp?.name}, preferredWidth: 150 )
+            closureColumn( header: 'Descripci\u00f3n', read: {Item tmp -> "<html><p align=\"center\">${tmp?.desc}</p></html>"}, preferredWidth: 210 )
+             closureColumn( header: 'Precio', read: {Item tmp -> tmp?.price}, cellRenderer: new MoneyCellRenderer(), preferredWidth: 100 )
+            closureColumn( header: 'Existencia', read: {Item tmp -> tmp?.stock}, type: Integer, preferredWidth: 80 )
           } as DefaultTableModel
         }
-
-        tableItems.selectionModel.addListSelectionListener( new ListSelectionListener() {
+        /*tableItems.selectionModel.addListSelectionListener( new ListSelectionListener() {
           @Override
           void valueChanged( ListSelectionEvent ev ) {
 
@@ -99,32 +102,22 @@ class SuggestedItemsDialog extends JDialog {
               String imgStr = "img/${StringUtils.trimToEmpty(item.first().id.toString())}.png"
               lblDescripcion.setIcon(null)
               Icon icon = new ImageIcon(new ClassPathResource( imgStr )?.URL);
-              Image image = icon.getImage(); // transform it
+              Image image = icon.getImage();
               Image newimg = image.getScaledInstance(120, 120,  Image.SCALE_SMOOTH);
-              icon = new ImageIcon(newimg);  // transform it back
+              icon = new ImageIcon(newimg);
               lblDescripcion.setIcon(icon)
               lblDescripcion.revalidate()
-              /*String description = item.first().desc.trim().replace( ' ','' )
-              if( description.length() > 80 ){
-                if( description.length() < 160 ){
-                  lblDescripcion.text = "<html>${description.substring(0,80)}<br>${description.substring(80)}<br><html>"
-                } else {
-                  lblDescripcion.text = "<html>${description.substring(0,80)}<br>${description.substring(80,160)}<br>${description.substring(160)}<br><html>"
-                }
-              } else {
-                lblDescripcion.text = description
-              }*/
             } else {
               lblDescripcion.text = ' '
             }
           }
-        } )
+        } )*/
       }
 
         panel( constraints: BorderLayout.PAGE_END ) {
           borderLayout()
           //lblDescripcion = label( text: '<html> <br> <html> ', border: titledBorder( '' ), constraints: BorderLayout.PAGE_START )
-          lblDescripcion = button( maximumSize: [100,100], constraints: BorderLayout.PAGE_START )
+          //lblDescripcion = button( maximumSize: [100,100], constraints: BorderLayout.PAGE_START )
           button( 'Cerrar',
               defaultButton: true,
               preferredSize: UI_Standards.BUTTON_SIZE,
@@ -158,13 +151,11 @@ class SuggestedItemsDialog extends JDialog {
     model.fireTableDataChanged()
   }
 
-  /*@Override
-  void valueChanged( ListSelectionEvent ev ) {
-    itemDesc = ev.source.selectedElement
-    if( itemDesc.reference.length() > 45 ){
-      lblDescripcion.text = "<html>${itemDesc.reference.substring(0,45)}<br>${itemDesc.reference.substring(45)}<br><html>"
-    } else {
-      lblDescripcion.text = itemDesc.reference
-    }
-  }*/
+  @Override
+  ImageIcon changeImg( ImageIcon img ) {
+    Icon icon = img
+    Image image = icon.getImage();
+    Image newimg = image.getScaledInstance(60, 60,  Image.SCALE_SMOOTH);
+    return new ImageIcon(newimg);
+  }
 }
