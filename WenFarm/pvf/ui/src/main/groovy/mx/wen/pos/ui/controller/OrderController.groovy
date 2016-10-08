@@ -37,7 +37,7 @@ class OrderController {
   private static DetalleNotaVentaService detalleNotaVentaService
   private static PagoService pagoService
   private static TicketService ticketService
-  //private static BancoService bancoService
+  private static ReportService reportService
   private static InventarioService inventarioService
   private static Boolean displayUsd
   //private static PromotionService promotionService
@@ -60,6 +60,7 @@ class OrderController {
       PagoService pagoService,
       InventarioService inventarioService,
       TicketService ticketService,
+      ReportService reportService,
       /*BancoService bancoService,
       MonedaExtranjeraService monedaExtranjeraService,
       PromotionService promotionService,
@@ -72,6 +73,7 @@ class OrderController {
     this.detalleNotaVentaService = detalleNotaVentaService
     this.pagoService = pagoService
     this.ticketService = ticketService
+    this.reportService = reportService
     //this.bancoService = bancoService
     this.inventarioService = inventarioService
     /*fxService = monedaExtranjeraService
@@ -237,7 +239,8 @@ class OrderController {
   }
 
   static void printOrder( String orderId ) {
-    printOrder( orderId, true )
+    //printOrder( orderId, true )
+    reportService.obtenerTicketVenta( orderId )
   }
 
   static void printOrder( String orderId, boolean pNewOrder ) {

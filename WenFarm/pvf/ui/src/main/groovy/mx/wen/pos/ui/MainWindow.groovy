@@ -34,6 +34,7 @@ class MainWindow extends JFrame implements KeyListener {
   static MainWindow instance
   private Logger log = LoggerFactory.getLogger( this.getClass() )
   private SwingBuilder sb
+
   private JPanel mainPanel
   private JPanel logInPanel
   private JPanel orderPanel
@@ -116,7 +117,7 @@ class MainWindow extends JFrame implements KeyListener {
           title: 'Punto de Venta',
           focusable: true,
           layout: new MigLayout( 'fill,insets 1,center,wrap', '[fill]', '[top]' ),
-          minimumSize: [ 900, 700 ] as Dimension,
+          minimumSize: [ 900, 650 ] as Dimension,
           //extendedState: JFrame.MAXIMIZED_BOTH,
           location: [ 50, 15 ] as Point,
           pack: true,

@@ -61,10 +61,10 @@ class SuggestedItemsDialog extends JDialog {
   private void buildUI( Component parent ) {
     sb.dialog( this,
         title: "Art\u00edculos sugeridos con: ${code ?: ''}",
-        location: [80,80],
+        location: parent.location,//[80,80],
         resizable: true,
         //extendedState: JFrame.MAXIMIZED_BOTH,
-        preferredSize: [ 720  , 750 ] as Dimension,
+        preferredSize: [ 720  , 650 ] as Dimension,
         modal: true,
         pack: true,
     ) {

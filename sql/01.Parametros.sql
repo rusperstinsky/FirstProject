@@ -24,3 +24,4 @@ CREATE INDEX gparametro_id_parametro_idx
 INSERT INTO gparametro VALUES('cli_gen','Id de cliente publico general','1');
 INSERT INTO gparametro VALUES('id_sucursal','ID de sucursal actual','1');
 INSERT INTO gparametro VALUES('tipo_pago','Tipos de pago activos','EF,TD,TC');
+INSERT INTO gparametro VALUES('iva_vigente','Iva vigente','16');
