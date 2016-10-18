@@ -12,4 +12,5 @@ interface ClienteService {
 
   Cliente obtenerClientePorDefecto( )
 
+  Boolean esRfcValido( String rfc )
 }

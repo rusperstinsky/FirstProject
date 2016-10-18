@@ -68,6 +68,12 @@ class CustomerController {
         return null
     }
 
+
+    static Boolean validRfc( String rfc ){
+      return clienteService.esRfcValido( rfc )
+    }
+
+
     static Customer findDefaultCustomer() {
         log.debug("obteniendo customer por default")
         Customer.toCustomer(clienteService.obtenerClientePorDefecto())

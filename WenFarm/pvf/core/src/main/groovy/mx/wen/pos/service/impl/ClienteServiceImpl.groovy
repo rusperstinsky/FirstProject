@@ -12,6 +12,8 @@ import mx.wen.pos.model.*
 import mx.wen.pos.repository.*
 import mx.wen.pos.service.business.Registry
 
+import java.util.regex.Pattern
+
 @Slf4j
 @Service( 'clienteService' )
 @Transactional( readOnly = true )
@@ -97,5 +99,19 @@ class ClienteServiceImpl implements ClienteService {
       return clienteRepository.findOne( idCliente?.toInteger() )
     }
     return null
+  }
+
+
+  @Override
+  Boolean esRfcValido( String rfc ) {
+    log.info( "validando rfc: ${rfc}" )
+    String regex = '[a-zA-Z&/]{3,4}[0-9]{6}[a-zA-Z0-9]{3}'
+    if ( Pattern.matches( regex, rfc ?: '' ) ) {
+      log.debug( 'rfc valido' )
+      return true
+    } else {
+      log.warn( 'rfc invalido' )
+    }
+    return false
   }
 }

@@ -60,6 +60,15 @@ class AccessController {
     return false
   }
 
+  static Boolean isAdmin( User user ) {
+    log.info( "verificando permiso para usuario: ${user.dump()}" )
+    Boolean valid = false
+    if( user != null && user.rating == 1 ){
+      valid = true
+    }
+    return valid
+  }
+
   static User logIn( String username, String password ) {
     log.info( "solicitando autorizacion de acceso para el usuario: $username" )
     if ( checkCredentials( username, password ) ) {

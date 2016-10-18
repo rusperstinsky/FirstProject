@@ -17,6 +17,7 @@ class User {
   Integer username
   String password
   Integer suc
+  Integer rating
 
   String getFullName( ) {
     "${name ?: ''} ${fathersName ?: ''} ${mothersName ?: ''}"
@@ -31,6 +32,7 @@ class User {
       user.username = empleado.id
       user.password = empleado.passwd
       user.suc = empleado.idSucursal
+      user.rating = empleado.idPuesto
       return user
     }
     return null

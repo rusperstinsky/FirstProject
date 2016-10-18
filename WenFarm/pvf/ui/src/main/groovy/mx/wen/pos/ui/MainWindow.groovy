@@ -6,6 +6,7 @@ import mx.wen.pos.ui.model.Branch
 import mx.wen.pos.ui.model.Session
 import mx.wen.pos.ui.model.SessionItem
 import mx.wen.pos.ui.model.User
+import mx.wen.pos.ui.view.dialog.NewCustomer
 import mx.wen.pos.ui.view.panel.OrderPanel
 import net.miginfocom.swing.MigLayout
 import org.apache.commons.lang.StringUtils
@@ -49,11 +50,12 @@ class MainWindow extends JFrame implements KeyListener {
   private JLabel versionLabel
   private JMenu toolsMenu
   private JMenu ordersMenu
+  private JMenu customerMenu
   private JMenu inventoryMenu
   private JMenu reportsMenu
   private JMenuItem orderMenuItem
-  private JMenuItem orderSearchMenuItem
-  private JMenuItem dailyCloseMenuItem
+  private JMenuItem insertCustomerMenuItem
+  private JMenuItem searchCustomerMenuItem
   private JMenuItem priceListMenuItem
   private JMenuItem invoiceMenuItem
   private JMenuItem sessionMenuItem
@@ -183,9 +185,37 @@ class MainWindow extends JFrame implements KeyListener {
                   }
               )*/
             }
+          customerMenu = menu( text: 'Clientes', mnemonic: 'C',
+                  menuSelected: {
+                    boolean isAdmin = AccessController.isAdmin(Session.get(SessionItem.USER))
+                    boolean userLoggedIn = Session.contains( SessionItem.USER )
+                    insertCustomerMenuItem.visible = userLoggedIn
+                    searchCustomerMenuItem.visible = userLoggedIn
+                    /*orderSearchMenuItem.visible = userLoggedIn
+                    dailyCloseMenuItem.visible = userLoggedIn
+                    priceListMenuItem.visible = userLoggedIn
+                    invoiceMenuItem.visible = userLoggedIn*/
+                    // TODO: Benja enable feature cotizacionMenuItem.visible = userLoggedIn
+                  }
+          ) {
+            insertCustomerMenuItem = menuItem(text: 'Insertar Cliente',
+                    visible: false,
+                    actionPerformed: {
+                      NewCustomer dialog = new NewCustomer( null )
+                      dialog.show()
+                    }
+            )
+            searchCustomerMenuItem = menuItem(text: 'Buscar Cliente',
+                    visible: false,
+                    actionPerformed: {
+
+                    }
+            )
+          }
           inventoryMenu = menu( text: 'Inventario', mnemonic: 'I',
+              visible: AccessController.isAdmin(Session.get(SessionItem.USER)),
               menuSelected: {
-                /*boolean userLoggedIn = Session.contains( SessionItem.USER )
+                /*
                 inventoryTransactionMenuItem.visible = userLoggedIn
                 inventoryOhQueryMenuItem.visible = userLoggedIn
                 generateInventoryFile.visible = userLoggedIn
