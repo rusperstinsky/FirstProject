@@ -20,13 +20,17 @@ class NewCustomer extends JDialog {
   private def sb = new SwingBuilder()
 
   private JTextField txtName
+  private JTextField txtApPat
+  private JTextField txtApMat
   private JTextField txtAddress
   private JTextField txtPhone
   private JTextField txtRfc
   private JLabel lblWarning
   private Customer customer
+  private Boolean edit
 
-  NewCustomer( Customer customer ) {
+  NewCustomer( Customer customer, Boolean edit ) {
+    this.edit = edit
     this.customer = customer
     buildUI()
     doBindings()
@@ -39,7 +43,7 @@ class NewCustomer extends JDialog {
         resizable: true,
         pack: true,
         modal: true,
-        preferredSize: [ 600, 280 ],
+        preferredSize: [ 600, 300 ],
         location: [ 200, 250 ],
     ) {
       panel() {
@@ -49,6 +53,10 @@ class NewCustomer extends JDialog {
           label( " ", constraints: "span 2")
           label("Nombre: ")
           txtName = textField( maximumSize: [400,30], document: new UpperCaseDocument() )
+          label("Apellido Paterno: ")
+          txtApPat = textField( maximumSize: [400,30], document: new UpperCaseDocument() )
+          label("Apellido Mterno: ")
+          txtApMat = textField( maximumSize: [400,30], document: new UpperCaseDocument() )
           label( "Direccion: " )
           txtAddress = textField()
           label( "Telefono: " )
@@ -81,7 +89,7 @@ class NewCustomer extends JDialog {
             void focusLost(FocusEvent e) {
               if( CustomerController.validRfc(StringUtils.trimToEmpty(txtRfc.text)) ){
                 lblWarning.text = ""
-              } else {
+              } else if(StringUtils.trimToEmpty(txtRfc.text).length() > 0) {
                 txtRfc.text = ""
                 lblWarning.text = "RFC invalido"
               }
@@ -108,7 +116,9 @@ class NewCustomer extends JDialog {
   // UI Management
   private void doBindings() {
     sb.build {
-      bean(txtName, text: bind { customer?.fullName })
+      bean(txtName, text: bind { customer?.name })
+      bean(txtApPat, text: bind { customer?.fathersName })
+      bean(txtApMat, text: bind { customer?.mothersName })
       bean(txtAddress, text: bind { customer?.adress })
       bean(txtPhone, text: bind { customer?.telHome })
       bean(txtRfc, text: bind { customer?.rfc })
@@ -121,8 +131,16 @@ class NewCustomer extends JDialog {
   // UI Response
   protected void onButtonOk( ) {
     if( validData() ){
-      CustomerController.addCustomer( )
-      dispose()
+      setData()
+      customer = CustomerController.addCustomer(customer, edit )
+      if( customer.id != null ){
+        sb.optionPane( message: 'Cliente guardado correctamente', messageType: JOptionPane.INFORMATION_MESSAGE)
+                .createDialog(this, 'Cliente Guardado').show()
+        dispose()
+      } else {
+        sb.optionPane( message: 'Error al guardar cliente', messageType: JOptionPane.ERROR_MESSAGE)
+                .createDialog(this, 'Error').show()
+      }
     }
   }
 
@@ -135,7 +153,7 @@ class NewCustomer extends JDialog {
       valid = false
     } else if( StringUtils.trimToEmpty(txtPhone.text).length() <= 0 ){
       valid = false
-    } else if( StringUtils.trimToEmpty(txtRfc.text).length() <= 0 ){
+    } else if( StringUtils.trimToEmpty(txtApPat.text).length() <= 0 ){
       valid = false
     }
     return valid
@@ -143,5 +161,17 @@ class NewCustomer extends JDialog {
 
   public String getTipo( ){
     return type
+  }
+
+  private setData( ){
+    if( customer == null ){
+      customer = new Customer()
+    }
+    customer.name = StringUtils.trimToEmpty(txtName.text)
+    customer.fathersName = StringUtils.trimToEmpty(txtApPat.text)
+    customer.mothersName = StringUtils.trimToEmpty(txtApMat.text)
+    customer.adress = StringUtils.trimToEmpty(txtAddress.text)
+    customer.telHome = StringUtils.trimToEmpty(txtPhone.text)
+    customer.rfc = StringUtils.trimToEmpty(txtRfc.text)
   }
 }

@@ -51,7 +51,10 @@ class CustomerController {
             cliente.nombre = customer.name
             cliente.apellidoPaterno = customer.fathersName
             cliente.apellidoMaterno = customer.mothersName
-            cliente.fechaNacimiento = customer.dob
+            cliente.fechaNacimiento = customer.dateBirth
+            cliente.rfc = customer.rfc
+            cliente.direccion = customer.adress
+            cliente.telefonoCasa = customer.telHome
             /*cliente.direccion = customer.address?.primary
             cliente.colonia = customer.address?.location
             cliente.codigo = customer.address?.zipcode

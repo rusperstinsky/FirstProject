@@ -6,8 +6,10 @@ import mx.wen.pos.ui.model.Branch
 import mx.wen.pos.ui.model.Session
 import mx.wen.pos.ui.model.SessionItem
 import mx.wen.pos.ui.model.User
+import mx.wen.pos.ui.view.dialog.CustomerSearchDialog
 import mx.wen.pos.ui.view.dialog.NewCustomer
 import mx.wen.pos.ui.view.panel.OrderPanel
+import mx.wen.pos.ui.view.panel.ShowOrderPanel
 import net.miginfocom.swing.MigLayout
 import org.apache.commons.lang.StringUtils
 import org.slf4j.Logger
@@ -54,6 +56,7 @@ class MainWindow extends JFrame implements KeyListener {
   private JMenu inventoryMenu
   private JMenu reportsMenu
   private JMenuItem orderMenuItem
+  private JMenuItem orderSearchMenuItem
   private JMenuItem insertCustomerMenuItem
   private JMenuItem searchCustomerMenuItem
   private JMenuItem priceListMenuItem
@@ -131,8 +134,8 @@ class MainWindow extends JFrame implements KeyListener {
               menuSelected: {
                 boolean userLoggedIn = Session.contains( SessionItem.USER )
                 orderMenuItem.visible = userLoggedIn
-                /*orderSearchMenuItem.visible = userLoggedIn
-                dailyCloseMenuItem.visible = userLoggedIn
+                orderSearchMenuItem.visible = userLoggedIn
+                /*dailyCloseMenuItem.visible = userLoggedIn
                 priceListMenuItem.visible = userLoggedIn
                 invoiceMenuItem.visible = userLoggedIn*/
                 // TODO: Benja enable feature cotizacionMenuItem.visible = userLoggedIn
@@ -147,16 +150,16 @@ class MainWindow extends JFrame implements KeyListener {
                   mainPanel.layout.show( mainPanel, 'orderPanel' )
                 }
             )
-              /*orderSearchMenuItem = menuItem( text: 'Consulta',
-                  visible: false,
-                  actionPerformed: {
+            orderSearchMenuItem = menuItem( text: 'Consulta',
+                visible: false,
+                actionPerformed: {
                     mainPanel.remove( showOrderPanel )
                     showOrderPanel = new ShowOrderPanel()
                     mainPanel.add( 'showOrderPanel', showOrderPanel )
                     mainPanel.layout.show( mainPanel, 'showOrderPanel' )
-                  }
-              )
-              cotizacionMenuItem = menuItem( text: 'Cotizaciones',
+                }
+            )
+              /*cotizacionMenuItem = menuItem( text: 'Cotizaciones',
                   visible: false,
                   actionPerformed: { QuoteController.instance.requestQuote() }
               )
@@ -189,7 +192,7 @@ class MainWindow extends JFrame implements KeyListener {
                   menuSelected: {
                     boolean isAdmin = AccessController.isAdmin(Session.get(SessionItem.USER))
                     boolean userLoggedIn = Session.contains( SessionItem.USER )
-                    insertCustomerMenuItem.visible = userLoggedIn
+                    //insertCustomerMenuItem.visible = userLoggedIn
                     searchCustomerMenuItem.visible = userLoggedIn
                     /*orderSearchMenuItem.visible = userLoggedIn
                     dailyCloseMenuItem.visible = userLoggedIn
@@ -198,17 +201,18 @@ class MainWindow extends JFrame implements KeyListener {
                     // TODO: Benja enable feature cotizacionMenuItem.visible = userLoggedIn
                   }
           ) {
-            insertCustomerMenuItem = menuItem(text: 'Insertar Cliente',
+            /*insertCustomerMenuItem = menuItem(text: 'Alta de Cliente',
                     visible: false,
                     actionPerformed: {
                       NewCustomer dialog = new NewCustomer( null )
                       dialog.show()
                     }
-            )
+            )*/
             searchCustomerMenuItem = menuItem(text: 'Buscar Cliente',
                     visible: false,
                     actionPerformed: {
-
+                      CustomerSearchDialog customerSearchDialog = new CustomerSearchDialog( this )
+                      customerSearchDialog.show()
                     }
             )
           }

@@ -321,7 +321,9 @@ class NotaVentaServiceImpl implements NotaVentaService {
   @Override
   List<NotaVenta> listarUltimasNotasVenta( ) {
     log.info( "listando ultimas notasVenta" )
-    List<NotaVenta> results = notaVentaRepository.findByFacturaNotEmptyLimitingLatestResults( 10 )
+    Date fechaInicio = DateUtils.truncate( new Date(), Calendar.DAY_OF_MONTH );
+    Date fechaFin = new Date( DateUtils.ceiling( new Date(), Calendar.DAY_OF_MONTH ).getTime() - 1 );
+    List<NotaVenta> results = notaVentaRepository.findOrdersFromToday( fechaInicio, fechaFin )
     return results?.any() ? results : [ ]
   }
 

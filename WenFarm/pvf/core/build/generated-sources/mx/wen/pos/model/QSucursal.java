@@ -36,7 +36,7 @@ public class QSucursal extends EntityPathBase<Sucursal> {
 
     public final StringPath idEstado = createString("idEstado");
 
-    public final NumberPath<Integer> idGerente = createNumber("idGerente", Integer.class);
+    public final StringPath idGerente = createString("idGerente");
 
     public final StringPath idLocalidad = createString("idLocalidad");
 
