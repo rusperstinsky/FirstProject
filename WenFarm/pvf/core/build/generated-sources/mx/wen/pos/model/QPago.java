@@ -32,7 +32,7 @@ public class QPago extends EntityPathBase<Pago> {
 
     public final StringPath idBanco = createString("idBanco");
 
-    public final NumberPath<Integer> idEmpleado = createNumber("idEmpleado", Integer.class);
+    public final StringPath idEmpleado = createString("idEmpleado");
 
     public final StringPath idFactura = createString("idFactura");
 

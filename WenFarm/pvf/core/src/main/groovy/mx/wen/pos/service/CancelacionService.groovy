@@ -4,15 +4,15 @@ import mx.wen.pos.model.*
 
 interface CancelacionService {
 
+  Devolucion registrarDevolucionesDeNotaVenta( String idNotaVenta, String causaDev )
+
+  Boolean registrarCancelacionDeNotaVenta( String idNotaVenta )
+
   /*List<CausaCancelacion> listarCausasCancelacion( )
 
   boolean permitirCancelacionExtemporanea( String idNotaVenta )
 
-  Modificacion registrarCancelacionDeNotaVenta( String idNotaVenta, Modificacion modificacion )
-
   List<Devolucion> listarDevolucionesDeNotaVenta( String idNotaVenta )
-
-  List<Devolucion> registrarDevolucionesDeNotaVenta( String idNotaVenta, Map<Integer, String> devolucionesPagos )
 
   List<Pago> registrarTransferenciasParaNotaVenta( String idOrigen, String idDestino, Map<Integer, BigDecimal> transferenciasPagos )
 

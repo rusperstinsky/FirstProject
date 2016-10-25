@@ -108,13 +108,57 @@ public class ReportServiceImpl implements ReportService {
         parametros.put( "total", nota.getVentaNeta() );
         parametros.put( "iva", valorIva );
 
-        String reporte = reportBusiness.CompilayGeneraReporte( template, parametros, report );
+        String reporte = reportBusiness.CompilayGeneraReporte( template, parametros, report, true );
         log.info( "reporte:{}", reporte );
 
       }
       return null;
     }
 
+
+
+    public String obtenerReporteVentasCompleto( Date fechaInicio, Date fechaFin ) {
+        log.info( "obtenerReporteVentasPorDia()" );
+
+        File report = new File( System.getProperty( "java.io.tmpdir" ), "Ventas-Completo.html" );
+        org.springframework.core.io.Resource template = new ClassPathResource( VENTAS_COMPLETO );
+        log.info( "Ruta:{}", report.getAbsolutePath() );
+
+        fechaInicio = DateUtils.truncate( fechaInicio, Calendar.DAY_OF_MONTH );
+        fechaFin = new Date( DateUtils.ceiling( fechaFin, Calendar.DAY_OF_MONTH ).getTime() - 1 );
+
+        Double iva = Registry.getCurrentIVA();
+        BigDecimal ivaTasa = new BigDecimal( iva ).divide( new BigDecimal( 100 ) );
+
+        List<VentasPorDia> lstVentas = reportBusiness.obtieneVentasPorDias( fechaInicio, fechaFin, ivaTasa );
+
+        Integer totalFacturas = 0;
+        BigDecimal totalVentas = BigDecimal.ZERO;
+        BigDecimal totalVentasSinIva = BigDecimal.ZERO;
+        BigDecimal totalVentasCanc = BigDecimal.ZERO;
+        BigDecimal totalVentasCancSinIva = BigDecimal.ZERO;
+        BigDecimal totalNotasCredito = BigDecimal.ZERO;
+        BigDecimal totalNotasCreditoSinIva = BigDecimal.ZERO;
+        BigDecimal total = BigDecimal.ZERO;
+        BigDecimal totalSinIva = BigDecimal.ZERO;
+
+        total = totalVentas.subtract(totalVentasCanc.abs().add(totalNotasCredito.abs()));
+        totalSinIva = totalVentasSinIva.subtract(totalVentasCancSinIva.abs().add(totalNotasCreditoSinIva.abs()));
+
+        Map<String, Object> parametros = new HashMap<String, Object>();
+        parametros.put( "fechaActual", new SimpleDateFormat( "hh:mm" ).format( new Date() ) );
+        parametros.put( "fechaInicio", new SimpleDateFormat( "dd/MM/yyyy" ).format( fechaInicio ) );
+        parametros.put( "fechaFin", new SimpleDateFormat( "dd/MM/yyyy" ).format( fechaFin ) );
+        parametros.put( "lstVentas", lstVentas );
+        parametros.put( "ivaTasa", ivaTasa );
+        parametros.put( "totalFacturas", totalFacturas );
+        parametros.put( "totalVentas", total );
+        parametros.put( "totalVentasSinIva", totalSinIva );
+        String reporte = reportBusiness.CompilayGeneraReporte( template, parametros, report, false );
+        log.info( "reporte:{}", reporte );
+
+        return null;
+    }
 
 
 }

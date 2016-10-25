@@ -136,4 +136,48 @@ class AccessController {
   static Boolean iniciaSesionPrimeraVez(){
     return empleadoService.sesionPrimeraVez()
   }
+
+  static boolean validaDatos( String usuario, String password, String nuevoPass, String confirmPass ){
+    log.debug( "Cambiando password de usuario $usuario" )
+    Boolean empleadoValido = false
+    Empleado empleado = empleadoService.obtenerEmpleado( usuario )
+    if( empleado != null && empleado.passwd.trim().equalsIgnoreCase(password.trim()) && nuevoPass.trim().equalsIgnoreCase(confirmPass.trim()) ){
+      empleadoValido = true
+    } else {
+      empleadoValido = false
+    }
+    return empleadoValido
+  }
+
+
+  static boolean cambiaPassword( String usuario, String nuevoPass ){
+    log.debug( "Cambiando password de usuario $usuario" )
+    try{
+      Empleado empleado = empleadoService.obtenerEmpleado( usuario )
+      empleado.passwd = nuevoPass
+      empleadoService.actualizarPass( empleado )
+      return true
+    }catch (Exception e){
+      println e
+      return false
+    }
+  }
+
+  static boolean userExist( String usuario ){
+    log.debug( "Cambiando password de usuario $usuario" )
+    Empleado empleado = empleadoService.obtenerEmpleado( usuario )
+    return empleado != null
+  }
+
+
+  static boolean insertEmployee( String usuario, String pass, String name ){
+    log.debug( "Cambiando password de usuario $usuario" )
+    try{
+      empleadoService.insertaEmpleado( usuario, pass, name )
+      return true
+    }catch (Exception e){
+      println e
+      return false
+    }
+  }
 }

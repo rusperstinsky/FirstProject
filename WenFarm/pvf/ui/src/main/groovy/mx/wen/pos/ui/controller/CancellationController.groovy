@@ -47,46 +47,15 @@ class CancellationController {
     return false
   }
 
-  static boolean cancelOrder( String orderId, String reason, String comments, Boolean devolucion ) {
-    log.info( "solicitando cancelacion de orden id: ${orderId}, causa: ${reason}" )
-    Boolean devTpv = true
-    if( Registry.activeTpv && devolucion ){
-      User user = Session.get( SessionItem.USER ) as User
-      NotaVenta notaVenta = notaVentaService.obtenerNotaVenta( orderId )
-      if( notaVenta != null ){
-        for(Pago pago : notaVenta.pagos){
-          if( pago != null && pago.idTerminal.contains("|") ){
-            String transaccion = cancelacionService.cancelaVoucherTpv( pago.id, user.username )
-            if( StringUtils.trimToEmpty(transaccion).length() > 0 ){
-              for(int i=0;i<2;i++){
-                String copia = i == 0 ? "COPIA CLIENTE" : "ORIGINAL"
-                ticketService.imprimeVoucherCancelacionTpv(pago.id, copia, transaccion)
-              }
-            } else {
-              devTpv = false
-            }
-          }
-        }
-      }
-    }
-    if ( StringUtils.isNotBlank( orderId ) && StringUtils.isNotBlank( reason ) && devTpv ) {
-      User user = Session.get( SessionItem.USER ) as User
-      /*Modificacion modificacion = new Modificacion(
-          idEmpleado: user?.username,
-          causa: reason,
-          observaciones: comments
-      )
-      modificacion = cancelacionService.registrarCancelacionDeNotaVenta( orderId, modificacion )
-      if ( modificacion?.id ) {
-        log.debug( "modificacion de cancelacion registrada id: ${modificacion.id}" )
-        ServiceManager.ioServices.logAdjustmentNotification( modificacion.id )
+  static boolean cancelOrder( String orderId ) {
+    log.info( "solicitando transaccion de devolucion de orden id: ${orderId}" )
+    Boolean done = cancelacionService.registrarCancelacionDeNotaVenta( orderId )
+      if ( done ) {
+        log.debug( "transaccion de cancelacion registrada " )
         return true
       } else {
         log.warn( 'error, no se registra cancelacion' )
-      }*/
-    } else {
-      log.warn( 'no se registra cancelacion, parametros invalidos' )
-    }
+      }
     return false
   }
 
@@ -196,24 +165,6 @@ class CancellationController {
     }
   }
 
-  static void refreshOrder( Order order ) {
-    Order newOrder = OrderController.getOrder( order.id )
-    //Order newOrder = order
-    order.id = newOrder.id
-    order.bill = newOrder.bill
-    order.comments = newOrder.comments
-    order.status = newOrder.status
-    order.date = newOrder.date
-    order.branch = newOrder.branch
-    order.customer = newOrder.customer
-    order.items = newOrder.items
-    order.payments = newOrder.payments
-    order.deals = newOrder.deals
-    order.total = newOrder.total
-    order.paid = newOrder.paid
-    order.due = newOrder.due
-  }
-
 
     static boolean validateTransfer( String idOrder ) {
         log.info( "Validadndo transferencia" )
@@ -297,6 +248,36 @@ class CancellationController {
     return devTpv
   }*/
 
+  static void refreshOrder( Order order ) {
+    Order newOrder = OrderController.getOrder( order.id )
+    //Order newOrder = order
+    order.id = newOrder.id
+    order.bill = newOrder.bill
+    order.comments = newOrder.comments
+    order.status = newOrder.status
+    order.date = newOrder.date
+    order.netSell = newOrder.netSell
+    order.customer = newOrder.customer
+    order.items = newOrder.items
+    order.payments = newOrder.payments
+    order.discountAmount = newOrder.discountAmount
+    order.totalSell = newOrder.totalSell
+    order.paid = newOrder.paid
+    order.due = newOrder.due
+  }
+
+
+  static boolean refundPaymentsCreditFromOrder( String orderId, String causaDev ) {
+    log.info( "solicitando registrar devolucione de orden id: ${orderId}" )
+    if ( StringUtils.isNotBlank( orderId ) ) {
+      Devolucion result = cancelacionService.registrarDevolucionesDeNotaVenta( orderId, causaDev )
+      if ( result != null ) {
+        log.debug( "devolucion registrada obtenida: ${result.id}" )
+        return true
+      }
+    }
+    return false
+  }
 
 
 }

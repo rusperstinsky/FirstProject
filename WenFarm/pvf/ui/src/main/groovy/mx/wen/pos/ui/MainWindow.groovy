@@ -2,10 +2,14 @@ package mx.wen.pos.ui
 
 import mx.wen.pos.ui.controller.AccessController
 import groovy.swing.SwingBuilder
+import mx.wen.pos.ui.controller.IOController
+import mx.wen.pos.ui.controller.ReportController
 import mx.wen.pos.ui.model.Branch
 import mx.wen.pos.ui.model.Session
 import mx.wen.pos.ui.model.SessionItem
 import mx.wen.pos.ui.model.User
+import mx.wen.pos.ui.view.dialog.ChangePasswordDialog
+import mx.wen.pos.ui.view.dialog.CreateEmployeeDialog
 import mx.wen.pos.ui.view.dialog.CustomerSearchDialog
 import mx.wen.pos.ui.view.dialog.NewCustomer
 import mx.wen.pos.ui.view.panel.OrderPanel
@@ -93,6 +97,7 @@ class MainWindow extends JFrame implements KeyListener {
   private JMenuItem salesTodayMenuItem
   private JMenuItem salesByPeriodMenuItem
   private JMenuItem changePasswordMenuItem
+  private JMenuItem createEmployeeMenuItem
   private JMenuItem changeSellerMenuItem
   private JMenuItem generateIn2MenuItem
   private JMenuItem ticketInventoryTransactionsMenuItem
@@ -298,7 +303,9 @@ class MainWindow extends JFrame implements KeyListener {
           }*/
           reportsMenu = menu( text: "Reportes", mnemonic: "R",
               menuSelected: {
-                /*boolean userLoggedIn = Session.contains( SessionItem.USER )
+                boolean userLoggedIn = Session.contains( SessionItem.USER )
+                salesTodayMenuItem.visible = IOController.getInstance().isManagerLogged( )
+                /*
                 cancellationReportMenuItem.visible = userLoggedIn
                 dailyCloseReportMenuItem.visible = userLoggedIn
                 incomePerBranchReportMenuItem.visible = userLoggedIn
@@ -320,13 +327,19 @@ class MainWindow extends JFrame implements KeyListener {
                 paymentsMenuItem.visible = userLoggedIn*/
                 //quoteMenuItem.visible = userLoggedIn
                 /*kardexMenuItem.visible = userLoggedIn
-                salesTodayMenuItem.visible = userLoggedIn
                 salesByPeriodMenuItem.visible = userLoggedIn
                 skuByBrandReportMenuItem.visible = userLoggedIn*/
                 //examsMenuItem.visible = userLoggedIn
                 //optometristSalesMenuItem.visible = userLoggedIn
               }
-          ) {}/*{
+          ) {
+            salesTodayMenuItem = menuItem( text: "Ventas del D\u00eda",
+                    visible: false,
+                    actionPerformed: {
+                      ReportController.fireReport( ReportController.Report.SalesToday )
+                    }
+            )
+          }/*{
             cancellationReportMenuItem = menuItem( text: "Cancelaciones",
                 visible: false,
                 actionPerformed: {
@@ -429,12 +442,6 @@ class MainWindow extends JFrame implements KeyListener {
                   ReportController.fireReport( ReportController.Report.Sales )
                 }
             )
-            salesTodayMenuItem = menuItem( text: "Ventas del D\u00eda",
-            visible: false,
-            actionPerformed: {
-              ReportController.fireReport( ReportController.Report.SalesToday )
-            }
-            )
             salesByLineReportMenuItem = menuItem( text: "Ventas por L\u00ednea",
                 visible: false,
                 actionPerformed: {
@@ -464,8 +471,9 @@ class MainWindow extends JFrame implements KeyListener {
               menuSelected: {
                 boolean userLoggedIn = Session.contains( SessionItem.USER )
                 sessionMenuItem.visible = userLoggedIn
+                changePasswordMenuItem.visible = IOController.getInstance().isManagerLogged( )
+                createEmployeeMenuItem.visible = IOController.getInstance().isManagerLogged( )
                 /*newSalesDayMenuItem.visible = userLoggedIn
-                changePasswordMenuItem.visible = userLoggedIn
                 changeSellerMenuItem.visible = userLoggedIn
                 generateIn2MenuItem.visible = userLoggedIn
                 captureIncidentsMenuItem.visible = userLoggedIn
@@ -474,6 +482,20 @@ class MainWindow extends JFrame implements KeyListener {
                 reprintWarrantyMenuItem.visible = userLoggedIn*/
               }
           ) {
+            changePasswordMenuItem = menuItem( text: 'Cambio de Password',
+                    visible: true,
+                    actionPerformed: {
+                      ChangePasswordDialog dialog = new ChangePasswordDialog()
+                      dialog.show()
+                    }
+            )
+            createEmployeeMenuItem = menuItem( text: 'Alta de Vendedor',
+                    visible: true,
+                    actionPerformed: {
+                      CreateEmployeeDialog dialog = new CreateEmployeeDialog()
+                      dialog.show()
+                    }
+            )
             sessionMenuItem = menuItem( text: 'Cerrar Sesi\u00f3n',
                   visible: false,
                   actionPerformed: {
@@ -485,13 +507,6 @@ class MainWindow extends JFrame implements KeyListener {
                   actionPerformed: { System.exit( 0 ) } )
             )
           }/*{
-            changePasswordMenuItem = menuItem( text: 'Cambio de Password',
-                visible: true,
-                actionPerformed: {
-                    ChangePasswordDialog dialog = new ChangePasswordDialog()
-                    dialog.show()
-                }
-            )
             changeSellerMenuItem = menuItem( text: 'Cambio de Vendedor',
                     actionPerformed: {
                         ChangeSellerDialog dialog = new ChangeSellerDialog()

@@ -29,6 +29,14 @@ class Registry {
     return asInteger( TipoParametro.ID_SUCURSAL )
   }
 
+  static Double getCurrentIVA( ) {
+    Double vat = 16.0
+    Double vatCode = asDouble( TipoParametro.IVA_VIGENTE )
+    if ( vatCode != null ) {
+      vat = vatCode
+    }
+    return vat
+  }
 
   static Integer asInteger( TipoParametro pParametro ) {
     Integer num = 0
@@ -54,6 +62,21 @@ class Registry {
       RepositoryFactory.getRegistry().saveAndFlush( p )
     }
     return p
+  }
+
+
+  static Double asDouble( TipoParametro pParametro ) {
+    Double d = 0
+    Parametro p = find( pParametro )
+    String value = StringUtils.trimToEmpty( p.valor )
+    if ( value.length() > 0 ) {
+      if ( NumberUtils.isNumber( p.valor ) ) {
+        d = NumberUtils.createDouble( p.valor )
+      } else if ( NumberUtils.isNumber( pParametro.defaultValue ) ) {
+        d = NumberUtils.createDouble( pParametro.defaultValue )
+      }
+    }
+    return d
   }
   /*static Parametros find( mx.lux.pos.java.TipoParametro pParametro ) {
     Parametros p = ParametrosQuery.BuscaParametroPorId( pParametro.getValor() )

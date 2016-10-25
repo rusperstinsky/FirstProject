@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ventas_Completo_Detalle" language="groovy" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3b75eeeb-dc74-460f-acee-75788e0be0ec">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<field name="fecha" class="java.util.Date"/>
+	<field name="factura" class="java.lang.String"/>
+	<field name="montoTotal" class="java.math.BigDecimal"/>
+	<field name="montoSinIva" class="java.math.BigDecimal"/>
+	<field name="estatus" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="204" y="1" width="78" height="14" uuid="5fa59d43-21d5-47f9-96e4-5c6521b5374d"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="58" height="14" uuid="39c09974-610a-4dc9-ab06-933dd2b0db00"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="1" width="78" height="14" uuid="8ea5aeef-766f-4103-a854-9124651cf868"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Venta Sin IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="1" width="87" height="14" uuid="e880b178-643c-46e2-9681-90f5ffd17218"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="204" y="0" width="78" height="14" isRemoveLineWhenBlank="true" uuid="5eb93191-36d8-4102-a8ae-9ae97ab6e2c1">
+					<printWhenExpression><![CDATA[$F{montoTotal}.compareTo( BigDecimal.ZERO ) > 0 || $F{montoTotal}.compareTo( BigDecimal.ZERO ) < 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factura}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$#,##0.00" isBlankWhenNull="true">
+				<reportElement x="282" y="0" width="78" height="14" isRemoveLineWhenBlank="true" uuid="5feeb31f-d72a-47b7-824e-24eec72bbb6e">
+					<printWhenExpression><![CDATA[$F{montoTotal}.compareTo( BigDecimal.ZERO ) > 0 || $F{montoTotal}.compareTo( BigDecimal.ZERO ) < 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{montoSinIva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$#,##0.00" isBlankWhenNull="true">
+				<reportElement x="360" y="0" width="58" height="14" isRemoveLineWhenBlank="true" uuid="c62095e4-db69-4f5b-9ffc-72f68e0d0f48">
+					<printWhenExpression><![CDATA[$F{montoTotal}.compareTo( BigDecimal.ZERO ) > 0 || $F{montoTotal}.compareTo( BigDecimal.ZERO ) < 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{montoTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="0" width="100" height="13" uuid="e2c127f0-613a-43d4-86cc-f6a3bb39fff9"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estatus}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="107" y="0" width="87" height="14" uuid="6e5015a9-9d0f-41a6-8386-9a3fe3ee2654"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

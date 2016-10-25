@@ -68,7 +68,7 @@ class OrderSearchDialog extends JDialog {
           label( 'A:' )
           dateTo = formattedTextField( value: new Date(), format: dateFormat, toolTipText: 'dd-mm-aaaa' )
 
-          label( 'Folio:' )
+          /*label( 'Folio:' )
           folio = textField( document: new UpperCaseDocument() )
 
           label( 'Ticket:' )
@@ -76,7 +76,7 @@ class OrderSearchDialog extends JDialog {
 
           label( 'Empleado:' )
           employee = textField( document: new UpperCaseDocument(), keyReleased: employeeChanged )
-          employeeName = label( constraints: 'span' )
+          employeeName = label( constraints: 'span' )*/
         }
 
         panel( layout: new MigLayout( 'fill,right,wrap', '[fill,100!]' ) ) {
@@ -96,7 +96,7 @@ class OrderSearchDialog extends JDialog {
             closureColumn( header: 'Ticket', read: {Order tmp -> tmp?.ticket} )
             closureColumn( header: 'Cliente', read: {Order tmp -> tmp?.customer?.fullName} )
             closureColumn( header: 'Artículos', read: {Order tmp -> tmp?.items*.item*.name} )
-            closureColumn( header: 'Monto', read: {Order tmp -> tmp?.total}, cellRenderer: new MoneyCellRenderer() )
+            closureColumn( header: 'Monto', read: {Order tmp -> tmp?.totalSell}, cellRenderer: new MoneyCellRenderer() )
           } as DefaultTableModel
         }
       }
@@ -111,9 +111,9 @@ class OrderSearchDialog extends JDialog {
     sb.build {
       bean( dateFrom, value: bind( target: params, targetProperty: 'dateFrom' ) )
       bean( dateTo, value: bind( target: params, targetProperty: 'dateTo' ) )
-      bean( folio, text: bind( target: params, targetProperty: 'folio' ) )
+      /*bean( folio, text: bind( target: params, targetProperty: 'folio' ) )
       bean( ticket, text: bind( target: params, targetProperty: 'ticket' ) )
-      bean( employee, text: bind( target: params, targetProperty: 'employee' ) )
+      bean( employee, text: bind( target: params, targetProperty: 'employee' ) )*/
     }
   }
 

@@ -234,6 +234,7 @@ class PrepareInvTrBusiness {
       request.trType = trType
     }
 
+    request.siteFrom = Registry.currentSite
     request.effDate = pNotaVenta.fechaMod
     request.idUser = pNotaVenta.idEmpleado
     request.reference = pNotaVenta.id

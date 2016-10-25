@@ -50,13 +50,59 @@ class CancelacionServiceImpl implements CancelacionService {
     @Resource
     private PagoRepository pagoRepository
 
+    */
     @Resource
-    private DevolucionRepository devolucionRepository*/
-
+    private DevolucionRepository devolucionRepository
 
     private String TAG_TC = "TC"
     private String TAG_TD = "TD"
     private String TAG_UV = "UV"
+
+
+    @Override
+    @Transactional
+    Devolucion registrarDevolucionesDeNotaVenta(String idNotaVenta, String causaDev) {
+      log.info("registrando devolucion de notaVenta id: ${idNotaVenta}")
+      if ( StringUtils.isNotBlank(idNotaVenta) ) {
+        Devolucion devolucion = null
+        try {
+          devolucion = new Devolucion(
+            idFactura: idNotaVenta,
+            causaDev: StringUtils.trimToEmpty(causaDev),
+            fechaDev: new Date()
+          )
+          devolucion = devolucionRepository.saveAndFlush(devolucion)
+          //devolucionRepository.flush()
+          log.debug("devolucion registrada: ${devolucion.id}")
+          return devolucion
+        } catch (ex) {
+          log.warn("no se registran devoluciones, ${ex.message}")
+        }
+      } else {
+        log.warn('no se registran devoluciones, parametros invalidos')
+      }
+      return []
+    }
+
+
+    @Override
+    @Transactional
+    Boolean registrarCancelacionDeNotaVenta(String idNotaVenta) {
+      log.info("registrando transaccion de cancelacion para notaVenta id: ${idNotaVenta}")
+      if (StringUtils.isNotBlank(idNotaVenta)) {
+        NotaVenta notaVenta = notaVentaService.obtenerNotaVenta(idNotaVenta)
+        if (ServiceFactory.inventory.solicitarTransaccionDevolucion(notaVenta)) {
+          notaVenta.setsFactura('T')
+          notaVentaRepository.saveAndFlush( notaVenta )
+          log.warn("no se registra el movimiento, error al registrar devolucion")
+          return true
+        }
+      } else {
+        log.warn('no se registra cancelacion, parametros invalidos')
+      }
+      return false
+    }
+
 
     /*@Override
     List<CausaCancelacion> listarCausasCancelacion() {
@@ -85,45 +131,6 @@ class CancelacionServiceImpl implements CancelacionService {
     }
 
     @Override
-    @Transactional
-    Modificacion registrarCancelacionDeNotaVenta(String idNotaVenta, Modificacion modificacion) {
-        log.info("registrando cancelacion para notaVenta id: ${idNotaVenta}")
-        if (StringUtils.isNotBlank(idNotaVenta)) {
-            NotaVenta notaVenta = notaVentaService.obtenerNotaVenta(idNotaVenta)
-            log.debug("status: ${notaVenta?.sFactura}")
-            boolean esActiva = StringUtils.isNotBlank(notaVenta?.sFactura) && !'T'.equalsIgnoreCase(notaVenta?.sFactura)
-            if (StringUtils.isNotBlank(notaVenta?.id) && esActiva) {
-                List<Pago> pagos = pagoRepository.findByIdFactura(notaVenta.id)
-                pagos?.each { Pago pago ->
-                    log.debug("pago id: ${pago?.id}, monto: ${pago?.monto}, por devolver: ${pago?.monto}")
-                    pago?.porDevolver = pago?.monto
-                }
-                modificacion.idFactura = idNotaVenta
-                modificacion.tipo = 'can'
-                modificacion = modificacionRepository.save(modificacion)
-                ModificacionCan modificacionCan = new ModificacionCan(
-                        id: modificacion?.id,
-                        estadoAnterior: notaVenta.sFactura
-                )
-                notaVenta.sFactura = 'T'
-                modificacionCanRepository.save(modificacionCan)
-                notaVentaRepository.save(notaVenta)
-                pagoRepository.save(pagos)
-                if (!ServiceFactory.inventory.solicitarTransaccionDevolucion(notaVenta)) {
-                    log.warn("no se registra el movimiento, error al registrar devolucion")
-                    modificacion.id = null
-                }
-                return modificacion
-            } else {
-                log.warn('no se registra cancelacion, notaVenta invalida o no existe')
-            }
-        } else {
-            log.warn('no se registra cancelacion, parametros invalidos')
-        }
-        return null
-    }
-
-    @Override
     List<Devolucion> listarDevolucionesDeNotaVenta(String idFactura) {
         log.info("listando devoluciones por idFactura ${idFactura}")
         if (StringUtils.isNotBlank(idFactura)) {
@@ -138,60 +145,6 @@ class CancelacionServiceImpl implements CancelacionService {
             }
         } else {
             log.warn('no se listan devoluciones, parametros invalidos')
-        }
-        return []
-    }
-
-    @Override
-    @Transactional
-    List<Devolucion> registrarDevolucionesDeNotaVenta(String idNotaVenta, Map<Integer, String> devolucionesPagos) {
-        log.info("registrando devoluciones: ${devolucionesPagos} de notaVenta id: ${idNotaVenta}")
-        boolean tieneElementos = devolucionesPagos?.any() && devolucionesPagos?.keySet()?.any()
-        if (StringUtils.isNotBlank(idNotaVenta) && tieneElementos) {
-            List<Modificacion> mods = modificacionRepository.findByIdFacturaAndTipo(idNotaVenta, 'can')
-            log.debug("modificaciones: ${mods*.id}")
-            Modificacion modificacion = mods?.any() ? mods.first() : null
-            log.debug("obtiene modificacion: ${modificacion?.id}")
-            if (modificacion?.id) {
-                List<Pago> pagos = []
-                List<Devolucion> devoluciones = []
-                try {
-                    devolucionesPagos.each { Integer pagoId, String valor ->
-                        Pago pago = pagoRepository.findOne(pagoId)
-                        log.debug("obtiene pago: ${pago?.id}")
-                        if (pago?.id) {
-                            String formaPago = 'EFM'
-                            if ('ORIGINAL'.equalsIgnoreCase(valor)) {
-                                formaPago = 'TR'.equalsIgnoreCase(pago.idFPago) ? pago.clave : pago.idFPago
-                            }
-                            Devolucion devolucion = new Devolucion(
-                                    idMod: modificacion.id,
-                                    idPago: pagoId,
-                                    idFormaPago: formaPago,
-                                    idBanco: pago.idBancoEmisor?.isInteger() ? pago.idBancoEmisor.toInteger() : null,
-                                    monto: pago.porDevolver,
-                                    tipo: 'd'
-                            )
-                            log.debug("genera devolucion: ${devolucion.dump()}")
-                            pago.porDevolver = 0
-                            pagos.add(pago)
-                            devoluciones.add(devolucion)
-                        } else {
-                            throw new Exception("no se encuentra el pago con id: ${pagoId}")
-                        }
-                    }
-                    pagoRepository.save(pagos)
-                    devoluciones = devolucionRepository.save(devoluciones)
-                    log.debug("devoluciones registradas: ${devoluciones*.id}")
-                    return devoluciones
-                } catch (ex) {
-                    log.warn("no se registran devoluciones, ${ex.message}")
-                }
-            } else {
-                log.warn('no se registran devoluciones, notaVenta sin cancelacion')
-            }
-        } else {
-            log.warn('no se registran devoluciones, parametros invalidos')
         }
         return []
     }

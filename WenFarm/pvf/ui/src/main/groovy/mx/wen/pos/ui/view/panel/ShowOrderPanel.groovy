@@ -11,6 +11,8 @@ import mx.wen.pos.ui.model.Payment
 import mx.wen.pos.ui.resources.UI_Standards
 //import mx.wen.pos.ui.view.dialog.AuthorizationDialog
 import mx.wen.pos.ui.view.dialog.CancellationDialog
+import mx.wen.pos.ui.view.dialog.RefundDialog
+
 //import mx.wen.pos.ui.view.dialog.RefundDialog
 import mx.wen.pos.ui.view.renderer.MoneyCellRenderer
 import net.miginfocom.swing.MigLayout
@@ -21,6 +23,8 @@ import java.text.DateFormat
 import java.text.NumberFormat
 import javax.swing.*
 import org.apache.commons.lang.StringUtils
+
+import java.text.SimpleDateFormat
 
 class ShowOrderPanel extends JPanel {
 
@@ -52,6 +56,7 @@ class ShowOrderPanel extends JPanel {
   private static final String TXT_FECHA_INCORRECTA_TITULO = 'Error al crear orden'
   private static final String MSJ_CANCELAR = '¿Esta seguro que desea cancelar la nota %s?'
   private static final String TXT_CANCELAR = 'Cancelar Factura'
+  private SimpleDateFormat df = new SimpleDateFormat("ddMMyyyy")
 
 
   ShowOrderPanel( ) {
@@ -150,9 +155,9 @@ class ShowOrderPanel extends JPanel {
       }
 
       panel( layout: new MigLayout( 'insets 0,right', '[grow,fill,145!]', '[grow,fill,40!]' ) ) {
-        cancelButton = button( 'Cancelar', actionPerformed: doCancel, constraints: 'hidemode 3' )
-        returnButton = button( 'Devoluci\u00f3n', actionPerformed: doRefund, constraints: 'hidemode 3' )
-        printReturnButton = button( 'Imprimir Cancelaci\u00f3n', actionPerformed: doPrintRefund, constraints: 'hidemode 3' )
+        cancelButton = button( 'Cancelar', actionPerformed: doRefund, constraints: 'hidemode 3' )
+        //returnButton = button( 'Devoluci\u00f3n', actionPerformed: doRefund, constraints: 'hidemode 3' )
+        //printReturnButton = button( 'Imprimir Cancelaci\u00f3n', actionPerformed: doPrintRefund, constraints: 'hidemode 3' )
         printButton = button( 'Imprimir', actionPerformed: doPrint )
       }
     }
@@ -173,13 +178,13 @@ class ShowOrderPanel extends JPanel {
       bean( itemsModel.rowsModel, value: bind( source: order, sourceProperty: 'items', mutual: true ) )
       bean( paymentsModel.rowsModel, value: bind( source: order, sourceProperty: 'payments', mutual: true ) )
       bean( comments, text: bind( source: order, sourceProperty: 'comments', mutual: true ) )
-      bean( cancelButton, visible: bind {!'T'.equalsIgnoreCase( order.status )} )
+      bean( cancelButton, visible: bind {!'T'.equalsIgnoreCase( order.status ) && StringUtils.trimToEmpty(df.format(order.date)).equalsIgnoreCase(StringUtils.trimToEmpty(df.format(new Date())))} )
       sumaPagos = BigDecimal.ZERO
       for ( Payment payment : order.payments ) {
         sumaPagos = sumaPagos.add( payment.amount )
       }
-      bean( returnButton, visible: bind {( 'T'.equalsIgnoreCase( order.status ) ) && ( sumaPagos.compareTo( montoCentavos ) > 0 ) } )
-      bean( printReturnButton, visible: bind {( 'T'.equalsIgnoreCase( order.status ) ) && ( sumaPagos.compareTo( montoCentavos ) <= 0 )} )
+      //bean( returnButton, visible: bind {( 'T'.equalsIgnoreCase( order.status ) ) && ( sumaPagos.compareTo( montoCentavos ) > 0 ) } )
+      //bean( printReturnButton, visible: bind {( 'T'.equalsIgnoreCase( order.status ) ) && ( sumaPagos.compareTo( montoCentavos ) <= 0 )} )
     }
     itemsModel.fireTableDataChanged()
     paymentsModel.fireTableDataChanged()
@@ -245,20 +250,9 @@ class ShowOrderPanel extends JPanel {
   private def doRefund = { ActionEvent ev ->
     JButton source = ev.source as JButton
     source.enabled = false
-    boolean authorized
-    /*if ( AccessController.authorizerInSession ) {
-      authorized = true
-    } else {
-      AuthorizationDialog authDialog = new AuthorizationDialog( this, "Cancelaci\u00f3n requiere autorizaci\u00f3n", false )
-      authDialog.show()
-      authorized = authDialog.authorized
-    }*/
-    CancellationController.resetValuesofCancellation( order.id )
-    if ( authorized ) {
-      /*new RefundDialog( this, order.id, true ).show()
-      CancellationController.refreshOrder( order )
-      doBindings()*/
-    }
+    new RefundDialog( this, order.id ).show()
+    CancellationController.refreshOrder( order )
+    doBindings()
     source.enabled = true
   }
 

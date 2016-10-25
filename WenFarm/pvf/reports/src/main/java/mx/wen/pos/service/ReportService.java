@@ -7,4 +7,6 @@ public interface ReportService {
 
     String obtenerTicketVenta( String idOrder ) throws ParseException;
 
+    String obtenerReporteVentasCompleto( Date fechaInicio, Date fechaFin );
+
 }
