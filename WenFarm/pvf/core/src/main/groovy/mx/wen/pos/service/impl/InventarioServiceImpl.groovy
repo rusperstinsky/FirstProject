@@ -7,7 +7,9 @@ import mx.wen.pos.service.InventarioService
 import mx.wen.pos.service.SucursalService
 import mx.wen.pos.service.business.InventarioServiceUtil
 import mx.wen.pos.service.business.InventoryCommit
+import mx.wen.pos.service.business.InventorySearch
 import mx.wen.pos.service.business.PrepareInvTrBusiness
+import mx.wen.pos.service.business.Registry
 import mx.wen.pos.service.io.ShippingNoticeFile
 import mx.wen.pos.service.io.ShippingNoticeFileSunglass
 import org.apache.commons.lang3.time.DateUtils

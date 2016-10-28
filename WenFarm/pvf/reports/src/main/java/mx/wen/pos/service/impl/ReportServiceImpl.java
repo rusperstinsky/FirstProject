@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.io.File;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -93,20 +92,20 @@ public class ReportServiceImpl implements ReportService {
         Sucursal suc = sucursalRepository.findOne(Registry.getCurrentSite());
         Parametro ivaVigenteParam = parametroRepository.findOne( TipoParametro.IVA_VIGENTE.getValue() );
         String strValorIva = ivaVigenteParam != null ? ivaVigenteParam.getValor() : "";
-        Double valorIva = NumberFormat.getInstance().parse(StringUtils.trimToEmpty(strValorIva)).doubleValue();
-        String sucDireccion = "";
-        if( suc != null ){
-          sucDireccion = sucDireccion+StringUtils.trimToEmpty(suc.getCalle());
-          sucDireccion = sucDireccion+" "+StringUtils.trimToEmpty(suc.getNumero());
-          sucDireccion = sucDireccion+" "+StringUtils.trimToEmpty(suc.getColonia());
-          sucDireccion = sucDireccion+" "+StringUtils.trimToEmpty(suc.getCp());
-        }
+        Double iva = NumberFormat.getInstance().parse(StringUtils.trimToEmpty(strValorIva)).doubleValue();
+        BigDecimal valorIva = nota.getVentaNeta().multiply(new BigDecimal(iva/100));
+        List<DetalleVenta> lstDet = reportBusiness.obtieneDetalleVenta(nota);
 
         Map<String, Object> parametros = new HashMap<String, Object>();
-        parametros.put( "fechaActual", new SimpleDateFormat( "hh:mm" ).format( new Date() ) );
-        parametros.put( "sucursalDireccion", sucDireccion );
-        parametros.put( "total", nota.getVentaNeta() );
-        parametros.put( "iva", valorIva );
+        parametros.put( "fecha", new SimpleDateFormat( "dd/MM/yyyy" ).format( nota.getFechaHoraFactura() ) );
+        parametros.put( "hora", new SimpleDateFormat( "hh:mm" ).format( nota.getFechaHoraFactura() ) );
+        parametros.put( "folio", StringUtils.trimToEmpty(nota.getId()) );
+        parametros.put( "ticket", StringUtils.trimToEmpty(nota.getFactura()) );
+        parametros.put( "vendedor", StringUtils.trimToEmpty(nota.getEmpleado().getNombreCompleto()) );
+        parametros.put( "detalle", lstDet );
+        parametros.put( "total", NumberFormat.getCurrencyInstance(Locale.US).format(nota.getVentaNeta()) );
+        parametros.put( "totalSinIva", NumberFormat.getCurrencyInstance(Locale.US).format(nota.getVentaNeta().subtract(valorIva)) );
+        parametros.put( "iva", NumberFormat.getCurrencyInstance(Locale.US).format(valorIva) );
 
         String reporte = reportBusiness.CompilayGeneraReporte( template, parametros, report, true );
         log.info( "reporte:{}", reporte );
@@ -120,7 +119,7 @@ public class ReportServiceImpl implements ReportService {
     public String obtenerReporteVentasCompleto( Date fechaInicio, Date fechaFin ) {
         log.info( "obtenerReporteVentasPorDia()" );
 
-        File report = new File( System.getProperty( "java.io.tmpdir" ), "Ventas-Completo.html" );
+        File report = new File( System.getProperty( "java.io.tmpdir" ), "Ventas-Completo.pdf" );
         org.springframework.core.io.Resource template = new ClassPathResource( VENTAS_COMPLETO );
         log.info( "Ruta:{}", report.getAbsolutePath() );
 
@@ -154,7 +153,7 @@ public class ReportServiceImpl implements ReportService {
         parametros.put( "totalFacturas", totalFacturas );
         parametros.put( "totalVentas", total );
         parametros.put( "totalVentasSinIva", totalSinIva );
-        String reporte = reportBusiness.CompilayGeneraReporte( template, parametros, report, false );
+        String reporte = reportBusiness.CompilayGeneraReporte( template, parametros, report, true );
         log.info( "reporte:{}", reporte );
 
         return null;

@@ -640,16 +640,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/lib/contents/commons-beanutils-1.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/lib/contents/jsch-0.1.49.jar!/" />
+          <root url="jar://$USER_HOME$/lib/contents/gpayAPI.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

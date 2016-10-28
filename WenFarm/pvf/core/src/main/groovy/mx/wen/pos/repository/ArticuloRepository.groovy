@@ -13,4 +13,5 @@ interface ArticuloRepository extends JpaRepository<Articulo, Integer>, QueryDslP
   @Query( value = "SELECT * FROM articulos WHERE tipo = ?1 order by id_articulo", nativeQuery = true )
   List<Articulo> findItemsByType( String tipo )
 
+  List<Articulo> findByIdIn( Collection<Integer> pId )
 }

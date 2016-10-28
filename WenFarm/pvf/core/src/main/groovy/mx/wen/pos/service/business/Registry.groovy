@@ -3,6 +3,7 @@ package mx.wen.pos.service.business
 import groovy.util.logging.Slf4j
 import mx.wen.pos.model.Parametro
 import mx.wen.pos.model.TipoParametro
+import mx.wen.pos.model.TipoTransInv
 import mx.wen.pos.repository.impl.RepositoryFactory
 
 /*import mx.lux.pos.java.querys.ParametrosQuery
@@ -36,6 +37,54 @@ class Registry {
       vat = vatCode
     }
     return vat
+  }
+
+  static TipoTransInv getInvTrTypeAdjust( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_AJUSTE )
+  }
+
+  static TipoTransInv getInvTrTypeIssue( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_SALIDA )
+  }
+
+
+  static TipoTransInv getInvTrTypeOtherIssue( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_OTRA_SALIDA )
+  }
+
+  static TipoTransInv getInvTrTypeOtherReceipt( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_OTRA_ENTRADA )
+  }
+
+  static TipoTransInv getInvTrTypeReceipt( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_RECIBE_REMISION )
+  }
+
+  static TipoTransInv getInvTrTypeMassiveReceipt( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_RECIBE_REMISION_MASIVA )
+  }
+
+  static TipoTransInv getInvTrTypeReturn( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_CANCELACION )
+  }
+
+  static TipoTransInv getInvTrTypeReturnXO( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_CANCELACION_EXTRA )
+  }
+
+  static TipoTransInv getInvTrTypeSale( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_VENTA )
+  }
+
+  static TipoTransInv getInvTrTypeSalidaAlmacen( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_SALIDA_ALMACEN )
+  }
+
+  static TipoTransInv getInvTrTypeEntradaAlmacen( ) {
+    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_ENTRADA_ALMACEN )
+  }
+  static Boolean isCancellationLimitedToSameDay( ) {
+    return isTrue( TipoParametro.CAN_MISMO_DIA )
   }
 
   static Integer asInteger( TipoParametro pParametro ) {
@@ -77,6 +126,20 @@ class Registry {
       }
     }
     return d
+  }
+
+  protected static TipoTransInv asTipoTransInv( TipoParametro pTipoTrans ) {
+    String type = asString( pTipoTrans )
+    TipoTransInv trType = InventorySearch.findTrType( type )
+    if ( trType == null ) {
+      trType = InventoryCommit.createTrType( pTipoTrans, type )
+    }
+    return trType
+  }
+
+  static String asString( TipoParametro pParametro ) {
+    Parametro p = find( pParametro )
+    return StringUtils.trimToEmpty( p.valor )
   }
   /*static Parametros find( mx.lux.pos.java.TipoParametro pParametro ) {
     Parametros p = ParametrosQuery.BuscaParametroPorId( pParametro.getValor() )
@@ -125,11 +188,6 @@ class Registry {
         return d
     }
 
-
-  static String asString( TipoParametro pParametro ) {
-    Parametro p = find( pParametro )
-    return StringUtils.trimToEmpty( p.valor )
-  }
 
   static String asUrlString( TipoUrl pUrl ) {
       AcusesTipo p = findUrl( pUrl )
@@ -182,14 +240,6 @@ class Registry {
     return b
   }
 
-  protected static TipoTransInv asTipoTransInv( TipoParametro pTipoTrans ) {
-    String type = asString( pTipoTrans )
-    TipoTransInv trType = InventorySearch.findTrType( type )
-    if ( trType == null ) {
-      trType = InventoryCommit.createTrType( pTipoTrans, type )
-    }
-    return trType
-  }
 
   // Business Logic for Configuration Parameters
   static Boolean isExchangeDataFileRequired( ) {
@@ -489,53 +539,6 @@ class Registry {
 
   static String getSiteSegment( ) {
     return asString( TipoParametro.COMPANIA_REGION )
-  }
-
-  static TipoTransInv getInvTrTypeAdjust( ) {
-    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_AJUSTE )
-  }
-
-  static TipoTransInv getInvTrTypeIssue( ) {
-    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_SALIDA )
-  }
-
-  static TipoTransInv getInvTrTypeOtherIssue( ) {
-    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_OTRA_SALIDA )
-  }
-
-  static TipoTransInv getInvTrTypeOtherReceipt( ) {
-    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_OTRA_ENTRADA )
-  }
-
-  static TipoTransInv getInvTrTypeReceipt( ) {
-    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_RECIBE_REMISION )
-  }
-
-  static TipoTransInv getInvTrTypeMassiveReceipt( ) {
-    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_RECIBE_REMISION_MASIVA )
-  }
-
-  static TipoTransInv getInvTrTypeReturn( ) {
-    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_CANCELACION )
-  }
-
-  static TipoTransInv getInvTrTypeReturnXO( ) {
-    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_CANCELACION_EXTRA )
-  }
-
-  static TipoTransInv getInvTrTypeSale( ) {
-    return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_VENTA )
-  }
-
-  static TipoTransInv getInvTrTypeSalidaAlmacen( ) {
-     return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_SALIDA_ALMACEN )
-  }
-
-  static TipoTransInv getInvTrTypeEntradaAlmacen( ) {
-     return asTipoTransInv( TipoParametro.TRANS_INV_TIPO_ENTRADA_ALMACEN )
-  }
-  static Boolean isCancellationLimitedToSameDay( ) {
-    return isTrue( TipoParametro.CAN_MISMO_DIA )
   }
 
   static Boolean isCouponFFActivated( ) {

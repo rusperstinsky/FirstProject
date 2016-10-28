@@ -5,12 +5,6 @@ import mx.wen.pos.service.ReportService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import mx.wen.pos.ui.view.dialog.*
-import org.apache.commons.lang.time.DateUtils
-import java.text.SimpleDateFormat
-import java.text.DateFormat
-import org.apache.commons.lang3.time.DateUtils
-import java.text.NumberFormat
-import org.apache.commons.lang.StringUtils
 
 @Slf4j
 @Component

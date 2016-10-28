@@ -67,8 +67,8 @@ class OrderNavigatorPanel extends JPanel {
       order.id = newOrder.id
       order.bill = newOrder.bill
       order.comments = newOrder.comments
-      order.status = newOrder.status
       order.date = newOrder.date
+      order.status = newOrder.status
       order.discountAmount = newOrder.discountAmount
       order.netSell = newOrder.netSell
       order.totalSell = newOrder.totalSell

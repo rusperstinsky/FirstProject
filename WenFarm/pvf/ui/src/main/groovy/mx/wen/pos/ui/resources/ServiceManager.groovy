@@ -8,7 +8,7 @@ import mx.wen.pos.service.*
 class ServiceManager {
 
   private static EmpleadoService employeeService
-  //private static InventarioService invService
+  private static InventarioService invService
   private static NotaVentaService orderService
   private static ArticuloService partService
   /*private static PromotionService promotionService
@@ -22,7 +22,7 @@ class ServiceManager {
   private static SucursalService sucursalService
 
   @Autowired
-  ServiceManager( /*InventarioService pInventarioService,*/ ArticuloService pArticuloService,
+  ServiceManager( InventarioService pInventarioService, ArticuloService pArticuloService,
                   EmpleadoService pEmpMaster, /*TicketService pTicketEngine,*/ NotaVentaService pNotaVentaService,
                   /*PromotionService pPromotionService, MonedaExtranjeraService pMonedaExtranjeraService,
                   OpenSalesDayService pOpenSalesDaysService, IOService pIOService,
@@ -30,7 +30,7 @@ class ServiceManager {
                   SettingsService pSettingsService,*/ SucursalService pSucursalService
   ) {
     employeeService = pEmpMaster
-    //invService = pInventarioService
+    invService = pInventarioService
     orderService = pNotaVentaService
     partService = pArticuloService
     /*promotionService = pPromotionService
@@ -48,9 +48,9 @@ class ServiceManager {
     return employeeService
   }
 
-  /*static InventarioService getInventoryService( ) {
+  static InventarioService getInventoryService( ) {
     return invService
-  }*/
+  }
 
   static NotaVentaService getOrderService( ) {
     return orderService

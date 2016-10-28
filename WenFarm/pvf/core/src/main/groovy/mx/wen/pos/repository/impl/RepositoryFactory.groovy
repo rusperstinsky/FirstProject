@@ -12,9 +12,9 @@ class RepositoryFactory {
   private static GenericoRepository genres
   private static GrupoArticuloRepository groupPartMaster
   private static GrupoArticuloDetRepository groupPartDetail
-  private static TipoTransInvRepository trTypes
   private static OrdenPromDetRepository orderLinePromotionDetail
   private static OrdenPromRepository orderPromotionDetail*/
+  private static TipoTransInvRepository trTypes
   private static TransInvRepository inventoryMaster
   private static TransInvDetalleRepository inventoryDetail
   private static NotaVentaRepository orders
@@ -57,9 +57,9 @@ class RepositoryFactory {
                      ParametroRepository pParametroRepository,
                      TransInvRepository pTransInvRepository,
                      TransInvDetalleRepository pTransInvDetalleRepository,
+                     TipoTransInvRepository pTipoTransInvRepository,
                      /*DescuentoRepository pDescuentoRepository,
                      GenericoRepository pGenericoRepository,
-                     TipoTransInvRepository pTipoTransInvRepository,
                      ImpuestoRepository pImpuestoRepository,
                      ContribuyenteRepository pContribuyenteRepository,
                      EstadoRepository pEstadoRepository,
@@ -93,8 +93,8 @@ class RepositoryFactory {
     registry = pParametroRepository
     inventoryMaster = pTransInvRepository
     inventoryDetail = pTransInvDetalleRepository
-    /*genres = pGenericoRepository
     trTypes = pTipoTransInvRepository
+    /*genres = pGenericoRepository
     taxMaster = pImpuestoRepository
     rfcMaster = pContribuyenteRepository
     states = pEstadoRepository
@@ -135,10 +135,6 @@ class RepositoryFactory {
     return groupPartDetail
   }
 
-  static TipoTransInvRepository getTrTypes( ) {
-    return trTypes
-  }
-
   static OrdenPromRepository getOrderPromotionDetail( ) {
     return orderPromotionDetail
   }
@@ -146,6 +142,10 @@ class RepositoryFactory {
   static OrdenPromDetRepository getOrderLinePromotionDetail( ) {
     return orderLinePromotionDetail
   }*/
+
+  static TipoTransInvRepository getTrTypes( ) {
+    return trTypes
+  }
 
   static TransInvDetalleRepository getInventoryDetail( ) {
     return inventoryDetail

@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -27,7 +28,8 @@ public class VentasPorDia {
     public void acumulaVentasPorDia( NotaVenta notaVenta, BigDecimal iva ){
       estatus = StringUtils.trimToEmpty(notaVenta.getsFactura()).equalsIgnoreCase("T") ? "CANCELADA" : "";
       montoTotal = notaVenta.getVentaNeta();
-      montoSinIva = notaVenta.getVentaNeta().multiply(iva).doubleValue();
+      iva = iva.multiply(notaVenta.getVentaNeta());
+      montoSinIva = notaVenta.getVentaNeta().subtract(iva).doubleValue();
     }
 
 

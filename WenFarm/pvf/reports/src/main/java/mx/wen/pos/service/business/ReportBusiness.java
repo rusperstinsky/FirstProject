@@ -1,14 +1,11 @@
 package mx.wen.pos.service.business;
 
-import com.mysema.query.BooleanBuilder;
-import com.mysema.query.types.OrderSpecifier;
 import mx.wen.pos.model.*;
 import mx.wen.pos.repository.*;
 import mx.wen.pos.service.impl.ReportServiceImpl;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -18,8 +15,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.*;
 import java.util.*;
 import java.util.List;
 
@@ -42,17 +37,9 @@ public class ReportBusiness {
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport( template.getInputStream() );
             JasperPrint jasperPrint = JasperFillManager.fillReport( jasperReport, parametros, new JREmptyDataSource() );
-            if( ticket ){
-              JasperExportManager.exportReportToPdfFile( jasperPrint, report.getPath() );
-            } else {
-                JRXlsExporter exporter = new JRXlsExporter();
-                exporter.setParameter(JRExporterParameter.INPUT_FILE_NAME, parametros);
-                exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, report);
-                exporter.exportReport();
-            }
+            JasperExportManager.exportReportToPdfFile( jasperPrint, report.getPath() );
             Desktop.getDesktop().open( report );
             log.info( "Mostrar Reporte" );
-
             return report.getPath();
         } catch ( JRException e ) {
             log.error( "error al compilar y generar reporte", e );
@@ -74,4 +61,15 @@ public class ReportBusiness {
       }
       return lstVentas;
     }
+
+    public List<DetalleVenta> obtieneDetalleVenta( NotaVenta nota ){
+      List<DetalleVenta> lstDet = new ArrayList<DetalleVenta>();
+      for(DetalleNotaVenta det : nota.getDetalles()){
+        DetalleVenta detalle = new DetalleVenta(StringUtils.trimToEmpty(det.getArticulo().getArticulo()),
+                det.getCantidadFac().intValue(),det.getPrecioUnitFinal().multiply(new BigDecimal(det.getCantidadFac())));
+        lstDet.add(detalle);
+      }
+      return lstDet;
+    }
+
 }

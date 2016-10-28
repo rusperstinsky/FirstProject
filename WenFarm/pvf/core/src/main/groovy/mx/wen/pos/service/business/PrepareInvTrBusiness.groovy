@@ -71,7 +71,7 @@ class PrepareInvTrBusiness {
       trMstr.observaciones = pRequest.remarks
       trMstr.sucursal = site.id
       try{
-        trMstr.idEmpleado = NumberFormat.getInstance().parse(pRequest.idUser).intValue()
+        trMstr.idEmpleado = StringUtils.trimToEmpty(pRequest.idUser)
       } catch ( ParseException e ){
         println e.message
       }
@@ -149,7 +149,7 @@ class PrepareInvTrBusiness {
           valid = parts.validarArticulo( part.sku )
           articleInvalid = ""
           //if(StringUtils.trimToEmpty(articleInvalid).length() <= 0){
-            articleInvalid = StringUtils.trimToEmpty(parts.validarGenericoArticulo( part.sku ))
+            //articleInvalid = StringUtils.trimToEmpty(parts.validarGenericoArticulo( part.sku ))
           //}
           if( articleInvalid.equalsIgnoreCase(TAG_GENERICO_NO_INVENTARIABLE)){
             Articulo articulo = parts.buscaArticulo( part.sku )

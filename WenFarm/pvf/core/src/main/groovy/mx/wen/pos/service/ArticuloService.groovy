@@ -16,6 +16,8 @@ interface ArticuloService {
 
   //List<Articulo> listarArticulosPorCodigoSimilar( String articulo, boolean incluyePrecio )
 
+  List<Articulo> obtenerListaArticulosPorId( List<Integer> pListaId )
+
   List<Articulo> findArticuloyColor( String articulo, String color )
 
   Boolean validarArticulo( Integer id )

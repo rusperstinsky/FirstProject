@@ -59,7 +59,7 @@ class PaymentDialog extends JDialog implements KeyListener{
   private JFrame mainWindow
   private static final Integer ID_TERM_AMERICANEXP = 7;
   private static final String PLAN_TERM_AMERICANEXP = 'NORMAL AMERICAN EXPRESS';
-  private static final String TAG_PAGO_MN_PESOS = 'MN EFECTIVO';
+  private static final String TAG_PAGO_MN_PESOS = 'EFECTIVO';
   private static final String TAG_PAGO_NOTA_CREDITO = 'NOTA DE CREDITO TIENDA';
   private static final String TAG_ID_PAGO_NOTA_CREDITO = 'NOT';
   private static final String TAG_EFECTIVO_DOLARES = 'EFD';

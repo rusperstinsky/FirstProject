@@ -70,98 +70,28 @@
       <file leaf-file-name="MainWindow.groovy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/MainWindow.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="338" column="79" selection-start-line="338" selection-start-column="79" selection-end-line="338" selection-end-column="79" />
+            <state relative-caret-position="140">
+              <caret line="489" column="30" selection-start-line="489" selection-start-column="30" selection-end-line="489" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReportController.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/ReportController.groovy">
+      <file leaf-file-name="InsertItemDialog.groovy" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/InsertItemDialog.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="108" column="33" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
-              <folding>
-                <element signature="e#34#66#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="277">
+              <caret line="51" column="33" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TwoDatesSelectionDialog.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/TwoDatesSelectionDialog.groovy">
+      <file leaf-file-name="OrderPanel.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/OrderPanel.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="70" column="71" selection-start-line="70" selection-start-column="71" selection-end-line="70" selection-end-column="71" />
-              <folding>
-                <element signature="e#35#67#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reports/src/main/java/mx/wen/pos/service/impl/ReportServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="156" column="8" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
-              <folding>
-                <element signature="e#7749#7765#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VentasPorDia.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/VentasPorDia.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#953#954#0" expanded="true" />
-                <element signature="e#983#984#0" expanded="true" />
-                <element signature="e#1029#1030#0" expanded="true" />
-                <element signature="e#1067#1068#0" expanded="true" />
-                <element signature="e#1101#1102#0" expanded="true" />
-                <element signature="e#1131#1132#0" expanded="true" />
-                <element signature="e#1177#1178#0" expanded="true" />
-                <element signature="e#1215#1216#0" expanded="true" />
-                <element signature="e#1245#1246#0" expanded="true" />
-                <element signature="e#1273#1274#0" expanded="true" />
-                <element signature="e#1313#1314#0" expanded="true" />
-                <element signature="e#1347#1348#0" expanded="true" />
-                <element signature="e#1388#1389#0" expanded="true" />
-                <element signature="e#1421#1422#0" expanded="true" />
-                <element signature="e#1477#1478#0" expanded="true" />
-                <element signature="e#1521#1522#0" expanded="true" />
-                <element signature="e#1559#1560#0" expanded="true" />
-                <element signature="e#1593#1594#0" expanded="true" />
-                <element signature="e#1647#1648#0" expanded="true" />
-                <element signature="e#1693#1694#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportBusiness.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/reports/src/main/java/mx/wen/pos/service/business/ReportBusiness.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="43" column="85" selection-start-line="43" selection-start-column="85" selection-end-line="43" selection-end-column="85" />
-              <folding>
-                <element signature="e#2473#2487#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Registry.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/business/Registry.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+            <state relative-caret-position="117">
+              <caret line="225" column="38" selection-start-line="225" selection-start-column="29" selection-end-line="225" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -177,49 +107,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/core/src/main/resources/database.properties" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/User.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/Order.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/NotaVenta.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/Pago.java" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/renderer/DateCellRenderer.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/ClienteService.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/ClienteRepository.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/custom/ClienteRepositoryCustom.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/impl/ClienteRepositoryImpl.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/ClienteServiceImpl.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/CustomerController.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/NewCustomer.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/CustomerSearchDialog.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/CancellationDialog.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/NotaVentaRepository.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/NotaVentaServiceImpl.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/OrderNavigatorPanel.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/DevolucionRepository.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/CancelacionService.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/CancellationController.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/Devolucion.java" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/RefundDialog.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/CancelacionServiceImpl.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/business/PrepareInvTrBusiness.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/IOController.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/ChangePasswordDialog.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/verifier/DateVerifier.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/EmpleadoRepository.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/EmpleadoService.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/AccessController.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/CreateEmployeeDialog.groovy" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/EmpleadoServiceImpl.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/OrderSearchDialog.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/ShowOrderPanel.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/MainWindow.groovy" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/ReportController.groovy" />
-        <option value="$PROJECT_DIR$/reports/src/main/java/mx/wen/pos/service/ReportService.java" />
-        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/business/Registry.groovy" />
         <option value="$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/VentasPorDia.java" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/InvTrView.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/InvTrFilter.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/InvTrAdapter.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/StringAdapter.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/Filter.groovy" />
+        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/model/TransInvAdapter.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/InvTrDataset.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/Dataset.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/component/NavigationBar.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/resources/ImageLibrary.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/component/NavigationBarListener.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/InvTrSku.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/RequestAdapter.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/InboundDialog.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/PartSelectionDialog.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/component/ComboBoxHintSelector.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/component/ComboBoxSelector.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/SiteAdapter.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrDriver.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrAdjustDriver.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrFileAdjustDriver.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrInBoundDriver.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrOutBoundDriver.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrReturnDriver.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/DailyClose.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/InvTrReturnDialog.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/component/NumericTextField.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/resources/ServiceManager.groovy" />
+        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/business/Registry.groovy" />
+        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/impl/RepositoryFactory.groovy" />
+        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/InventarioServiceImpl.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/InvTr.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/PartAdapter.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/InvTrViewMode.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/InvTrPanel.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrIssueDriver.groovy" />
+        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/business/PrepareInvTrBusiness.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/InvTrController.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrReceiptDriver.groovy" />
+        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/ArticuloService.groovy" />
+        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/ArticuloServiceImpl.groovy" />
+        <option value="$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/ArticuloRepository.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/InvTrSelectorDialog.groovy" />
+        <option value="$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/DetalleVenta.java" />
         <option value="$PROJECT_DIR$/reports/src/main/java/mx/wen/pos/service/business/ReportBusiness.java" />
         <option value="$PROJECT_DIR$/reports/src/main/java/mx/wen/pos/service/impl/ReportServiceImpl.java" />
-        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/TwoDatesSelectionDialog.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrQueryDriver.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/PaymentDialog.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/MainWindow.groovy" />
+        <option value="$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/InsertItemDialog.groovy" />
       </list>
     </option>
   </component>
@@ -247,6 +185,9 @@
             <id>Java</id>
           </State>
           <State>
+            <id>Numeric issuesJava</id>
+          </State>
+          <State>
             <id>Security issuesJava</id>
           </State>
           <State>
@@ -255,7 +196,7 @@
         </expanded-state>
         <selected-state>
           <State>
-            <id>TransientFieldInNonSerializableClass</id>
+            <id>BigDecimalMethodWithoutRoundingCalled</id>
           </State>
         </selected-state>
       </profile-state>
@@ -289,8 +230,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -439,107 +378,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pvf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pvf" />
+              <option name="myItemId" value="view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="reports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pvf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pvf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pvf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pvf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pvf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pvf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="business" />
+              <option name="myItemId" value="panel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -576,36 +419,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pvf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pvf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -634,13 +447,11 @@
               <option name="myItemId" value="groovy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -656,6 +467,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$USER_HOME$/lib/contents/jasperreports/5.2.0/jar/jasperreports-5.2.0.jar!/" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -954,7 +766,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1295" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -978,8 +790,9 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -987,7 +800,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935917" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -996,6 +808,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1907336" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
@@ -1024,7 +837,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="21" />
+      <option name="time" value="41" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1033,214 +846,248 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/impl/ClienteRepositoryImpl.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/RequestAdapter.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="21" column="54" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+        <state relative-caret-position="75">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+          <folding>
+            <element signature="e#37#76#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/ClienteServiceImpl.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/InboundDialog.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="77" column="11" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
+        <state relative-caret-position="-51">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/Customer.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/PartSelectionDialog.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
-          <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/CustomerController.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/component/ComboBoxHintSelector.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+        <state relative-caret-position="-3220">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/NewCustomer.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/SiteAdapter.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/CustomerSearchDialog.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="103" column="4" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/CancellationController.groovy" />
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/CancellationDialog.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+        <state relative-caret-position="45">
+          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
           <folding>
-            <element signature="e#35#67#0" expanded="false" />
+            <element signature="e#37#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/ShowOrderPanel.groovy" />
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/NotaVentaRepository.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrDriver.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="45" column="2" selection-start-line="45" selection-start-column="2" selection-end-line="45" selection-end-column="2" />
+        <state relative-caret-position="-1150">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/NotaVentaServiceImpl.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrAdjustDriver.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="326" column="41" selection-start-line="326" selection-start-column="41" selection-end-line="326" selection-end-column="41" />
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/Payment.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrFileAdjustDriver.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-339">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        <state relative-caret-position="62">
+          <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/Order.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrInBoundDriver.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="66" column="91" selection-start-line="66" selection-start-column="82" selection-end-line="66" selection-end-column="91" />
+        <state relative-caret-position="182">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/TicketServiceImpl.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="212" column="52" selection-start-line="212" selection-start-column="52" selection-end-line="212" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/Plan.java">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrOutBoundDriver.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/DevolucionRepository.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/component/ComboBoxSelector.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="112" selection-start-line="7" selection-start-column="112" selection-end-line="7" selection-end-column="112" />
+        <state relative-caret-position="90">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
           <folding>
-            <element signature="e#31#65#0" expanded="false" />
+            <element signature="e#38#86#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/OrderPanel.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/component/NumericTextField.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="225" column="107" selection-start-line="225" selection-start-column="74" selection-end-line="225" selection-end-column="107" />
-          <folding>
-            <element signature="e#34#71#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-1030">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/CancelacionService.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/InvTrReturnDialog.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+        <state relative-caret-position="-2679">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/InventarioService.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrReturnDriver.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1615">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/DailyClose.groovy" />
+    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/model/TipoParametro.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <caret line="70" column="2" selection-start-line="70" selection-start-column="2" selection-end-line="70" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/Articulo.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/business/Registry.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="134">
+          <caret line="46" column="52" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/Cliente.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/TipoTransInvRepository.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="24" column="100" selection-start-line="23" selection-start-column="4" selection-end-line="24" selection-end-column="100" />
-          <folding>
-            <element signature="e#6435#6436#0" expanded="false" />
-            <element signature="e#6464#6465#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/Devolucion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" column="85" selection-start-line="17" selection-start-column="85" selection-end-line="17" selection-end-column="85" />
+        <state relative-caret-position="60">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/RefundDialog.groovy">
+    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/impl/RepositoryFactory.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="161" column="34" selection-start-line="161" selection-start-column="34" selection-end-line="161" selection-end-column="34" />
+        <state relative-caret-position="282">
+          <caret line="145" column="15" selection-start-line="145" selection-start-column="15" selection-end-line="145" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/PartAdapter.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="28" column="15" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
           <folding>
-            <element signature="e#35#67#0" expanded="true" />
+            <element signature="e#37#69#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/CancellationController.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/InvTr.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
+        <state relative-caret-position="160">
+          <caret line="213" column="39" selection-start-line="213" selection-start-column="39" selection-end-line="213" selection-end-column="39" />
           <folding>
-            <element signature="e#34#66#0" expanded="true" />
+            <element signature="e#29#72#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/CancelacionServiceImpl.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/InvTrViewMode.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="93" column="47" selection-start-line="93" selection-start-column="47" selection-end-line="93" selection-end-column="47" />
+        <state relative-caret-position="335">
+          <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+          <folding>
+            <element signature="e#29#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/SucursalServiceImpl.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/ItemController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="98" column="55" selection-start-line="98" selection-start-column="55" selection-end-line="98" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/TransInv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="146" column="25" selection-start-line="146" selection-start-column="25" selection-end-line="146" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/business/PrepareInvTrBusiness.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="57" column="44" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="44" />
+        <state relative-caret-position="351">
+          <caret line="73" column="68" selection-start-line="73" selection-start-column="68" selection-end-line="73" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/InventarioServiceImpl.groovy">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="291" column="18" selection-start-line="291" selection-start-column="18" selection-end-line="291" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/business/InventoryCommit.groovy">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
-          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <caret line="35" column="31" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrIssueDriver.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="194" column="2" selection-start-line="194" selection-start-column="2" selection-end-line="208" selection-end-column="3" />
+          <folding>
+            <element signature="e#35#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrReceiptDriver.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1248,230 +1095,195 @@
     <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/resources/ServiceManager.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
-          <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+          <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/verifier/DateVerifier.groovy">
+    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/ArticuloService.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1210">
-          <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+        <state relative-caret-position="270">
+          <caret line="18" column="43" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/ChangePasswordDialog.groovy">
+    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/ArticuloRepository.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="98" column="63" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="63" />
-          <folding>
-            <element signature="e#35#67#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/IOController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="129" column="60" selection-start-line="129" selection-start-column="60" selection-end-line="129" selection-end-column="60" />
-          <folding>
-            <element signature="e#34#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/Empleado.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state relative-caret-position="180">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/repository/EmpleadoRepository.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="67" selection-start-line="7" selection-start-column="67" selection-end-line="7" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/EmpleadoService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="63" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/AccessController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="179" column="18" selection-start-line="179" selection-start-column="18" selection-end-line="179" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/CreateEmployeeDialog.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="50" column="66" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/EmpleadoServiceImpl.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="78" column="48" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/OrderSearchDialog.groovy">
+    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/impl/ArticuloServiceImpl.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+          <caret line="137" column="28" selection-start-line="137" selection-start-column="28" selection-end-line="137" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/model/adapter/InvTrAdapter.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/component/NavigationBar.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
           <folding>
-            <element signature="e#35#72#0" expanded="true" />
+            <element signature="e#38#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/InvTrSelectorDialog.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-182">
+          <caret line="100" column="36" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
+          <folding>
+            <element signature="e#35#67#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/OrderController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="254" column="21" selection-start-line="254" selection-start-column="21" selection-end-line="254" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/OrderNavigatorPanel.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/ShowOrderPanel.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="180" column="6" selection-start-line="180" selection-start-column="6" selection-end-line="180" selection-end-column="6" />
-          <folding>
-            <element signature="e#34#71#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reports/src/main/java/mx/wen/pos/service/ReportService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/model/TipoParametro.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="39" column="2" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/groovy/mx/wen/pos/service/business/Registry.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/NotaVenta.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="45" column="33" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="33" />
+        <state relative-caret-position="171">
+          <caret line="242" column="28" selection-start-line="242" selection-start-column="28" selection-end-line="242" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/VentasPorDia.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
+        <state relative-caret-position="60">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reports/src/main/java/mx/wen/pos/service/business/ReportBusiness.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="71" column="20" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#953#954#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
-            <element signature="e#1067#1068#0" expanded="true" />
-            <element signature="e#1101#1102#0" expanded="true" />
-            <element signature="e#1131#1132#0" expanded="true" />
-            <element signature="e#1177#1178#0" expanded="true" />
-            <element signature="e#1215#1216#0" expanded="true" />
-            <element signature="e#1245#1246#0" expanded="true" />
-            <element signature="e#1273#1274#0" expanded="true" />
-            <element signature="e#1313#1314#0" expanded="true" />
-            <element signature="e#1347#1348#0" expanded="true" />
-            <element signature="e#1388#1389#0" expanded="true" />
-            <element signature="e#1421#1422#0" expanded="true" />
-            <element signature="e#1477#1478#0" expanded="true" />
-            <element signature="e#1521#1522#0" expanded="true" />
-            <element signature="e#1559#1560#0" expanded="true" />
-            <element signature="e#1593#1594#0" expanded="true" />
-            <element signature="e#1647#1648#0" expanded="true" />
-            <element signature="e#1693#1694#0" expanded="true" />
+            <element signature="e#2467#2481#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/mx/wen/pos/model/DetalleVenta.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="13" column="72" selection-start-line="13" selection-start-column="72" selection-end-line="13" selection-end-column="72" />
+          <folding>
+            <element signature="e#423#424#0" expanded="true" />
+            <element signature="e#450#451#0" expanded="true" />
+            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#522#523#0" expanded="true" />
+            <element signature="e#554#555#0" expanded="true" />
+            <element signature="e#581#582#0" expanded="true" />
+            <element signature="e#622#623#0" expanded="true" />
+            <element signature="e#654#655#0" expanded="true" />
+            <element signature="e#691#692#0" expanded="true" />
+            <element signature="e#720#721#0" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#804#805#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reports/src/main/java/mx/wen/pos/service/impl/ReportServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="156" column="8" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
-          <folding>
-            <element signature="e#7749#7765#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/MainWindow.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="338" column="79" selection-start-line="338" selection-start-column="79" selection-end-line="338" selection-end-column="79" />
+        <state relative-caret-position="388">
+          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/ReportController.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/controller/InvTrController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="108" column="33" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+        <state relative-caret-position="246">
+          <caret line="252" column="18" selection-start-line="252" selection-start-column="18" selection-end-line="252" selection-end-column="18" />
           <folding>
             <element signature="e#34#66#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/TwoDatesSelectionDialog.groovy">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/InvTrView.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="70" column="71" selection-start-line="70" selection-start-column="71" selection-end-line="70" selection-end-column="71" />
+        <state relative-caret-position="156">
+          <caret line="65" column="15" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
           <folding>
-            <element signature="e#35#67#0" expanded="true" />
+            <element signature="e#34#66#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reports/src/main/java/mx/wen/pos/service/business/ReportBusiness.java">
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/InvTrPanel.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="43" column="85" selection-start-line="43" selection-start-column="85" selection-end-line="43" selection-end-column="85" />
+        <state relative-caret-position="162">
+          <caret line="135" column="16" selection-start-line="135" selection-start-column="8" selection-end-line="135" selection-end-column="16" />
           <folding>
-            <element signature="e#2473#2487#0" expanded="true" />
+            <element signature="e#34#66#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/driver/InvTrQueryDriver.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+          <folding>
+            <element signature="e#35#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/PaymentDialog.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/ChangeDialog.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/MainWindow.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="489" column="30" selection-start-line="489" selection-start-column="30" selection-end-line="489" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/panel/OrderPanel.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="225" column="38" selection-start-line="225" selection-start-column="29" selection-end-line="225" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/groovy/mx/wen/pos/ui/view/dialog/InsertItemDialog.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="51" column="33" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

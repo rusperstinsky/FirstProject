@@ -151,7 +151,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="core" exported=""/>
     <orderEntry type="module" module-name="ui" exported=""/>
     <orderEntry type="module-library" scope="TEST">
       <library>
