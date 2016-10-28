@@ -83,7 +83,7 @@ class SuggestedItemsDialog extends JDialog {
       scrollPane( constraints: BorderLayout.CENTER ) {
         tableItems = table( selectionMode: ListSelectionModel.SINGLE_SELECTION, mouseClicked: doItemClick, rowHeight: 60 ) {
           model = tableModel( list: suggestions ) {
-            closureColumn( header: '', read: {Item tmp -> changeImg(imageIcon( url: new ClassPathResource( "img/${StringUtils.trimToEmpty(tmp?.id.toString())}.png" )?.URL ))},
+            closureColumn( header: '', read: {Item tmp -> new ClassPathResource( "img/${StringUtils.trimToEmpty(tmp?.id.toString())}.png" ).exists() ? changeImg(imageIcon( url: new ClassPathResource( "img/${StringUtils.trimToEmpty(tmp?.id.toString())}.png" )?.URL )) : ""},
                     type: ImageIcon,  preferredWidth: 110 )
             closureColumn( header: 'Sku', read: {Item tmp -> tmp?.id}, preferredWidth: 60 )
             closureColumn( header: 'Art\u00edculo', read: {Item tmp -> tmp?.name}, preferredWidth: 150 )

@@ -2,8 +2,10 @@ package mx.wen.pos.ui.controller
 
 import groovy.util.logging.Slf4j
 import mx.wen.pos.model.Articulo
+import mx.wen.pos.model.TipoProd
 import mx.wen.pos.service.ArticuloService
 import mx.wen.pos.ui.model.Item
+import mx.wen.pos.ui.model.TypeProd
 
 /*import mx.wen.pos.model.Articulo
 import mx.wen.pos.model.DetalleNotaVenta
@@ -31,6 +33,7 @@ import javax.swing.JOptionPane
 import javax.swing.JDialog
 import mx.wen.pos.service.business.Registry
 
+import java.lang.reflect.Type
 import java.text.NumberFormat
 
 @Slf4j
@@ -168,5 +171,32 @@ class ItemController {
           JOptionPane.showMessageDialog( new JDialog(), MSJ_INV_FISICO_NO_ENVIADO, TXT_DIFERENCIAS, JOptionPane.INFORMATION_MESSAGE )
       }
   }
+
+
+  static List<TypeProd> findTypesOfItem(  ) {
+    log.debug( "buscando tipos de articulo" )
+    List<TypeProd> lstTypes = new ArrayList<>()
+    List<TipoProd> results = articuloService.listarTiposArticulo( )
+    lstTypes.add( new TypeProd() )
+    for(TipoProd it : results) {
+      lstTypes.add(TypeProd.toTypeProd( it ))
+    }
+    return lstTypes
+  }
+
+
+  static void saveItem( Item item ){
+    Articulo articulo = new Articulo()
+    articulo.id = item.id
+    articulo.articulo = item.name
+    articulo.descripcion = item.desc
+    articulo.precio = item.price
+    articulo.cantExistencia = item.stock
+    articulo.tipo = item.type
+    articulo.fechaMod = new Date()
+    articulo.idSucursal = Registry.currentSite
+    articuloService.registraArticulo( articulo )
+  }
+
 
 }

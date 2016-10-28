@@ -5,7 +5,9 @@ import com.mysema.query.types.Predicate
 import groovy.util.logging.Slf4j
 import mx.wen.pos.model.Articulo
 import mx.wen.pos.model.QArticulo
+import mx.wen.pos.model.TipoProd
 import mx.wen.pos.repository.ArticuloRepository
+import mx.wen.pos.repository.TipoProdRepository
 import mx.wen.pos.service.ArticuloService
 import mx.wen.pos.service.business.Registry
 import org.apache.commons.lang.StringUtils
@@ -30,6 +32,9 @@ class ArticuloServiceImpl implements ArticuloService {
 
   @Resource
   private ArticuloRepository articuloRepository
+
+  @Resource
+  private TipoProdRepository tipoProdRepository
 
   @Resource
   private VelocityEngine velocityEngine
@@ -69,6 +74,15 @@ class ArticuloServiceImpl implements ArticuloService {
     List<Articulo> resultados = articuloRepository.findAll( predicate, QArticulo.articulo1.id.asc() ) as List<Articulo>
     return resultados
   }
+
+
+  @Override
+  List<TipoProd> listarTiposArticulo( ) {
+    log.info( "listando tipos de articulo" )
+    List<TipoProd> resultados = tipoProdRepository.findTypesOfItem( )
+    return resultados
+  }
+
 
   /*@Override
   List<Articulo> listarArticulosPorCodigoSimilar( String articulo ) {
@@ -183,6 +197,12 @@ class ArticuloServiceImpl implements ArticuloService {
 
   Articulo buscaArticulo( Integer id ){
     return articuloRepository.findOne( id )
+  }
+
+  @Override
+  @Transactional
+  void registraArticulo( Articulo articulo ) {
+    articuloRepository.saveAndFlush( articulo )
   }
 
 }

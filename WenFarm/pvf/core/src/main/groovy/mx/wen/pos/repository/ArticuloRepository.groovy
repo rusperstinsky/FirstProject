@@ -2,6 +2,7 @@ package mx.wen.pos.repository
 
 import mx.wen.pos.model.Articulo
 import mx.wen.pos.model.NotaVenta
+import mx.wen.pos.model.TipoProd
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.querydsl.QueryDslPredicateExecutor

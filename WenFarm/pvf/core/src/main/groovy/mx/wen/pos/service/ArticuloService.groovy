@@ -1,6 +1,7 @@
 package mx.wen.pos.service
 
 import mx.wen.pos.model.Articulo
+import mx.wen.pos.model.TipoProd
 
 interface ArticuloService {
 
@@ -25,4 +26,8 @@ interface ArticuloService {
   Articulo buscaArticulo( Integer id )
 
   Boolean registrarListaArticulos( List<Articulo> pListaArticulo )
+
+  List<TipoProd> listarTiposArticulo( )
+
+  void registraArticulo( Articulo articulo )
 }

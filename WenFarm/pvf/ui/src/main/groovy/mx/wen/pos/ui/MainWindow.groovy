@@ -11,6 +11,7 @@ import mx.wen.pos.ui.model.User
 import mx.wen.pos.ui.view.dialog.ChangePasswordDialog
 import mx.wen.pos.ui.view.dialog.CreateEmployeeDialog
 import mx.wen.pos.ui.view.dialog.CustomerSearchDialog
+import mx.wen.pos.ui.view.dialog.DeleteItemDialog
 import mx.wen.pos.ui.view.dialog.InsertItemDialog
 import mx.wen.pos.ui.view.dialog.NewCustomer
 import mx.wen.pos.ui.view.panel.InvTrView
@@ -100,6 +101,7 @@ class MainWindow extends JFrame implements KeyListener {
   private JMenuItem salesByPeriodMenuItem
   private JMenuItem changePasswordMenuItem
   private JMenuItem createEmployeeMenuItem
+  private JMenuItem deleteItemMenuItem
   private JMenuItem createItemMenuItem
   private JMenuItem changeSellerMenuItem
   private JMenuItem generateIn2MenuItem
@@ -478,6 +480,7 @@ class MainWindow extends JFrame implements KeyListener {
                 changePasswordMenuItem.visible = IOController.getInstance().isManagerLogged( )
                 createEmployeeMenuItem.visible = IOController.getInstance().isManagerLogged( )
                 createItemMenuItem.visible = IOController.getInstance().isManagerLogged( )
+                deleteItemMenuItem.visible = IOController.getInstance().isManagerLogged( )
                 /*newSalesDayMenuItem.visible = userLoggedIn
                 changeSellerMenuItem.visible = userLoggedIn
                 generateIn2MenuItem.visible = userLoggedIn
@@ -487,7 +490,7 @@ class MainWindow extends JFrame implements KeyListener {
                 reprintWarrantyMenuItem.visible = userLoggedIn*/
               }
           ) {
-            createItemMenuItem = menuItem( text: 'Alta de Articulo',
+            createItemMenuItem = menuItem( text: 'Alta/Actulalizaion de Articulo',
                       visible: true,
                       actionPerformed: {
                           InsertItemDialog dialog = new InsertItemDialog()
@@ -505,6 +508,13 @@ class MainWindow extends JFrame implements KeyListener {
                       visible: true,
                       actionPerformed: {
                           ChangePasswordDialog dialog = new ChangePasswordDialog()
+                          dialog.show()
+                      }
+            )
+            deleteItemMenuItem = menuItem( text: 'Elimina Articulo',
+                      visible: true,
+                      actionPerformed: {
+                          DeleteItemDialog dialog = new DeleteItemDialog()
                           dialog.show()
                       }
             )
