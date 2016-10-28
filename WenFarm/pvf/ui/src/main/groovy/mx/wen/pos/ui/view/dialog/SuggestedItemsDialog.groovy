@@ -1,6 +1,7 @@
 package mx.wen.pos.ui.view.dialog
 
 import groovy.swing.SwingBuilder
+import mx.wen.pos.service.business.Registry
 import mx.wen.pos.ui.controller.*
 import mx.wen.pos.ui.model.Item
 import mx.wen.pos.ui.view.renderer.MoneyCellRenderer
@@ -44,6 +45,7 @@ class SuggestedItemsDialog extends JDialog {
   private DefaultTableModel model
   private JTable tableItems
   private static final Integer COLUMN_ID = 1
+  private String pathImg
 
   SuggestedItemsDialog( Component parent, String code, List<Item> suggestions ) {
     this.code = code
@@ -51,6 +53,9 @@ class SuggestedItemsDialog extends JDialog {
     this.allSuggestions.addAll( suggestions )
     sb = new SwingBuilder()
     item = null
+    pathImg = Registry.pathImg()
+    Boolean tmp1 = new ClassPathResource( "/home/neogeo/img/1234.png" ).exists()
+    Boolean tmp2 = new ClassPathResource( "img/1234.png" ).exists()
     buildUI( parent )
   }
 
@@ -83,7 +88,7 @@ class SuggestedItemsDialog extends JDialog {
       scrollPane( constraints: BorderLayout.CENTER ) {
         tableItems = table( selectionMode: ListSelectionModel.SINGLE_SELECTION, mouseClicked: doItemClick, rowHeight: 60 ) {
           model = tableModel( list: suggestions ) {
-            closureColumn( header: '', read: {Item tmp -> new ClassPathResource( "img/${StringUtils.trimToEmpty(tmp?.id.toString())}.png" ).exists() ? changeImg(imageIcon( url: new ClassPathResource( "img/${StringUtils.trimToEmpty(tmp?.id.toString())}.png" )?.URL )) : ""},
+            closureColumn( header: '', read: {Item tmp -> new ClassPathResource( "${StringUtils.trimToEmpty(pathImg)}/${StringUtils.trimToEmpty(tmp?.id?.toString())}.png" ).exists() ? changeImg(imageIcon( url: new ClassPathResource( "${StringUtils.trimToEmpty(pathImg)}/${StringUtils.trimToEmpty(tmp?.id?.toString())}.png" )?.URL )) : ""},
                     type: ImageIcon,  preferredWidth: 110 )
             closureColumn( header: 'Sku', read: {Item tmp -> tmp?.id}, preferredWidth: 60 )
             closureColumn( header: 'Art\u00edculo', read: {Item tmp -> tmp?.name}, preferredWidth: 150 )

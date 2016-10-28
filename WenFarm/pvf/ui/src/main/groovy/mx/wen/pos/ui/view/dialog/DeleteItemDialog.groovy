@@ -60,6 +60,7 @@ class DeleteItemDialog extends JDialog {
                   try{
                     Item item = ItemController.findItem( NumberFormat.getInstance().parse(txtSku.text).intValue() )
                     if( item != null ){
+                      lblWarning.visible = false
                       txtArt.text = StringUtils.trimToEmpty(item.name)
                       txtArt.enabled = false
                       txtDesc.text = StringUtils.trimToEmpty(item.desc)
@@ -68,6 +69,8 @@ class DeleteItemDialog extends JDialog {
                       txtPrice.enabled = false
                       txtQty.text = StringUtils.trimToEmpty(item.stock.toString())
                       txtQty.enabled = false
+                    } else {
+                      lblWarning.visible = true
                     }
                   } catch ( ParseException ex ){
                     println ex.message
@@ -82,8 +85,8 @@ class DeleteItemDialog extends JDialog {
             txtPrice = textField( maximumSize: [100,30] )
             label( text: 'Cantidad:' )
             txtQty = textField( maximumSize: [50,30] )
-            label( text: 'Categoria:' )
-            lblWarning = label( "No existe articulo", visible: false, foreground: UI_Standards.WARNING_FOREGROUND )
+            lblWarning = label( "No existe articulo", visible: false,
+                    foreground: UI_Standards.WARNING_FOREGROUND, constraints: 'span 2' )
         }
       }
 
@@ -100,7 +103,12 @@ class DeleteItemDialog extends JDialog {
 
   private void saveItem( ){
     if( validData() ){
-      
+      try{
+        ItemController.deleteItem( NumberFormat.getInstance().parse(StringUtils.trimToEmpty(txtSku.text)).intValue() )
+        dispose()
+      } catch ( ParseException e ){
+        println e.message
+      }
     } else {
       lblWarning.visible = true
     }
@@ -119,8 +127,6 @@ class DeleteItemDialog extends JDialog {
       valid = false
     } else if(StringUtils.trimToEmpty(txtDesc.text).length() <= 0 ){
       valid = false
-    } else if(StringUtils.trimToEmpty(cbCategoria.selectedItem as String).length() <= 0 ){
-        valid = false
     }
     return valid
   }

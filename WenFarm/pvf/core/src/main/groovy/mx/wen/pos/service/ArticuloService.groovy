@@ -30,4 +30,6 @@ interface ArticuloService {
   List<TipoProd> listarTiposArticulo( )
 
   void registraArticulo( Articulo articulo )
+
+  void eliminaArticulo( Integer idArticulo )
 }

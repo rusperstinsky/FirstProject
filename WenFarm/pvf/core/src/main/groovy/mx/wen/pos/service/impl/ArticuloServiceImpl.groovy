@@ -205,4 +205,11 @@ class ArticuloServiceImpl implements ArticuloService {
     articuloRepository.saveAndFlush( articulo )
   }
 
+
+  @Override
+  @Transactional
+  void eliminaArticulo( Integer idArticulo ) {
+    articuloRepository.delete( idArticulo )
+  }
+
 }

@@ -89,7 +89,7 @@ class HelpItemSearchDialog extends JDialog {
 
 
   private void createButtons( ){
-    java.util.List<TypeProd> lstTypes = ItemController.findTypesOfItem( )
+    java.util.List<TypeProd> lstTypes = ItemController.findTypesOfItem( false )
     for(TypeProd type : lstTypes){
       JButton button = new JButton()
       String[] data = StringUtils.trimToEmpty(type.desc).split( " " )

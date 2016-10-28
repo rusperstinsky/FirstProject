@@ -173,11 +173,13 @@ class ItemController {
   }
 
 
-  static List<TypeProd> findTypesOfItem(  ) {
+  static List<TypeProd> findTypesOfItem( Boolean insertEmpty ) {
     log.debug( "buscando tipos de articulo" )
     List<TypeProd> lstTypes = new ArrayList<>()
     List<TipoProd> results = articuloService.listarTiposArticulo( )
-    lstTypes.add( new TypeProd() )
+    if( insertEmpty ){
+      lstTypes.add( new TypeProd() )
+    }
     for(TipoProd it : results) {
       lstTypes.add(TypeProd.toTypeProd( it ))
     }
@@ -196,6 +198,11 @@ class ItemController {
     articulo.fechaMod = new Date()
     articulo.idSucursal = Registry.currentSite
     articuloService.registraArticulo( articulo )
+  }
+
+
+  static void deleteItem (Integer sku){
+    articuloService.eliminaArticulo( sku )
   }
 
 

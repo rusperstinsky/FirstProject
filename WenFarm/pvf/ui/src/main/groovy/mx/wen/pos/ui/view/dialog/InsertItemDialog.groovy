@@ -31,7 +31,7 @@ class InsertItemDialog extends JDialog {
   private java.util.List<TypeProd> lstTypes
 
   InsertItemDialog( ) {
-    lstTypes = ItemController.findTypesOfItem( )
+    lstTypes = ItemController.findTypesOfItem( true )
     buildUI()
   }
 

@@ -101,6 +101,10 @@ class Registry {
     return num
   }
 
+  static String pathImg( ){
+    return asString( TipoParametro.RUTA_IMG )
+  }
+
 
   static Parametro find( TipoParametro pParametro ) {
     Parametro p = RepositoryFactory.getRegistry().findOne( pParametro.getValue() )
